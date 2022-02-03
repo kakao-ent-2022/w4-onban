@@ -5,5 +5,5 @@
 - collection view 추가
 - view model과 data source 연결
 - json으로부터 데이터 파싱하는 로직 추가
-<image src="https://images.velog.io/images/lauren-c/post/8e01e842-2f14-4a86-af5d-19d633608bf5/image.png" width=50%>
-
+- 커스텀 cell (for collectionView) 구성
+<image src="https://images.velog.io/images/lauren-c/post/37236c7e-92d1-4474-9b38-0f786727f239/image.png" width=50%>
