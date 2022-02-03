@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0337ECB47A85AFF73ABAE985 /* Pods_Onban.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E2F96439E586E92A1597C97 /* Pods_Onban.framework */; };
 		5E790CA327AB99C0003AF8DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E790CA227AB99C0003AF8DA /* AppDelegate.swift */; };
 		5E790CA527AB99C0003AF8DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E790CA427AB99C0003AF8DA /* SceneDelegate.swift */; };
 		5E790CA727AB99C0003AF8DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E790CA627AB99C0003AF8DA /* ViewController.swift */; };
@@ -16,6 +17,13 @@
 		5E790CBA27AB99C1003AF8DA /* OnbanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E790CB927AB99C1003AF8DA /* OnbanTests.swift */; };
 		5E790CC427AB99C1003AF8DA /* OnbanUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E790CC327AB99C1003AF8DA /* OnbanUITests.swift */; };
 		5E790CC627AB99C1003AF8DA /* OnbanUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E790CC527AB99C1003AF8DA /* OnbanUITestsLaunchTests.swift */; };
+		5E790CD627ABAC54003AF8DA /* main.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E790CD527ABAC54003AF8DA /* main.json */; };
+		5E790CD927ABAC8A003AF8DA /* side.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E790CD827ABAC8A003AF8DA /* side.json */; };
+		5E790CDF27ABB05B003AF8DA /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E790CDE27ABB05B003AF8DA /* Food.swift */; };
+		5E790CE227ABB380003AF8DA /* MainDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E790CE127ABB380003AF8DA /* MainDataSource.swift */; };
+		5E790CE427ABB534003AF8DA /* MainCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E790CE327ABB534003AF8DA /* MainCollectionCell.swift */; };
+		5E790CEE27ABC7E6003AF8DA /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5E790CED27ABC7E6003AF8DA /* NotoSansKR-Medium.otf */; };
+		5E790CF027ABC84A003AF8DA /* NotoSansKR-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5E790CEF27ABC84A003AF8DA /* NotoSansKR-Light.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +44,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		089C9A0D66E9A66CB608CBD7 /* Pods-Onban.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Onban.debug.xcconfig"; path = "Target Support Files/Pods-Onban/Pods-Onban.debug.xcconfig"; sourceTree = "<group>"; };
+		2E2F96439E586E92A1597C97 /* Pods_Onban.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Onban.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		50EA9BDC53FB500DED517B90 /* Pods-Onban.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Onban.release.xcconfig"; path = "Target Support Files/Pods-Onban/Pods-Onban.release.xcconfig"; sourceTree = "<group>"; };
 		5E790C9F27AB99C0003AF8DA /* Onban.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Onban.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E790CA227AB99C0003AF8DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5E790CA427AB99C0003AF8DA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +60,14 @@
 		5E790CBF27AB99C1003AF8DA /* OnbanUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OnbanUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E790CC327AB99C1003AF8DA /* OnbanUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnbanUITests.swift; sourceTree = "<group>"; };
 		5E790CC527AB99C1003AF8DA /* OnbanUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnbanUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		5E790CD527ABAC54003AF8DA /* main.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = main.json; sourceTree = "<group>"; };
+		5E790CD727ABAC73003AF8DA /* soup.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = soup.json; sourceTree = "<group>"; };
+		5E790CD827ABAC8A003AF8DA /* side.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = side.json; sourceTree = "<group>"; };
+		5E790CDE27ABB05B003AF8DA /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
+		5E790CE127ABB380003AF8DA /* MainDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDataSource.swift; sourceTree = "<group>"; };
+		5E790CE327ABB534003AF8DA /* MainCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionCell.swift; sourceTree = "<group>"; };
+		5E790CED27ABC7E6003AF8DA /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Medium.otf"; sourceTree = "<group>"; };
+		5E790CEF27ABC84A003AF8DA /* NotoSansKR-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Light.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0337ECB47A85AFF73ABAE985 /* Pods_Onban.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +96,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		23FB0DDAE658AE1863879B30 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				089C9A0D66E9A66CB608CBD7 /* Pods-Onban.debug.xcconfig */,
+				50EA9BDC53FB500DED517B90 /* Pods-Onban.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		3AFB8A9B5EA4F51E465F7CCC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2E2F96439E586E92A1597C97 /* Pods_Onban.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		5E790C9627AB99C0003AF8DA = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +120,8 @@
 				5E790CB827AB99C1003AF8DA /* OnbanTests */,
 				5E790CC227AB99C1003AF8DA /* OnbanUITests */,
 				5E790CA027AB99C0003AF8DA /* Products */,
+				23FB0DDAE658AE1863879B30 /* Pods */,
+				3AFB8A9B5EA4F51E465F7CCC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,9 +138,14 @@
 		5E790CA127AB99C0003AF8DA /* Onban */ = {
 			isa = PBXGroup;
 			children = (
+				5E790CEB27ABC7D2003AF8DA /* etc */,
+				5E790CE727ABBF7A003AF8DA /* views */,
+				5E790CE027ABB36B003AF8DA /* datasources */,
+				5E790CDA27ABB018003AF8DA /* models */,
+				5E790CD427ABAC42003AF8DA /* datas */,
+				5E790CD327ABAC37003AF8DA /* controllers */,
 				5E790CA227AB99C0003AF8DA /* AppDelegate.swift */,
 				5E790CA427AB99C0003AF8DA /* SceneDelegate.swift */,
-				5E790CA627AB99C0003AF8DA /* ViewController.swift */,
 				5E790CA827AB99C0003AF8DA /* Main.storyboard */,
 				5E790CAB27AB99C1003AF8DA /* Assets.xcassets */,
 				5E790CAD27AB99C1003AF8DA /* LaunchScreen.storyboard */,
@@ -127,6 +171,65 @@
 			path = OnbanUITests;
 			sourceTree = "<group>";
 		};
+		5E790CD327ABAC37003AF8DA /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5E790CA627AB99C0003AF8DA /* ViewController.swift */,
+			);
+			path = controllers;
+			sourceTree = "<group>";
+		};
+		5E790CD427ABAC42003AF8DA /* datas */ = {
+			isa = PBXGroup;
+			children = (
+				5E790CD527ABAC54003AF8DA /* main.json */,
+				5E790CD727ABAC73003AF8DA /* soup.json */,
+				5E790CD827ABAC8A003AF8DA /* side.json */,
+			);
+			path = datas;
+			sourceTree = "<group>";
+		};
+		5E790CDA27ABB018003AF8DA /* models */ = {
+			isa = PBXGroup;
+			children = (
+				5E790CDE27ABB05B003AF8DA /* Food.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		5E790CE027ABB36B003AF8DA /* datasources */ = {
+			isa = PBXGroup;
+			children = (
+				5E790CE127ABB380003AF8DA /* MainDataSource.swift */,
+			);
+			path = datasources;
+			sourceTree = "<group>";
+		};
+		5E790CE727ABBF7A003AF8DA /* views */ = {
+			isa = PBXGroup;
+			children = (
+				5E790CE327ABB534003AF8DA /* MainCollectionCell.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		5E790CEB27ABC7D2003AF8DA /* etc */ = {
+			isa = PBXGroup;
+			children = (
+				5E790CEC27ABC7D9003AF8DA /* fonts */,
+			);
+			path = etc;
+			sourceTree = "<group>";
+		};
+		5E790CEC27ABC7D9003AF8DA /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				5E790CEF27ABC84A003AF8DA /* NotoSansKR-Light.otf */,
+				5E790CED27ABC7E6003AF8DA /* NotoSansKR-Medium.otf */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -134,9 +237,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5E790CC927AB99C1003AF8DA /* Build configuration list for PBXNativeTarget "Onban" */;
 			buildPhases = (
+				B75DE56C036388113E3E8926 /* [CP] Check Pods Manifest.lock */,
 				5E790C9B27AB99C0003AF8DA /* Sources */,
 				5E790C9C27AB99C0003AF8DA /* Frameworks */,
 				5E790C9D27AB99C0003AF8DA /* Resources */,
+				B146AA0E372641456828E4BA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -231,8 +336,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E790CEE27ABC7E6003AF8DA /* NotoSansKR-Medium.otf in Resources */,
+				5E790CD927ABAC8A003AF8DA /* side.json in Resources */,
+				5E790CF027ABC84A003AF8DA /* NotoSansKR-Light.otf in Resources */,
 				5E790CAF27AB99C1003AF8DA /* LaunchScreen.storyboard in Resources */,
 				5E790CAC27AB99C1003AF8DA /* Assets.xcassets in Resources */,
+				5E790CD627ABAC54003AF8DA /* main.json in Resources */,
 				5E790CAA27AB99C0003AF8DA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -253,14 +362,59 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		B146AA0E372641456828E4BA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Onban/Pods-Onban-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Onban/Pods-Onban-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Onban/Pods-Onban-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B75DE56C036388113E3E8926 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Onban-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5E790C9B27AB99C0003AF8DA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				5E790CA727AB99C0003AF8DA /* ViewController.swift in Sources */,
+				5E790CDF27ABB05B003AF8DA /* Food.swift in Sources */,
 				5E790CA327AB99C0003AF8DA /* AppDelegate.swift in Sources */,
 				5E790CA527AB99C0003AF8DA /* SceneDelegate.swift in Sources */,
+				5E790CE427ABB534003AF8DA /* MainCollectionCell.swift in Sources */,
+				5E790CE227ABB380003AF8DA /* MainDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,6 +588,7 @@
 		};
 		5E790CCA27AB99C1003AF8DA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 089C9A0D66E9A66CB608CBD7 /* Pods-Onban.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -462,6 +617,7 @@
 		};
 		5E790CCB27AB99C1003AF8DA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50EA9BDC53FB500DED517B90 /* Pods-Onban.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
