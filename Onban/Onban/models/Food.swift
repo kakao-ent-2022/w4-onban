@@ -9,12 +9,12 @@
 struct Food: Codable {
     let id: String
     let title: String
-    let imagePath: [String]
+    let imagePath: String
     let delivery_type: [String]
     let description: String
     let originalPrice: String?
     let actualPrice: String
-    let badge: [String]
+    let badge: [String] = []
     
     private enum CodingKeys: String, CodingKey {
         case id = "detail_hash"

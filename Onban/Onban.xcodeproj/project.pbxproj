@@ -24,6 +24,10 @@
 		5E790CE427ABB534003AF8DA /* MainCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E790CE327ABB534003AF8DA /* MainCollectionCell.swift */; };
 		5E790CEE27ABC7E6003AF8DA /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5E790CED27ABC7E6003AF8DA /* NotoSansKR-Medium.otf */; };
 		5E790CF027ABC84A003AF8DA /* NotoSansKR-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5E790CEF27ABC84A003AF8DA /* NotoSansKR-Light.otf */; };
+		5E790CF227ABD95C003AF8DA /* MainCollectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E790CF127ABD95C003AF8DA /* MainCollectionHeader.swift */; };
+		5E790CF727ABE1BA003AF8DA /* FoodListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E790CF627ABE1BA003AF8DA /* FoodListViewModel.swift */; };
+		5E790CFA27ABE36A003AF8DA /* CommonError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E790CF927ABE36A003AF8DA /* CommonError.swift */; };
+		5E790CFC27ABE8BE003AF8DA /* soup.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E790CFB27ABE8BE003AF8DA /* soup.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,13 +65,16 @@
 		5E790CC327AB99C1003AF8DA /* OnbanUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnbanUITests.swift; sourceTree = "<group>"; };
 		5E790CC527AB99C1003AF8DA /* OnbanUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnbanUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		5E790CD527ABAC54003AF8DA /* main.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = main.json; sourceTree = "<group>"; };
-		5E790CD727ABAC73003AF8DA /* soup.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = soup.json; sourceTree = "<group>"; };
 		5E790CD827ABAC8A003AF8DA /* side.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = side.json; sourceTree = "<group>"; };
 		5E790CDE27ABB05B003AF8DA /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		5E790CE127ABB380003AF8DA /* MainDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDataSource.swift; sourceTree = "<group>"; };
 		5E790CE327ABB534003AF8DA /* MainCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionCell.swift; sourceTree = "<group>"; };
 		5E790CED27ABC7E6003AF8DA /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Medium.otf"; sourceTree = "<group>"; };
 		5E790CEF27ABC84A003AF8DA /* NotoSansKR-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Light.otf"; sourceTree = "<group>"; };
+		5E790CF127ABD95C003AF8DA /* MainCollectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionHeader.swift; sourceTree = "<group>"; };
+		5E790CF627ABE1BA003AF8DA /* FoodListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodListViewModel.swift; sourceTree = "<group>"; };
+		5E790CF927ABE36A003AF8DA /* CommonError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonError.swift; sourceTree = "<group>"; };
+		5E790CFB27ABE8BE003AF8DA /* soup.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = soup.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +153,7 @@
 				5E790CD327ABAC37003AF8DA /* controllers */,
 				5E790CA227AB99C0003AF8DA /* AppDelegate.swift */,
 				5E790CA427AB99C0003AF8DA /* SceneDelegate.swift */,
+				5E790CF527ABE1B1003AF8DA /* viewmodels */,
 				5E790CA827AB99C0003AF8DA /* Main.storyboard */,
 				5E790CAB27AB99C1003AF8DA /* Assets.xcassets */,
 				5E790CAD27AB99C1003AF8DA /* LaunchScreen.storyboard */,
@@ -183,8 +191,8 @@
 			isa = PBXGroup;
 			children = (
 				5E790CD527ABAC54003AF8DA /* main.json */,
-				5E790CD727ABAC73003AF8DA /* soup.json */,
 				5E790CD827ABAC8A003AF8DA /* side.json */,
+				5E790CFB27ABE8BE003AF8DA /* soup.json */,
 			);
 			path = datas;
 			sourceTree = "<group>";
@@ -209,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				5E790CE327ABB534003AF8DA /* MainCollectionCell.swift */,
+				5E790CF127ABD95C003AF8DA /* MainCollectionHeader.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -216,6 +225,7 @@
 		5E790CEB27ABC7D2003AF8DA /* etc */ = {
 			isa = PBXGroup;
 			children = (
+				5E790CF827ABE356003AF8DA /* errors */,
 				5E790CEC27ABC7D9003AF8DA /* fonts */,
 			);
 			path = etc;
@@ -228,6 +238,22 @@
 				5E790CED27ABC7E6003AF8DA /* NotoSansKR-Medium.otf */,
 			);
 			path = fonts;
+			sourceTree = "<group>";
+		};
+		5E790CF527ABE1B1003AF8DA /* viewmodels */ = {
+			isa = PBXGroup;
+			children = (
+				5E790CF627ABE1BA003AF8DA /* FoodListViewModel.swift */,
+			);
+			path = viewmodels;
+			sourceTree = "<group>";
+		};
+		5E790CF827ABE356003AF8DA /* errors */ = {
+			isa = PBXGroup;
+			children = (
+				5E790CF927ABE36A003AF8DA /* CommonError.swift */,
+			);
+			path = errors;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -339,6 +365,7 @@
 				5E790CEE27ABC7E6003AF8DA /* NotoSansKR-Medium.otf in Resources */,
 				5E790CD927ABAC8A003AF8DA /* side.json in Resources */,
 				5E790CF027ABC84A003AF8DA /* NotoSansKR-Light.otf in Resources */,
+				5E790CFC27ABE8BE003AF8DA /* soup.json in Resources */,
 				5E790CAF27AB99C1003AF8DA /* LaunchScreen.storyboard in Resources */,
 				5E790CAC27AB99C1003AF8DA /* Assets.xcassets in Resources */,
 				5E790CD627ABAC54003AF8DA /* main.json in Resources */,
@@ -410,11 +437,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E790CA727AB99C0003AF8DA /* ViewController.swift in Sources */,
+				5E790CFA27ABE36A003AF8DA /* CommonError.swift in Sources */,
 				5E790CDF27ABB05B003AF8DA /* Food.swift in Sources */,
+				5E790CF727ABE1BA003AF8DA /* FoodListViewModel.swift in Sources */,
 				5E790CA327AB99C0003AF8DA /* AppDelegate.swift in Sources */,
 				5E790CA527AB99C0003AF8DA /* SceneDelegate.swift in Sources */,
 				5E790CE427ABB534003AF8DA /* MainCollectionCell.swift in Sources */,
 				5E790CE227ABB380003AF8DA /* MainDataSource.swift in Sources */,
+				5E790CF227ABD95C003AF8DA /* MainCollectionHeader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

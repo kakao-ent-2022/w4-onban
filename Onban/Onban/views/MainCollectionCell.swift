@@ -11,7 +11,7 @@ class MainCollectionCell: UICollectionViewCell {
     let view: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .orange
+        view.backgroundColor = .red
         return view
     }()
     let title: UILabel = {
@@ -30,8 +30,8 @@ class MainCollectionCell: UICollectionViewCell {
         setUpView()
     }
     
-    func configure(title: String) {
-        self.title.text = title
+    func configure(from model: Food) {
+        self.title.text = model.title
     }
     
     private func setUpView() {
