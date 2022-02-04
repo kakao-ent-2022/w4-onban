@@ -7,18 +7,18 @@
 
 import Foundation
 
-struct StoreItem : Decodable {
-    var detailHash: String
-    var image: String
-    var alt: String
-    var deliveryType: [DeliveryType]
-    var title: String
-    var description: String
-    var nPrice: String?
-    var sPrice: String
-    var badge: [Badge]?
+struct StoreItem : Decodable, Equatable {
+    let detailHash: String
+    let image: String
+    let alt: String
+    let deliveryType: [DeliveryType]
+    let title: String
+    let description: String
+    let nPrice: String?
+    let sPrice: String
+    let badge: [Badge]?
     
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case detailHash = "detail_hash"
         case image
         case alt
