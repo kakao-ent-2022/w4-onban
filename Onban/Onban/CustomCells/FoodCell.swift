@@ -24,7 +24,7 @@ class FoodCell: UICollectionViewCell {
     }()
     let currentPrice: UILabel = {
         let label = UILabel()
-        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.font = UIFont.boldSystemFont(ofSize: 18)
         return label
     }()
     let originalPrice: UILabel = {
@@ -82,8 +82,12 @@ class FoodCell: UICollectionViewCell {
         titleLabel.text = foodVM.title
         titleLabel.numberOfLines = 0
         detailLabel.text = foodVM.description
-        currentPrice.text = foodVM.nPrice
-        originalPrice.text = foodVM.sPrice
+        currentPrice.text = foodVM.sPrice
+        if let nPrice = foodVM.nPrice {
+            let attributeString = NSMutableAttributedString(string: nPrice)
+            attributeString.addAttribute(.strikethroughStyle, value: NSUnderlineStyle.single.rawValue, range: NSMakeRange(0, attributeString.length))
+            originalPrice.attributedText = attributeString
+        }
         foodVM.loadImage { data in
             guard let imageData = data else { return }
             DispatchQueue.main.async {

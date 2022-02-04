@@ -11,7 +11,9 @@ struct FoodViewModel {
     let food: Food
     var title: String { food.title }
     var description: String { food.description}
-    var nPrice: String? { food.nPrice }
+    var nPrice: String? {
+        food.nPrice == nil ? nil : food.nPrice! + "원"
+    }
     var sPrice: String { food.sPrice }
     var imageData: Data?
     

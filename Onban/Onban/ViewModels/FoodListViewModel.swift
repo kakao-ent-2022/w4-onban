@@ -10,7 +10,6 @@ import Foundation
 struct FoodListViewModel {
     let foodsList: [FoodsViewModel]
     
-    
     var numberOfSection: Int {
         return foodsList.count
     }
