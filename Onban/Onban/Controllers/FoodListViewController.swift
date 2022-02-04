@@ -11,6 +11,7 @@ import SnapKit
 
 class FoodListViewController: UIViewController {
     private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    private var foodListVM: FoodListViewModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,12 +36,30 @@ class FoodListViewController: UIViewController {
     }
 
     private func getFoodData() {
-        JSONParser.load(from: "main", to: [Food].self) { result in
-            switch result {
-            case .success(let food):
-                print(food)
-            case .failure(let error):
-                print(error)
+        JSONParser.load(from: "main", to: [Food].self) { mainResult in
+            switch mainResult {
+            case .success(let main):
+                JSONParser.load(from: "side", to: [Food].self) { sideResult in
+                    switch sideResult {
+                    case .success(let side):
+                        JSONParser.load(from: "soup", to: [Food].self) { soupResult in
+                            switch soupResult {
+                            case .success(let soup):
+                                let mains = FoodsViewModel(type: .main, foods: main)
+                                let soups = FoodsViewModel(type: .side, foods: soup)
+                                let sides = FoodsViewModel(type: .soup, foods: side)
+                                self.foodListVM = FoodListViewModel(foodsList: [mains, soups, sides])
+                            case.failure(let soupError):
+                                print(soupError)
+                            }
+                        }
+                        
+                    case .failure(let sideError):
+                        print(sideError)
+                    }
+                }
+            case .failure(let mainError):
+                print(mainError)
             }
         }
         
