@@ -34,8 +34,7 @@ class ViewController: UIViewController {
         
         let collectionViewLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         collectionViewLayout.itemSize = CGSize(width: view.safeAreaLayoutGuide.layoutFrame.width - defaultMargin*2, height: 130)
-        collectionViewLayout.sectionInset = UIEdgeInsets(top: 0, left: defaultMargin, bottom: 50, right: defaultMargin)
-        
+        collectionViewLayout.sectionInset = UIEdgeInsets(top: 0, left: defaultMargin, bottom: 24, right: defaultMargin)
         collectionViewLayout.headerReferenceSize = CGSize(width: view.safeAreaLayoutGuide.layoutFrame.width, height: MainCollectionHeader.height)
         
         let collectionView = UICollectionView(frame: view.safeAreaLayoutGuide.layoutFrame, collectionViewLayout: collectionViewLayout)
@@ -52,10 +51,9 @@ class ViewController: UIViewController {
         let safeArea = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: safeArea.topAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor)
         ])
     }
-
 }

@@ -8,14 +8,16 @@
 import UIKit
 
 class MainCollectionHeader: UICollectionReusableView {
-    private let defaultMargin: CGFloat = 18
-    static let height: CGFloat = fontSize + 24
-    static let fontSize: CGFloat = 22
+    private static let horizontalMargin: CGFloat = 18
+    private static let verticalMargin: CGFloat = 24
+    private static let fontSize: CGFloat = 22
+    static var height: CGFloat = fontSize + verticalMargin * 2
+    
     var title: UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "NotoSansKR-Medium", size: fontSize)
-        label.textColor = .black
+        label.font = defaultFont(.sansMedium, size: fontSize)
+        label.textColor = defaultColor(.font)
         return label
     }()
     
@@ -24,10 +26,9 @@ class MainCollectionHeader: UICollectionReusableView {
         
         addSubview(title)
         NSLayoutConstraint.activate([
-            title.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            title.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: defaultMargin),
-            title.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: defaultMargin),
-            title.bottomAnchor.constraint(lessThanOrEqualTo: safeAreaLayoutGuide.bottomAnchor)
+            title.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
+            title.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: MainCollectionHeader.horizontalMargin),
+            title.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: MainCollectionHeader.horizontalMargin)
         ])
     }
     required init?(coder: NSCoder) {

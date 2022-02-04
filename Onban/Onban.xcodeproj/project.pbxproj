@@ -28,6 +28,9 @@
 		5E790CF727ABE1BA003AF8DA /* FoodListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E790CF627ABE1BA003AF8DA /* FoodListViewModel.swift */; };
 		5E790CFA27ABE36A003AF8DA /* CommonError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E790CF927ABE36A003AF8DA /* CommonError.swift */; };
 		5E790CFC27ABE8BE003AF8DA /* soup.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E790CFB27ABE8BE003AF8DA /* soup.json */; };
+		5E790D0027ACD775003AF8DA /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E790CFF27ACD775003AF8DA /* Colors.xcassets */; };
+		5E790D0327ACD918003AF8DA /* DefaultColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E790D0227ACD918003AF8DA /* DefaultColor.swift */; };
+		5E790D0527ACDB75003AF8DA /* DefaultFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E790D0427ACDB75003AF8DA /* DefaultFont.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +78,9 @@
 		5E790CF627ABE1BA003AF8DA /* FoodListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodListViewModel.swift; sourceTree = "<group>"; };
 		5E790CF927ABE36A003AF8DA /* CommonError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonError.swift; sourceTree = "<group>"; };
 		5E790CFB27ABE8BE003AF8DA /* soup.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = soup.json; sourceTree = "<group>"; };
+		5E790CFF27ACD775003AF8DA /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		5E790D0227ACD918003AF8DA /* DefaultColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultColor.swift; sourceTree = "<group>"; };
+		5E790D0427ACDB75003AF8DA /* DefaultFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultFont.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +162,7 @@
 				5E790CF527ABE1B1003AF8DA /* viewmodels */,
 				5E790CA827AB99C0003AF8DA /* Main.storyboard */,
 				5E790CAB27AB99C1003AF8DA /* Assets.xcassets */,
+				5E790CFF27ACD775003AF8DA /* Colors.xcassets */,
 				5E790CAD27AB99C1003AF8DA /* LaunchScreen.storyboard */,
 				5E790CB027AB99C1003AF8DA /* Info.plist */,
 			);
@@ -225,6 +232,7 @@
 		5E790CEB27ABC7D2003AF8DA /* etc */ = {
 			isa = PBXGroup;
 			children = (
+				5E790D0127ACD90D003AF8DA /* colors */,
 				5E790CF827ABE356003AF8DA /* errors */,
 				5E790CEC27ABC7D9003AF8DA /* fonts */,
 			);
@@ -236,6 +244,7 @@
 			children = (
 				5E790CEF27ABC84A003AF8DA /* NotoSansKR-Light.otf */,
 				5E790CED27ABC7E6003AF8DA /* NotoSansKR-Medium.otf */,
+				5E790D0427ACDB75003AF8DA /* DefaultFont.swift */,
 			);
 			path = fonts;
 			sourceTree = "<group>";
@@ -254,6 +263,14 @@
 				5E790CF927ABE36A003AF8DA /* CommonError.swift */,
 			);
 			path = errors;
+			sourceTree = "<group>";
+		};
+		5E790D0127ACD90D003AF8DA /* colors */ = {
+			isa = PBXGroup;
+			children = (
+				5E790D0227ACD918003AF8DA /* DefaultColor.swift */,
+			);
+			path = colors;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -362,6 +379,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E790D0027ACD775003AF8DA /* Colors.xcassets in Resources */,
 				5E790CEE27ABC7E6003AF8DA /* NotoSansKR-Medium.otf in Resources */,
 				5E790CD927ABAC8A003AF8DA /* side.json in Resources */,
 				5E790CF027ABC84A003AF8DA /* NotoSansKR-Light.otf in Resources */,
@@ -439,7 +457,9 @@
 				5E790CA727AB99C0003AF8DA /* ViewController.swift in Sources */,
 				5E790CFA27ABE36A003AF8DA /* CommonError.swift in Sources */,
 				5E790CDF27ABB05B003AF8DA /* Food.swift in Sources */,
+				5E790D0327ACD918003AF8DA /* DefaultColor.swift in Sources */,
 				5E790CF727ABE1BA003AF8DA /* FoodListViewModel.swift in Sources */,
+				5E790D0527ACDB75003AF8DA /* DefaultFont.swift in Sources */,
 				5E790CA327AB99C0003AF8DA /* AppDelegate.swift in Sources */,
 				5E790CA527AB99C0003AF8DA /* SceneDelegate.swift in Sources */,
 				5E790CE427ABB534003AF8DA /* MainCollectionCell.swift in Sources */,

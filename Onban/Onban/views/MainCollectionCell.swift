@@ -15,7 +15,9 @@ class MainCollectionCell: UICollectionViewCell {
     }()
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "NotoSansKR-Light", size: 14)
+        label.font = defaultFont(.sansMedium, size: 14)
+        label.textColor = defaultColor(.font)
+        label.numberOfLines = 2
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -23,24 +25,24 @@ class MainCollectionCell: UICollectionViewCell {
     let descriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .systemGray
-        label.font = UIFont(name: "NotoSansKR-Light", size: 13)
+        label.textColor = defaultColor(.subFont)
+        label.font = defaultFont(.sansLight, size: 14)
         return label
     }()
     
     let actualPriceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .black
-        label.font = UIFont(name: "NotoSansKR-Light", size: 14)
+        label.textColor = defaultColor(.darkerFont)
+        label.font = defaultFont(.sansMedium, size: 14)
         return label
     }()
     
     let originalPriceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .systemGray
-        label.font = UIFont(name: "NotoSansKR-Light", size: 14)
+        label.textColor = defaultColor(.lightGray)
+        label.font = defaultFont(.sansLight, size: 14)
         return label
     }()
     
@@ -58,8 +60,11 @@ class MainCollectionCell: UICollectionViewCell {
         self.titleLabel.text = model.title
         self.descriptionLabel.text = model.description
         self.actualPriceLabel.text = model.actualPrice
-        if let originalPrice = model.originalPrice {
-            self.originalPriceLabel.attributedText = NSAttributedString.init(string: originalPrice, attributes: [.strikethroughStyle: NSUnderlineStyle.single.rawValue])            
+        if var originalPrice = model.originalPrice {
+            if originalPrice.last != "원" {
+                originalPrice += "원"
+            }
+            self.originalPriceLabel.attributedText = NSAttributedString.init(string: originalPrice, attributes: [.strikethroughStyle: NSUnderlineStyle.single.rawValue])
         }
         if let url = URL(string: model.imagePath),
            let data = try? Data(contentsOf: url) {
@@ -80,15 +85,15 @@ class MainCollectionCell: UICollectionViewCell {
             imageView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
             imageView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
             imageView.heightAnchor.constraint(equalTo: safeArea.heightAnchor),
-            imageView.widthAnchor.constraint(equalTo: safeArea.heightAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 8),
+            imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10),
             titleLabel.trailingAnchor.constraint(lessThanOrEqualTo: safeArea.trailingAnchor),
-            titleLabel.topAnchor.constraint(equalTo: imageView.topAnchor, constant: 12.5),
+            titleLabel.topAnchor.constraint(equalTo: imageView.topAnchor, constant: 11),
             descriptionLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             descriptionLabel.trailingAnchor.constraint(lessThanOrEqualTo: safeArea.trailingAnchor),
-            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 2),
+            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4),
             actualPriceLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-            actualPriceLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor),
+            actualPriceLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 8),
             originalPriceLabel.topAnchor.constraint(equalTo: actualPriceLabel.topAnchor),
             originalPriceLabel.leadingAnchor.constraint(equalTo: actualPriceLabel.trailingAnchor, constant: 4)
         ])
