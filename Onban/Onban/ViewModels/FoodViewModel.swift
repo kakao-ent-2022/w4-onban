@@ -7,8 +7,9 @@
 
 import UIKit
 
-struct FoodViewModel {
+class FoodViewModel {
     let food: Food
+    
     var title: String { food.title }
     var description: String { food.description}
     var nPrice: String? {
@@ -16,6 +17,7 @@ struct FoodViewModel {
     }
     var sPrice: String { food.sPrice }
     var imageData: Data?
+    var image: UIImage?
     var isEvent: Bool {
         return food.badges?.contains("이벤트특가") ?? false
     }
@@ -23,14 +25,20 @@ struct FoodViewModel {
         return food.badges?.contains("론칭특가") ?? false
     }
     
-    func loadImage(completion: @escaping (Data?) -> Void) {
-        if let imageData = self.imageData {
-            completion(imageData)
+    init(food: Food) {
+        self.food = food
+    }
+    
+    func loadImage(completion: @escaping (UIImage?) -> Void) {
+        if let image = self.image {
+            completion(image)
         } else {
             guard let imageURL = URL(string: food.imageURL) else { return }
-            let task = URLSession.shared.dataTask(with: imageURL) { data, response, error in
-                guard error == nil else { return }
-                completion(data)
+            let task = URLSession.shared.dataTask(with: imageURL) { [self] data, response, error in
+                guard let data = data, error == nil else { return }
+                let image = UIImage(data: data)
+                self.image  = image
+                completion(image)
             }
             task.resume()
         }

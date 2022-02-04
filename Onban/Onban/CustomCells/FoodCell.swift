@@ -91,10 +91,9 @@ class FoodCell: UICollectionViewCell {
         }
         eventTagImage.isHidden = !foodVM.isEvent
         newTagImage.isHidden = !foodVM.isNew
-        foodVM.loadImage { data in
-            guard let imageData = data else { return }
+        foodVM.loadImage { image in
             DispatchQueue.main.async {
-                self.foodImage.image = UIImage(data: imageData)
+                self.foodImage.image = image
             }
         }
     }
