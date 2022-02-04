@@ -7,15 +7,15 @@
 
 import Foundation
 
-struct StoreItem : Decodable, Equatable {
+struct StoreItem : Decodable {
     let detailHash: String
     let image: String
     let alt: String
     let deliveryType: [DeliveryType]
     let title: String
     let description: String
-    let nPrice: String?
-    let sPrice: String
+    let originalPrice: String?
+    let discountedPrice: String
     let badge: [Badge]?
     
     private enum CodingKeys: String, CodingKey {
@@ -38,8 +38,8 @@ struct StoreItem : Decodable, Equatable {
         deliveryType = try container.decode([DeliveryType].self, forKey: .deliveryType)
         title = try container.decode(String.self, forKey: .title)
         description = try container.decode(String.self, forKey: .description)
-        nPrice = try? container.decode(String.self, forKey: .nPrice)
-        sPrice = try container.decode(String.self, forKey: .sPrice)
+        originalPrice = try? container.decode(String.self, forKey: .nPrice)
+        discountedPrice = try container.decode(String.self, forKey: .sPrice)
         badge = try? container.decode([Badge].self, forKey: .badge)
     }
 }
