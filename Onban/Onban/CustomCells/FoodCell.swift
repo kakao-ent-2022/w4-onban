@@ -68,6 +68,11 @@ class FoodCell: UICollectionViewCell {
     
     func configure(foodVM: FoodViewModel) {
         addSubview(mainStackView)
+        
+        foodImage.snp.makeConstraints { make in
+            make.width.equalTo(contentView.safeAreaLayoutGuide.snp.width).multipliedBy(0.4)
+            make.height.equalTo(foodImage.snp.width)
+        }
         mainStackView.snp.makeConstraints { make in
             make.top.equalTo(contentView.snp.top)
             make.bottom.equalTo(contentView.snp.bottom)
@@ -75,6 +80,7 @@ class FoodCell: UICollectionViewCell {
             make.trailing.equalTo(contentView.snp.trailing)
         }
         titleLabel.text = foodVM.title
+        titleLabel.numberOfLines = 0
         detailLabel.text = foodVM.description
         currentPrice.text = foodVM.nPrice
         originalPrice.text = foodVM.sPrice
