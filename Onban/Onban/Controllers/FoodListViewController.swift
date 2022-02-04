@@ -94,7 +94,7 @@ extension FoodListViewController: UICollectionViewDataSource, UICollectionViewDe
         guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "itemHeaderView", for: indexPath) as? FoodHeaderView else {
             return UICollectionReusableView()
         }
-        header.configure(title: "나는 헤더다")
+        header.configure(title: foodListVM?.titleOfSection(indexPath.section))
         return header
                 
     }

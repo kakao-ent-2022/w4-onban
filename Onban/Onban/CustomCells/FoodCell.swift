@@ -59,6 +59,7 @@ class FoodCell: UICollectionViewCell {
     }()
     private lazy var mainStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [foodImage, informationStackView])
+//        let stackView = UIStackView()
         stackView.alignment = .center
         stackView.distribution = .fill
         stackView.axis = .horizontal
@@ -88,6 +89,8 @@ class FoodCell: UICollectionViewCell {
             attributeString.addAttribute(.strikethroughStyle, value: NSUnderlineStyle.single.rawValue, range: NSMakeRange(0, attributeString.length))
             originalPrice.attributedText = attributeString
         }
+        eventTagImage.isHidden = !foodVM.isEvent
+        newTagImage.isHidden = !foodVM.isNew
         foodVM.loadImage { data in
             guard let imageData = data else { return }
             DispatchQueue.main.async {
@@ -95,5 +98,6 @@ class FoodCell: UICollectionViewCell {
             }
         }
     }
+    
 }
 

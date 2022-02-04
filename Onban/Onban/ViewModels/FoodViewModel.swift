@@ -16,6 +16,12 @@ struct FoodViewModel {
     }
     var sPrice: String { food.sPrice }
     var imageData: Data?
+    var isEvent: Bool {
+        return food.badges?.contains("이벤트특가") ?? false
+    }
+    var isNew: Bool {
+        return food.badges?.contains("론칭특가") ?? false
+    }
     
     func loadImage(completion: @escaping (Data?) -> Void) {
         if let imageData = self.imageData {

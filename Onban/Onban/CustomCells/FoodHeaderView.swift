@@ -15,7 +15,7 @@ class FoodHeaderView: UICollectionReusableView {
         return label
     }()
     
-    func configure(title: String) {
+    func configure(title: String?) {
         addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview()
