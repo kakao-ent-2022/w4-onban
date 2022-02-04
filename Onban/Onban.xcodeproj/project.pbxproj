@@ -31,6 +31,7 @@
 		5E790D0027ACD775003AF8DA /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E790CFF27ACD775003AF8DA /* Colors.xcassets */; };
 		5E790D0327ACD918003AF8DA /* DefaultColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E790D0227ACD918003AF8DA /* DefaultColor.swift */; };
 		5E790D0527ACDB75003AF8DA /* DefaultFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E790D0427ACDB75003AF8DA /* DefaultFont.swift */; };
+		5E790D0727ACFF18003AF8DA /* NotoSansKR-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5E790D0627ACFF18003AF8DA /* NotoSansKR-Bold.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		5E790CFF27ACD775003AF8DA /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		5E790D0227ACD918003AF8DA /* DefaultColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultColor.swift; sourceTree = "<group>"; };
 		5E790D0427ACDB75003AF8DA /* DefaultFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultFont.swift; sourceTree = "<group>"; };
+		5E790D0627ACFF18003AF8DA /* NotoSansKR-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Bold.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				5E790CEF27ABC84A003AF8DA /* NotoSansKR-Light.otf */,
+				5E790D0627ACFF18003AF8DA /* NotoSansKR-Bold.otf */,
 				5E790CED27ABC7E6003AF8DA /* NotoSansKR-Medium.otf */,
 				5E790D0427ACDB75003AF8DA /* DefaultFont.swift */,
 			);
@@ -383,6 +386,7 @@
 				5E790CEE27ABC7E6003AF8DA /* NotoSansKR-Medium.otf in Resources */,
 				5E790CD927ABAC8A003AF8DA /* side.json in Resources */,
 				5E790CF027ABC84A003AF8DA /* NotoSansKR-Light.otf in Resources */,
+				5E790D0727ACFF18003AF8DA /* NotoSansKR-Bold.otf in Resources */,
 				5E790CFC27ABE8BE003AF8DA /* soup.json in Resources */,
 				5E790CAF27AB99C1003AF8DA /* LaunchScreen.storyboard in Resources */,
 				5E790CAC27AB99C1003AF8DA /* Assets.xcassets in Resources */,

@@ -16,6 +16,7 @@ enum DefaultColors: String {
     case subFont = "defaultSubFont"
     case darkerFont = "defaultDarkerFont"
     case darkerBackground = "defaultDarkerBackground"
+    case green, lightBlue
 }
 
 func defaultColor(_ name: DefaultColors) -> UIColor? {

@@ -15,7 +15,7 @@ class MainCollectionCell: UICollectionViewCell {
     }()
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = defaultFont(.sansMedium, size: 14)
+        label.font = defaultFont(.sansBold, size: 14)
         label.textColor = defaultColor(.font)
         label.numberOfLines = 2
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -34,7 +34,7 @@ class MainCollectionCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = defaultColor(.darkerFont)
-        label.font = defaultFont(.sansMedium, size: 14)
+        label.font = defaultFont(.sansBold, size: 14)
         return label
     }()
     
@@ -42,7 +42,16 @@ class MainCollectionCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = defaultColor(.lightGray)
-        label.font = defaultFont(.sansLight, size: 14)
+        label.font = defaultFont(.sansMedium, size: 14)
+        return label
+    }()
+    
+    var badge1: UILabel = {
+        let label = BadgeLabel()
+        return label
+    }()
+    var badge2: UILabel = {
+        let label = BadgeLabel()
         return label
     }()
     
@@ -70,7 +79,25 @@ class MainCollectionCell: UICollectionViewCell {
            let data = try? Data(contentsOf: url) {
             self.imageView.image = UIImage(data: data as Data)
         }
+        
+        if let badge1 = model.badge.count > 0 ? model.badge[0] : nil {
+            self.badge1.isHidden = false
+            self.badge1.backgroundColor = badge1 == .event ? defaultColor(.green) : defaultColor(.lightBlue)
+            self.badge1.text = badge1.rawValue
+        } else {
+            self.badge1.isHidden = true
+        }
+        
+        if let badge2 = model.badge.count > 1 ? model.badge[1] : nil {
+            self.badge2.isHidden = false
+            self.badge2.backgroundColor = badge2 == .event ? defaultColor(.green) : defaultColor(.lightBlue)
+            self.badge2.text = badge2.rawValue
+        } else {
+            self.badge2.isHidden = true
+        }
+
     }
+    
     
     private func setUpView() {
         addSubview(imageView)
@@ -78,6 +105,8 @@ class MainCollectionCell: UICollectionViewCell {
         addSubview(descriptionLabel)
         addSubview(actualPriceLabel)
         addSubview(originalPriceLabel)
+        addSubview(badge1)
+        addSubview(badge2)
         
         let safeArea = safeAreaLayoutGuide
         NSLayoutConstraint.activate([
@@ -86,16 +115,61 @@ class MainCollectionCell: UICollectionViewCell {
             imageView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
             imageView.heightAnchor.constraint(equalTo: safeArea.heightAnchor),
             imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor),
+            titleLabel.topAnchor.constraint(lessThanOrEqualTo: imageView.topAnchor, constant: 11),
+            titleLabel.topAnchor.constraint(greaterThanOrEqualTo: imageView.topAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10),
             titleLabel.trailingAnchor.constraint(lessThanOrEqualTo: safeArea.trailingAnchor),
-            titleLabel.topAnchor.constraint(equalTo: imageView.topAnchor, constant: 11),
             descriptionLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             descriptionLabel.trailingAnchor.constraint(lessThanOrEqualTo: safeArea.trailingAnchor),
             descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4),
             actualPriceLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             actualPriceLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 8),
             originalPriceLabel.topAnchor.constraint(equalTo: actualPriceLabel.topAnchor),
-            originalPriceLabel.leadingAnchor.constraint(equalTo: actualPriceLabel.trailingAnchor, constant: 4)
+            originalPriceLabel.leadingAnchor.constraint(equalTo: actualPriceLabel.trailingAnchor, constant: 4),
+            badge1.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            badge1.topAnchor.constraint(equalTo: actualPriceLabel.bottomAnchor, constant: 8),
+            badge1.bottomAnchor.constraint(lessThanOrEqualTo: safeArea.bottomAnchor),
+            badge2.leadingAnchor.constraint(equalTo: badge1.trailingAnchor, constant: 4),
+            badge2.topAnchor.constraint(equalTo: badge1.topAnchor)
         ])
     }
+    
+    
+    
+    class BadgeLabel: UILabel {
+        
+        @IBInspectable var topInset: CGFloat = 4.0
+        @IBInspectable var bottomInset: CGFloat = 4.0
+        @IBInspectable var leftInset: CGFloat = 5.0
+        @IBInspectable var rightInset: CGFloat = 5.0
+        
+        required init?(coder: NSCoder) {
+            super.init(coder: coder)
+        }
+        
+        init() {
+            super.init(frame: CGRect.zero)
+            translatesAutoresizingMaskIntoConstraints = false
+            textColor = .white
+            font = defaultFont(.sansBold, size: 12)
+        }
+        
+        override func drawText(in rect: CGRect) {
+            self.layer.cornerRadius = 5
+            self.clipsToBounds = true
+            let insets = UIEdgeInsets(top: topInset, left: leftInset, bottom: bottomInset, right: rightInset)
+            super.drawText(in: rect.inset(by: insets))
+        }
+        
+        override var intrinsicContentSize: CGSize {
+            get {
+                var contentSize = super.intrinsicContentSize
+                contentSize.height += topInset + bottomInset
+                contentSize.width += leftInset + rightInset
+                return contentSize
+            }
+        }
+    }
+    
 }
+

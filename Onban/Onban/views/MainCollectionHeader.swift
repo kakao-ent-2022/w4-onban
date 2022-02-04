@@ -16,7 +16,7 @@ class MainCollectionHeader: UICollectionReusableView {
     var title: UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = defaultFont(.sansMedium, size: fontSize)
+        label.font = defaultFont(.sansBold, size: fontSize)
         label.textColor = defaultColor(.font)
         return label
     }()
