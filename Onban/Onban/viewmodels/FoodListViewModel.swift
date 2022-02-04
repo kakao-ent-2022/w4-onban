@@ -15,11 +15,13 @@ protocol FoodListViewModel {
 
 class FoodListViewModelImpl: FoodListViewModel {
     private var datas: [[Food]] = []
-    private let paths = ["main", "soup", "side"]
+    private enum Path: String, CaseIterable {
+        case main, side, soup
+    }
     
     init() {
-        for path in paths {
-            let data = (try? getData(from: path)) ?? []
+        for path in Path.allCases {
+            let data = (try? getData(from: path.rawValue)) ?? []
             datas.append(data)
         }
     }

@@ -10,8 +10,20 @@ import UIKit
 class ViewController: UIViewController {
     private let defaultMargin: CGFloat = 16
     
-    private var dataSource: UICollectionViewDataSource?
-    private let foodListViewModel: FoodListViewModel = FoodListViewModelImpl()
+    private let foodListViewModel: FoodListViewModel
+    private let dataSource: UICollectionViewDataSource
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        foodListViewModel = FoodListViewModelImpl()
+        dataSource = MainDataSource(foodListViewModel)
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    
+    required init?(coder: NSCoder) {
+        foodListViewModel = FoodListViewModelImpl()
+        dataSource = MainDataSource(foodListViewModel)
+        super.init(coder: coder)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +41,6 @@ class ViewController: UIViewController {
         let collectionView = UICollectionView(frame: view.safeAreaLayoutGuide.layoutFrame, collectionViewLayout: collectionViewLayout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
-        dataSource = MainDataSource(foodListViewModel)
         collectionView.dataSource = dataSource
         collectionView.collectionViewLayout = collectionViewLayout
         
@@ -37,9 +48,8 @@ class ViewController: UIViewController {
         collectionView.register(MainCollectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "default-header")
         
         view.addSubview(collectionView)
+        
         let safeArea = view.safeAreaLayoutGuide
-        
-        
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: safeArea.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
