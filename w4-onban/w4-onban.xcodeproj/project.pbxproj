@@ -9,21 +9,36 @@
 /* Begin PBXBuildFile section */
 		2E754F9527ABCCD400D3DEAA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E754F9427ABCCD400D3DEAA /* AppDelegate.swift */; };
 		2E754F9727ABCCD400D3DEAA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E754F9627ABCCD400D3DEAA /* SceneDelegate.swift */; };
-		2E754F9927ABCCD400D3DEAA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E754F9827ABCCD400D3DEAA /* ViewController.swift */; };
+		2E754F9927ABCCD400D3DEAA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E754F9827ABCCD400D3DEAA /* LoginViewController.swift */; };
 		2E754F9C27ABCCD400D3DEAA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E754F9A27ABCCD400D3DEAA /* Main.storyboard */; };
 		2E754F9E27ABCCD600D3DEAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E754F9D27ABCCD600D3DEAA /* Assets.xcassets */; };
 		2E754FA127ABCCD600D3DEAA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E754F9F27ABCCD600D3DEAA /* LaunchScreen.storyboard */; };
+		2E754FAA27ABE04A00D3DEAA /* soup.json in Resources */ = {isa = PBXBuildFile; fileRef = 2E754FA927ABE04A00D3DEAA /* soup.json */; };
+		2E754FAC27ABE06300D3DEAA /* side.json in Resources */ = {isa = PBXBuildFile; fileRef = 2E754FAB27ABE06300D3DEAA /* side.json */; };
+		2E754FAF27ABE09500D3DEAA /* StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E754FAE27ABE09500D3DEAA /* StoreItem.swift */; };
+		2E754FB127ABE13B00D3DEAA /* DeliveryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E754FB027ABE13B00D3DEAA /* DeliveryType.swift */; };
+		2E754FB427ABE26400D3DEAA /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E754FB327ABE26400D3DEAA /* Badge.swift */; };
+		5868FCDE6F21A2F9E40F7B59 /* libPods-w4-onban.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B99FC7D754425F009A9FE0 /* libPods-w4-onban.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2E754F9127ABCCD400D3DEAA /* w4-onban.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "w4-onban.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E754F9427ABCCD400D3DEAA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E754F9627ABCCD400D3DEAA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2E754F9827ABCCD400D3DEAA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2E754F9827ABCCD400D3DEAA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2E754F9B27ABCCD400D3DEAA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2E754F9D27ABCCD600D3DEAA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2E754FA027ABCCD600D3DEAA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2E754FA227ABCCD600D3DEAA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2E754FA827ABE02800D3DEAA /* main.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = main.json; sourceTree = "<group>"; };
+		2E754FA927ABE04A00D3DEAA /* soup.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = soup.json; sourceTree = "<group>"; };
+		2E754FAB27ABE06300D3DEAA /* side.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = side.json; sourceTree = "<group>"; };
+		2E754FAE27ABE09500D3DEAA /* StoreItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItem.swift; sourceTree = "<group>"; };
+		2E754FB027ABE13B00D3DEAA /* DeliveryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryType.swift; sourceTree = "<group>"; };
+		2E754FB327ABE26400D3DEAA /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
+		3217A2DBF41F899856480DF4 /* Pods-w4-onban.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-w4-onban.debug.xcconfig"; path = "Target Support Files/Pods-w4-onban/Pods-w4-onban.debug.xcconfig"; sourceTree = "<group>"; };
+		92B99FC7D754425F009A9FE0 /* libPods-w4-onban.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-w4-onban.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		99A3DB72852448231BD8DE52 /* Pods-w4-onban.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-w4-onban.release.xcconfig"; path = "Target Support Files/Pods-w4-onban/Pods-w4-onban.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +46,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5868FCDE6F21A2F9E40F7B59 /* libPods-w4-onban.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		07A94030D05542AE309BA020 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				92B99FC7D754425F009A9FE0 /* libPods-w4-onban.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		2E754F8827ABCCD400D3DEAA = {
 			isa = PBXGroup;
 			children = (
 				2E754F9327ABCCD400D3DEAA /* w4-onban */,
 				2E754F9227ABCCD400D3DEAA /* Products */,
+				7C2387B820A8895CAFDF026D /* Pods */,
+				07A94030D05542AE309BA020 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +82,39 @@
 		2E754F9327ABCCD400D3DEAA /* w4-onban */ = {
 			isa = PBXGroup;
 			children = (
+				2E754FAD27ABE08700D3DEAA /* model */,
 				2E754F9427ABCCD400D3DEAA /* AppDelegate.swift */,
 				2E754F9627ABCCD400D3DEAA /* SceneDelegate.swift */,
-				2E754F9827ABCCD400D3DEAA /* ViewController.swift */,
+				2E754F9827ABCCD400D3DEAA /* LoginViewController.swift */,
 				2E754F9A27ABCCD400D3DEAA /* Main.storyboard */,
 				2E754F9D27ABCCD600D3DEAA /* Assets.xcassets */,
 				2E754F9F27ABCCD600D3DEAA /* LaunchScreen.storyboard */,
 				2E754FA227ABCCD600D3DEAA /* Info.plist */,
+				2E754FA827ABE02800D3DEAA /* main.json */,
+				2E754FA927ABE04A00D3DEAA /* soup.json */,
+				2E754FAB27ABE06300D3DEAA /* side.json */,
 			);
 			path = "w4-onban";
+			sourceTree = "<group>";
+		};
+		2E754FAD27ABE08700D3DEAA /* model */ = {
+			isa = PBXGroup;
+			children = (
+				2E754FAE27ABE09500D3DEAA /* StoreItem.swift */,
+				2E754FB027ABE13B00D3DEAA /* DeliveryType.swift */,
+				2E754FB327ABE26400D3DEAA /* Badge.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		7C2387B820A8895CAFDF026D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3217A2DBF41F899856480DF4 /* Pods-w4-onban.debug.xcconfig */,
+				99A3DB72852448231BD8DE52 /* Pods-w4-onban.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,6 +124,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2E754FA527ABCCD600D3DEAA /* Build configuration list for PBXNativeTarget "w4-onban" */;
 			buildPhases = (
+				24E04F06B4B486F1856481C5 /* [CP] Check Pods Manifest.lock */,
 				2E754F8D27ABCCD400D3DEAA /* Sources */,
 				2E754F8E27ABCCD400D3DEAA /* Frameworks */,
 				2E754F8F27ABCCD400D3DEAA /* Resources */,
@@ -125,6 +176,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E754FAC27ABE06300D3DEAA /* side.json in Resources */,
+				2E754FAA27ABE04A00D3DEAA /* soup.json in Resources */,
 				2E754FA127ABCCD600D3DEAA /* LaunchScreen.storyboard in Resources */,
 				2E754F9E27ABCCD600D3DEAA /* Assets.xcassets in Resources */,
 				2E754F9C27ABCCD400D3DEAA /* Main.storyboard in Resources */,
@@ -133,13 +186,41 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		24E04F06B4B486F1856481C5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-w4-onban-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2E754F8D27ABCCD400D3DEAA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E754F9927ABCCD400D3DEAA /* ViewController.swift in Sources */,
+				2E754F9927ABCCD400D3DEAA /* LoginViewController.swift in Sources */,
+				2E754FB427ABE26400D3DEAA /* Badge.swift in Sources */,
 				2E754F9527ABCCD400D3DEAA /* AppDelegate.swift in Sources */,
+				2E754FB127ABE13B00D3DEAA /* DeliveryType.swift in Sources */,
+				2E754FAF27ABE09500D3DEAA /* StoreItem.swift in Sources */,
 				2E754F9727ABCCD400D3DEAA /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -284,6 +365,7 @@
 		};
 		2E754FA627ABCCD600D3DEAA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3217A2DBF41F899856480DF4 /* Pods-w4-onban.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -312,6 +394,7 @@
 		};
 		2E754FA727ABCCD600D3DEAA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 99A3DB72852448231BD8DE52 /* Pods-w4-onban.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
