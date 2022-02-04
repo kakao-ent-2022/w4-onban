@@ -14,11 +14,11 @@ struct StoreConstant {
 class StoreViewController: UIViewController {
     
     private let storeCollectionViewDataSource = StoreCollectionViewDataSource()
+    private let storeCollectionViewDelegate = StoreCollectionViewDelegate()
     
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: 200, height: 200)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -47,7 +47,7 @@ class StoreViewController: UIViewController {
     private func initCollectionView() {
         collectionView.register(StoreCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: StoreConstant.storeCollectionViewCellIdentifier)
         collectionView.dataSource = storeCollectionViewDataSource
+        collectionView.delegate = storeCollectionViewDelegate
     }
-    
 }
 

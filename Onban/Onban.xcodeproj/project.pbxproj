@@ -13,6 +13,7 @@
 		EAC2981427AC04CE003A3012 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAC2981327AC04CE003A3012 /* Assets.xcassets */; };
 		EAC2983027AD1285003A3012 /* StoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC2982F27AD1285003A3012 /* StoreCollectionViewCell.swift */; };
 		EAC2983227AD18CC003A3012 /* StoreCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC2983127AD18CC003A3012 /* StoreCollectionViewDataSource.swift */; };
+		EAC2983527AD2026003A3012 /* StoreCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC2983427AD2026003A3012 /* StoreCollectionViewDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		EAC2981827AC04CE003A3012 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EAC2982F27AD1285003A3012 /* StoreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCollectionViewCell.swift; sourceTree = "<group>"; };
 		EAC2983127AD18CC003A3012 /* StoreCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		EAC2983427AD2026003A3012 /* StoreCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCollectionViewDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 			children = (
 				EAC2983127AD18CC003A3012 /* StoreCollectionViewDataSource.swift */,
 				EAC2982F27AD1285003A3012 /* StoreCollectionViewCell.swift */,
+				EAC2983427AD2026003A3012 /* StoreCollectionViewDelegate.swift */,
 			);
 			path = collectionview;
 			sourceTree = "<group>";
@@ -155,6 +158,7 @@
 				EAC2983027AD1285003A3012 /* StoreCollectionViewCell.swift in Sources */,
 				EAC2980F27AC04CE003A3012 /* StoreViewController.swift in Sources */,
 				EAC2980B27AC04CE003A3012 /* AppDelegate.swift in Sources */,
+				EAC2983527AD2026003A3012 /* StoreCollectionViewDelegate.swift in Sources */,
 				EAC2983227AD18CC003A3012 /* StoreCollectionViewDataSource.swift in Sources */,
 				EAC2980D27AC04CE003A3012 /* SceneDelegate.swift in Sources */,
 			);
