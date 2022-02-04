@@ -11,6 +11,8 @@
 		EAC2980D27AC04CE003A3012 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC2980C27AC04CE003A3012 /* SceneDelegate.swift */; };
 		EAC2980F27AC04CE003A3012 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC2980E27AC04CE003A3012 /* StoreViewController.swift */; };
 		EAC2981427AC04CE003A3012 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAC2981327AC04CE003A3012 /* Assets.xcassets */; };
+		EAC2983027AD1285003A3012 /* StoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC2982F27AD1285003A3012 /* StoreCollectionViewCell.swift */; };
+		EAC2983227AD18CC003A3012 /* StoreCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC2983127AD18CC003A3012 /* StoreCollectionViewDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,8 @@
 		EAC2980E27AC04CE003A3012 /* StoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
 		EAC2981327AC04CE003A3012 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EAC2981827AC04CE003A3012 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EAC2982F27AD1285003A3012 /* StoreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCollectionViewCell.swift; sourceTree = "<group>"; };
+		EAC2983127AD18CC003A3012 /* StoreCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCollectionViewDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,9 +68,19 @@
 		EAC2982927ACFE51003A3012 /* store */ = {
 			isa = PBXGroup;
 			children = (
+				EAC2983327AD1975003A3012 /* collectionview */,
 				EAC2980E27AC04CE003A3012 /* StoreViewController.swift */,
 			);
 			path = store;
+			sourceTree = "<group>";
+		};
+		EAC2983327AD1975003A3012 /* collectionview */ = {
+			isa = PBXGroup;
+			children = (
+				EAC2983127AD18CC003A3012 /* StoreCollectionViewDataSource.swift */,
+				EAC2982F27AD1285003A3012 /* StoreCollectionViewCell.swift */,
+			);
+			path = collectionview;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,8 +152,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAC2983027AD1285003A3012 /* StoreCollectionViewCell.swift in Sources */,
 				EAC2980F27AC04CE003A3012 /* StoreViewController.swift in Sources */,
 				EAC2980B27AC04CE003A3012 /* AppDelegate.swift in Sources */,
+				EAC2983227AD18CC003A3012 /* StoreCollectionViewDataSource.swift in Sources */,
 				EAC2980D27AC04CE003A3012 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
