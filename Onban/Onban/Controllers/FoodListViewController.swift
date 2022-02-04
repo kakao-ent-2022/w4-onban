@@ -15,9 +15,10 @@ class FoodListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
+        getFoodData()
     }
 
-    func setLayout() {
+    private func setLayout() {
         view.backgroundColor = .white
         collectionView.register(FoodCell.self, forCellWithReuseIdentifier: "sideDishCell")
         collectionView.register(FoodHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "itemHeaderView")
@@ -25,8 +26,6 @@ class FoodListViewController: UIViewController {
         collectionView.delegate = self
         view.addSubview(collectionView)
         
-        
-
         collectionView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.bottom.equalToSuperview()
@@ -35,6 +34,17 @@ class FoodListViewController: UIViewController {
         }
     }
 
+    private func getFoodData() {
+        JSONParser.load(from: "main", to: [Food].self) { result in
+            switch result {
+            case .success(let food):
+                print(food)
+            case .failure(let error):
+                print(error)
+            }
+        }
+        
+    }
 }
 
 extension FoodListViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
