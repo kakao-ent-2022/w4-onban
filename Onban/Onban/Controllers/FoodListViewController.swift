@@ -69,17 +69,23 @@ class FoodListViewController: UIViewController {
 extension FoodListViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        guard let numberOfSection = foodListVM?.numberOfSection else { return .zero}
+        return numberOfSection
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        guard let numberOfItem = foodListVM?.numberOfItemsInsection(section) else { return 0}
+        return numberOfItem
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "sideDishCell", for: indexPath) as? FoodCell else { return UICollectionViewCell() }
-        
-        cell.configure(title: "hihi")
+        guard
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "sideDishCell", for: indexPath) as? FoodCell,
+            let foodVM = foodListVM?.foodAtIndex(indexPath)
+        else {
+            return UICollectionViewCell()
+        }
+        cell.configure(foodVM: foodVM)
         return cell
     }
    

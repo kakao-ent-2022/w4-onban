@@ -9,11 +9,24 @@ import UIKit
 
 struct FoodViewModel {
     let food: Food
-    
     var title: String { food.title }
     var description: String { food.description}
     var nPrice: String? { food.nPrice }
     var sPrice: String { food.sPrice }
+    var imageData: Data?
+    
+    func loadImage(completion: @escaping (Data?) -> Void) {
+        if let imageData = self.imageData {
+            completion(imageData)
+        } else {
+            guard let imageURL = URL(string: food.imageURL) else { return }
+            let task = URLSession.shared.dataTask(with: imageURL) { data, response, error in
+                guard error == nil else { return }
+                completion(data)
+            }
+            task.resume()
+        }
+    }
 }
 
 enum FoodsType {

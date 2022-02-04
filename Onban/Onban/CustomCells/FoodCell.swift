@@ -8,7 +8,7 @@
 import UIKit
 
 class FoodCell: UICollectionViewCell {
-    let foodImage: UIImageView = UIImageView(image: UIImage(named: "foodThumbnail.png"))
+    var foodImage: UIImageView = UIImageView(image: UIImage(named: "foodThumbnail.png"))
     let eventTagImage: UIImageView = UIImageView(image: UIImage(named: "eventTag.png"))
     let newTagImage: UIImageView = UIImageView(image: UIImage(named: "newTag.png"))
     
@@ -66,7 +66,7 @@ class FoodCell: UICollectionViewCell {
         return stackView
     }()
     
-    func configure(title: String) {
+    func configure(foodVM: FoodViewModel) {
         addSubview(mainStackView)
         mainStackView.snp.makeConstraints { make in
             make.top.equalTo(contentView.snp.top)
@@ -74,12 +74,16 @@ class FoodCell: UICollectionViewCell {
             make.leading.equalTo(contentView.snp.leading)
             make.trailing.equalTo(contentView.snp.trailing)
         }
-        titleLabel.text = title
-        detailLabel.text = "body"
-        currentPrice.text = "5,200원"
-        originalPrice.text = "6,500원"
-        
+        titleLabel.text = foodVM.title
+        detailLabel.text = foodVM.description
+        currentPrice.text = foodVM.nPrice
+        originalPrice.text = foodVM.sPrice
+        foodVM.loadImage { data in
+            guard let imageData = data else { return }
+            DispatchQueue.main.async {
+                self.foodImage.image = UIImage(data: imageData)
+            }
+        }
     }
-    
 }
 
