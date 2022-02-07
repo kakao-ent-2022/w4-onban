@@ -17,7 +17,12 @@ class StoreCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StoreConstant.storeCollectionViewCellIdentifier , for: indexPath)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StoreConstant.storeCollectionViewCellIdentifier, for: indexPath) as? StoreCollectionViewCell else {
+            fatalError("no cell")
+        }
+        
+        let store = stores[indexPath.row]
+        cell.bind(store: store)
         
         return cell
     }
@@ -28,7 +33,6 @@ class StoreCollectionViewDataSource: NSObject, UICollectionViewDataSource {
                 let data = try Data(contentsOf: url)
                 let addStores = try JSONDecoder().decode([StoreItem].self, from: data)
                 stores.append(contentsOf: addStores)
-                print(stores)
             } catch let error {
                 print(error.localizedDescription)
             }

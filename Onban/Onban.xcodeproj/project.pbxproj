@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EAB4516F27B10A3C00333760 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB4516E27B10A3C00333760 /* String.swift */; };
 		EAC2980B27AC04CE003A3012 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC2980A27AC04CE003A3012 /* AppDelegate.swift */; };
 		EAC2980D27AC04CE003A3012 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC2980C27AC04CE003A3012 /* SceneDelegate.swift */; };
 		EAC2980F27AC04CE003A3012 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC2980E27AC04CE003A3012 /* StoreViewController.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EAB4516E27B10A3C00333760 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		EAC2980727AC04CE003A3012 /* Onban.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Onban.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAC2980A27AC04CE003A3012 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EAC2980C27AC04CE003A3012 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +49,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EAB4516D27B10A2800333760 /* extension */ = {
+			isa = PBXGroup;
+			children = (
+				EAB4516E27B10A3C00333760 /* String.swift */,
+			);
+			path = extension;
+			sourceTree = "<group>";
+		};
 		EAC297FE27AC04CE003A3012 = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +76,7 @@
 		EAC2980927AC04CE003A3012 /* Onban */ = {
 			isa = PBXGroup;
 			children = (
+				EAB4516D27B10A2800333760 /* extension */,
 				EAC2983D27AD2224003A3012 /* data */,
 				EAC2983627AD21F2003A3012 /* json */,
 				EAC2982927ACFE51003A3012 /* store */,
@@ -192,6 +203,7 @@
 				EAC2983F27AD2235003A3012 /* StoreItem.swift in Sources */,
 				EAC2983527AD2026003A3012 /* StoreCollectionViewDelegate.swift in Sources */,
 				EAC2983227AD18CC003A3012 /* StoreCollectionViewDataSource.swift in Sources */,
+				EAB4516F27B10A3C00333760 /* String.swift in Sources */,
 				EAC2980D27AC04CE003A3012 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
