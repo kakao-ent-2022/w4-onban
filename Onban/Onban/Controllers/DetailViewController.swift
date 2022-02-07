@@ -7,24 +7,52 @@
 
 import UIKit
 
+struct DetailFood: Decodable {
+    let hash: String
+    let data: DetailFoodData
+}
+
+struct DetailFoodData: Decodable {
+    let topImage: String
+    let thumbImages: [String]
+    let productDescription: String
+    let point: String
+    let deliveryInfo: String
+    let deliveryFee: String
+    let prices: [String]
+    let detailSection: [String]
+    
+    private enum CodingKeys: String, CodingKey {
+        
+        case topImage = "top_image"
+        case thumbImages = "thumb_images"
+        case productDescription = "product_description"
+        case point
+        case deliveryInfo = "delivery_info"
+        case deliveryFee = "delivery_fee"
+        case prices
+        case detailSection = "detail_section"
+    }
+}
+
 class DetailViewController: UIViewController {
+    var hashID: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        self.view.backgroundColor = UIColor.red
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func configure(hashID: String) {
+        self.hashID = hashID
+        let baseURL = "https://api.codesquad.kr/onban/detail/"
+        let urlString = baseURL + hashID
+        JSONLoader.load(from: urlString, to: DetailFood.self) { result in
+            switch result {
+            case .success(let data):
+                print(data)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
-    */
-
 }

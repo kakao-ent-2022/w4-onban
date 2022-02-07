@@ -10,6 +10,7 @@ import UIKit
 class FoodViewModel {
     let food: Food
     
+    var hashID: String { food.hashID }
     var title: String { food.title }
     var description: String { food.description}
     var nPrice: String? {
