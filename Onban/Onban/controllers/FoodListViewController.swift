@@ -26,11 +26,11 @@ class FoodListViewController: UIViewController {
         dataSource = FoodListDataSource(foodListViewModel)
         super.init(coder: coder)
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpView()
         requestData()
+        setUpView()
     }
     
     private func setUpView() {
@@ -49,7 +49,7 @@ class FoodListViewController: UIViewController {
         
         collectionView.register(FoodListCollectionCell.self, forCellWithReuseIdentifier: "default")
         collectionView.register(FoodListCollectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "default-header")
-
+        
         view.addSubview(collectionView)
         
         let safeArea = view.safeAreaLayoutGuide
@@ -63,6 +63,11 @@ class FoodListViewController: UIViewController {
     }
     
     private func requestData() {
+        struct DataResponse: Decodable {
+            let statusCode: Int
+            let body: [Food]
+        }
+        
         let request = NetworkRequest()
         let session = request.getSession(delegate: nil)
         let urls = [
@@ -72,36 +77,17 @@ class FoodListViewController: UIViewController {
         ]
         
         for (i, url) in urls.enumerated() {
-            let task = session.dataTask(with: url) { (data, response, error) in
-                if let error = error {
-                    print(error)
-                    return
-                }
-                guard let httpResponse = response as? HTTPURLResponse,
-                      (200...299).contains(httpResponse.statusCode) else {
-                          print("error")
-                          return
-                      }
-                let decoder = JSONDecoder()
-                
-                if let data = data, let result = try? decoder.decode(DataResponse.self, from: data) {
+            let task = request.getDataTask(with: url, from: session,
+                                           completionHandler: { data in
+                if let data = data, let result = try? JSONDecoder().decode(DataResponse.self, from: data) {
                     self.foodListViewModel.insertDataList(data: result.body, at: i)
                     DispatchQueue.main.async {
                         self.collectionView?.reloadSections(IndexSet(integer: i))
                     }
-                } else {
-                    print("some error")
                 }
-            }
+            } )
             task.resume()
         }
-        
-        
-    }
-    
-    private struct DataResponse: Decodable {
-        let statusCode: Int
-        let body: [Food]
     }
 }
 
