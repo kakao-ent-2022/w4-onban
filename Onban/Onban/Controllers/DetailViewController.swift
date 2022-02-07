@@ -37,9 +37,77 @@ struct DetailFoodData: Decodable {
 
 class DetailViewController: UIViewController {
     var hashID: String!
+    var foodImage: UIImageView = UIImageView(image: UIImage(named: "foodThumbnail.png"))
+    
+    let titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        return label
+    }()
+    let detailLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        return label
+    }()
+    let currentPrice: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 18)
+        return label
+    }()
+    let originalPrice: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        return label
+    }()
+    private lazy var priceStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [currentPrice, originalPrice])
+        stackView.alignment = .center
+        stackView.distribution = .fill
+        stackView.axis = .horizontal
+        stackView.spacing = 10
+        return stackView
+    }()
+    let eventTagImage: UIImageView = UIImageView(image: UIImage(named: "eventTag.png"))
+    let newTagImage: UIImageView = UIImageView(image: UIImage(named: "newTag.png"))
+    
+    private lazy var tagStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [eventTagImage, newTagImage])
+        stackView.alignment = .center
+        stackView.distribution = .fill
+        stackView.axis = .horizontal
+        stackView.spacing = 10
+        return stackView
+    }()
+    private lazy var mainStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, detailLabel, priceStackView, tagStackView])
+        stackView.alignment = .leading
+        stackView.distribution = .fill
+        stackView.axis = .vertical
+        stackView.spacing = 10
+        return stackView
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor.white
+        setViews()
+        
+    }
+    
+    func setViews() {
+        self.view.addSubview(foodImage)
+        foodImage.snp.makeConstraints { make in
+            make.top.equalTo(self.view.snp.topMargin)
+            make.centerX.equalTo(self.view.snp.centerX)
+            make.width.equalTo(self.view.snp.width)
+            make.height.equalTo(foodImage.snp.width)
+        }
+        
+        self.view.addSubview(mainStackView)
+        mainStackView.snp.makeConstraints { make in
+            make.top.equalTo(foodImage.snp.bottom)
+            make.centerX.equalTo(self.view.snp.centerX)
+        }
     }
     
     func configure(hashID: String) {
@@ -50,6 +118,12 @@ class DetailViewController: UIViewController {
             switch result {
             case .success(let data):
                 print(data)
+                DispatchQueue.main.async {
+                    self.titleLabel.text = data.data.productDescription
+                    self.detailLabel.text = data.data.productDescription
+                    self.originalPrice.text = data.data.prices[0]
+                    self.currentPrice.text = data.data.prices[1]
+                }
             case .failure(let error):
                 print(error)
             }
