@@ -9,4 +9,5 @@ import Foundation
 
 enum CommonError: Error {
     case JSON_PARSING_ERROR
+    case UNEXPECTED_ERROR
 }

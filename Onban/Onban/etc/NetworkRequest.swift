@@ -9,7 +9,7 @@ import Foundation
 
 struct NetworkRequest {
     
-    func getSession(delegate: URLSessionDataDelegate?) -> URLSession {
+    func getSession(delegate: URLSessionDelegate?) -> URLSession {
         let configuration = URLSessionConfiguration.default
         configuration.waitsForConnectivity = true
         return URLSession(configuration: configuration, delegate: delegate, delegateQueue: nil)

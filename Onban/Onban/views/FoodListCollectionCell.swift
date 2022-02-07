@@ -72,7 +72,12 @@ class FoodListCollectionCell: UICollectionViewCell {
             }
             self.originalPriceLabel.attributedText = NSAttributedString.init(string: originalPrice, attributes: [.strikethroughStyle: NSUnderlineStyle.single.rawValue])
         }
-        self.imageView.image = UIImage(named: "loading-food-list")
+        
+        if let image = loadImageFromDiskWith(fileName: model.id) {
+            self.imageView.image = image
+        } else {
+            self.imageView.image = UIImage(named: "loading-food-list")
+        }
         
         guard let badge1 = model.badge.first(where: { $0 == .event }) ?? model.badge.first(where: { $0 == .launch }) else {
             self.badge1.isHidden = true
@@ -126,14 +131,29 @@ class FoodListCollectionCell: UICollectionViewCell {
         ])
     }
     
+    private func loadImageFromDiskWith(fileName: String) -> UIImage? {
+        
+        let documentDirectory = FileManager.SearchPathDirectory.cachesDirectory
+        
+        let userDomainMask = FileManager.SearchPathDomainMask.userDomainMask
+        let paths = NSSearchPathForDirectoriesInDomains(documentDirectory, userDomainMask, true)
+        
+        if let dirPath = paths.first {
+            let imageUrl = URL(fileURLWithPath: dirPath).appendingPathComponent(fileName)
+            let image = UIImage(contentsOfFile: imageUrl.path)
+            return image
+        }
+        return nil
+    }
+    
     
     
     class BadgeLabel: UILabel {
         
-        @IBInspectable var topInset: CGFloat = 4.0
-        @IBInspectable var bottomInset: CGFloat = 4.0
-        @IBInspectable var leftInset: CGFloat = 5.0
-        @IBInspectable var rightInset: CGFloat = 5.0
+        var topInset: CGFloat = 4.0
+        var bottomInset: CGFloat = 4.0
+        var leftInset: CGFloat = 5.0
+        var rightInset: CGFloat = 5.0
         
         required init?(coder: NSCoder) {
             super.init(coder: coder)

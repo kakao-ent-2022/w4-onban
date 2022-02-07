@@ -11,7 +11,8 @@ protocol FoodListViewModel {
     func numberOfRowsInSection(_: Int) -> Int
     func numberOfSections() -> Int
     func get(section: Int, row: Int) -> Food
-    func insertDataList(data: [Food], at section: Int)
+    func insert(data: [Food], at: Int)
+    func get(section: Int) -> [Food]
 }
 
 class FoodListViewModelImpl: FoodListViewModel {
@@ -29,7 +30,11 @@ class FoodListViewModelImpl: FoodListViewModel {
         return datas[section][row]
     }
     
-    func insertDataList(data: [Food], at section: Int) {
+    func insert(data: [Food], at section: Int) {
         datas[section] = data
     }
+    func get(section: Int) -> [Food] {
+        return datas[section]
+    }
+    
 }
