@@ -17,8 +17,6 @@
 		5E790CBA27AB99C1003AF8DA /* OnbanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E790CB927AB99C1003AF8DA /* OnbanTests.swift */; };
 		5E790CC427AB99C1003AF8DA /* OnbanUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E790CC327AB99C1003AF8DA /* OnbanUITests.swift */; };
 		5E790CC627AB99C1003AF8DA /* OnbanUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E790CC527AB99C1003AF8DA /* OnbanUITestsLaunchTests.swift */; };
-		5E790CD627ABAC54003AF8DA /* main.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E790CD527ABAC54003AF8DA /* main.json */; };
-		5E790CD927ABAC8A003AF8DA /* side.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E790CD827ABAC8A003AF8DA /* side.json */; };
 		5E790CDF27ABB05B003AF8DA /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E790CDE27ABB05B003AF8DA /* Food.swift */; };
 		5E790CE227ABB380003AF8DA /* FoodListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E790CE127ABB380003AF8DA /* FoodListDataSource.swift */; };
 		5E790CE427ABB534003AF8DA /* FoodListCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E790CE327ABB534003AF8DA /* FoodListCollectionCell.swift */; };
@@ -27,12 +25,12 @@
 		5E790CF227ABD95C003AF8DA /* FoodListCollectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E790CF127ABD95C003AF8DA /* FoodListCollectionHeader.swift */; };
 		5E790CF727ABE1BA003AF8DA /* FoodListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E790CF627ABE1BA003AF8DA /* FoodListViewModel.swift */; };
 		5E790CFA27ABE36A003AF8DA /* CommonError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E790CF927ABE36A003AF8DA /* CommonError.swift */; };
-		5E790CFC27ABE8BE003AF8DA /* soup.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E790CFB27ABE8BE003AF8DA /* soup.json */; };
 		5E790D0027ACD775003AF8DA /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E790CFF27ACD775003AF8DA /* Colors.xcassets */; };
 		5E790D0327ACD918003AF8DA /* DefaultColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E790D0227ACD918003AF8DA /* DefaultColor.swift */; };
 		5E790D0527ACDB75003AF8DA /* DefaultFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E790D0427ACDB75003AF8DA /* DefaultFont.swift */; };
 		5E790D0727ACFF18003AF8DA /* NotoSansKR-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5E790D0627ACFF18003AF8DA /* NotoSansKR-Bold.otf */; };
 		5E790D0927B0EA00003AF8DA /* loading-food-list.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E790D0827B0EA00003AF8DA /* loading-food-list.png */; };
+		5E790D0B27B0F32B003AF8DA /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E790D0A27B0F32B003AF8DA /* NetworkRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,8 +67,6 @@
 		5E790CBF27AB99C1003AF8DA /* OnbanUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OnbanUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E790CC327AB99C1003AF8DA /* OnbanUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnbanUITests.swift; sourceTree = "<group>"; };
 		5E790CC527AB99C1003AF8DA /* OnbanUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnbanUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		5E790CD527ABAC54003AF8DA /* main.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = main.json; sourceTree = "<group>"; };
-		5E790CD827ABAC8A003AF8DA /* side.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = side.json; sourceTree = "<group>"; };
 		5E790CDE27ABB05B003AF8DA /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		5E790CE127ABB380003AF8DA /* FoodListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodListDataSource.swift; sourceTree = "<group>"; };
 		5E790CE327ABB534003AF8DA /* FoodListCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodListCollectionCell.swift; sourceTree = "<group>"; };
@@ -79,12 +75,12 @@
 		5E790CF127ABD95C003AF8DA /* FoodListCollectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodListCollectionHeader.swift; sourceTree = "<group>"; };
 		5E790CF627ABE1BA003AF8DA /* FoodListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodListViewModel.swift; sourceTree = "<group>"; };
 		5E790CF927ABE36A003AF8DA /* CommonError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonError.swift; sourceTree = "<group>"; };
-		5E790CFB27ABE8BE003AF8DA /* soup.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = soup.json; sourceTree = "<group>"; };
 		5E790CFF27ACD775003AF8DA /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		5E790D0227ACD918003AF8DA /* DefaultColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultColor.swift; sourceTree = "<group>"; };
 		5E790D0427ACDB75003AF8DA /* DefaultFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultFont.swift; sourceTree = "<group>"; };
 		5E790D0627ACFF18003AF8DA /* NotoSansKR-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Bold.otf"; sourceTree = "<group>"; };
 		5E790D0827B0EA00003AF8DA /* loading-food-list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loading-food-list.png"; sourceTree = "<group>"; };
+		5E790D0A27B0F32B003AF8DA /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,7 +155,6 @@
 				5E790CE727ABBF7A003AF8DA /* views */,
 				5E790CE027ABB36B003AF8DA /* datasources */,
 				5E790CDA27ABB018003AF8DA /* models */,
-				5E790CD427ABAC42003AF8DA /* datas */,
 				5E790CD327ABAC37003AF8DA /* controllers */,
 				5E790CA227AB99C0003AF8DA /* AppDelegate.swift */,
 				5E790CA427AB99C0003AF8DA /* SceneDelegate.swift */,
@@ -198,16 +193,6 @@
 			path = controllers;
 			sourceTree = "<group>";
 		};
-		5E790CD427ABAC42003AF8DA /* datas */ = {
-			isa = PBXGroup;
-			children = (
-				5E790CD527ABAC54003AF8DA /* main.json */,
-				5E790CD827ABAC8A003AF8DA /* side.json */,
-				5E790CFB27ABE8BE003AF8DA /* soup.json */,
-			);
-			path = datas;
-			sourceTree = "<group>";
-		};
 		5E790CDA27ABB018003AF8DA /* models */ = {
 			isa = PBXGroup;
 			children = (
@@ -240,6 +225,7 @@
 				5E790D0127ACD90D003AF8DA /* colors */,
 				5E790CF827ABE356003AF8DA /* errors */,
 				5E790CEC27ABC7D9003AF8DA /* fonts */,
+				5E790D0A27B0F32B003AF8DA /* NetworkRequest.swift */,
 			);
 			path = etc;
 			sourceTree = "<group>";
@@ -387,14 +373,11 @@
 			files = (
 				5E790D0027ACD775003AF8DA /* Colors.xcassets in Resources */,
 				5E790CEE27ABC7E6003AF8DA /* NotoSansKR-Medium.otf in Resources */,
-				5E790CD927ABAC8A003AF8DA /* side.json in Resources */,
 				5E790CF027ABC84A003AF8DA /* NotoSansKR-Light.otf in Resources */,
 				5E790D0727ACFF18003AF8DA /* NotoSansKR-Bold.otf in Resources */,
-				5E790CFC27ABE8BE003AF8DA /* soup.json in Resources */,
 				5E790CAF27AB99C1003AF8DA /* LaunchScreen.storyboard in Resources */,
 				5E790CAC27AB99C1003AF8DA /* Assets.xcassets in Resources */,
 				5E790D0927B0EA00003AF8DA /* loading-food-list.png in Resources */,
-				5E790CD627ABAC54003AF8DA /* main.json in Resources */,
 				5E790CAA27AB99C0003AF8DA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -472,6 +455,7 @@
 				5E790CA527AB99C0003AF8DA /* SceneDelegate.swift in Sources */,
 				5E790CE427ABB534003AF8DA /* FoodListCollectionCell.swift in Sources */,
 				5E790CE227ABB380003AF8DA /* FoodListDataSource.swift in Sources */,
+				5E790D0B27B0F32B003AF8DA /* NetworkRequest.swift in Sources */,
 				5E790CF227ABD95C003AF8DA /* FoodListCollectionHeader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -81,14 +81,13 @@ class FoodListCollectionCell: UICollectionViewCell {
         }
         self.badge1.isHidden = false
         self.badge1.backgroundColor = badge1 == .event ? defaultColor(.green) : defaultColor(.lightBlue)
-        self.badge1.text = badge1 == .event ? "이벤트특가" : "런칭특가"
+        self.badge1.text = badge1.rawValue
         
-        if badge1 == .event && model.badge.contains(where: { $0 == .launch }) {
+        if let badge2 = model.badge.first(where: { $0 == .launch }), badge1 == .event {
             self.badge2.isHidden = false
             self.badge2.backgroundColor = defaultColor(.lightBlue)
-            self.badge2.text = "런칭특가"
+            self.badge2.text = badge2.rawValue
         }
-        
     }
     
     

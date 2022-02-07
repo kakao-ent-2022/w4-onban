@@ -10,7 +10,7 @@ struct Food: Decodable {
     
     enum BadgeType: String {
         case event = "이벤트특가"
-        case launch = "론칭특가"
+        case launch = "런칭특가"
     }
     
     let id: String
