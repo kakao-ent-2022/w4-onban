@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct StoreItemGroup {
-    private let items: Array<StoreItem>
+struct StoreItemGroup: Decodable {
+    private var items: [StoreItem]
     
     subscript(index: Int) -> StoreItem {
         get {
@@ -18,5 +18,10 @@ struct StoreItemGroup {
     
     var count: Int {
         return items.count
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        items = try container.decode([StoreItem].self)
     }
 }

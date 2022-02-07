@@ -14,9 +14,9 @@ struct StoreItem : Decodable {
     let deliveryType: [DeliveryType]
     let title: String
     let description: String
-    let originalPrice: String?
-    let discountedPrice: String
-    let badge: [Badge]?
+    let beforeSalePrice: String?
+    let salePrice: String
+    let badge: [Badge]
     
     private enum CodingKeys: String, CodingKey {
         case detailHash = "detail_hash"
@@ -25,21 +25,22 @@ struct StoreItem : Decodable {
         case deliveryType = "delivery_type"
         case title
         case description
-        case nPrice = "n_price"
-        case sPrice = "s_price"
+        case beforeSalePrice = "n_price"
+        case salePrice = "s_price"
         case badge
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        
         detailHash = try container.decode(String.self, forKey: .detailHash)
         image = try container.decode(String.self, forKey: CodingKeys.image)
         alt = try container.decode(String.self, forKey: CodingKeys.alt)
         deliveryType = try container.decode([DeliveryType].self, forKey: .deliveryType)
         title = try container.decode(String.self, forKey: .title)
         description = try container.decode(String.self, forKey: .description)
-        originalPrice = try? container.decode(String.self, forKey: .nPrice)
-        discountedPrice = try container.decode(String.self, forKey: .sPrice)
-        badge = try? container.decode([Badge].self, forKey: .badge)
+        beforeSalePrice = try? container.decode(String.self, forKey: .beforeSalePrice)
+        salePrice = try container.decode(String.self, forKey: .salePrice)
+        badge = (try? container.decode([Badge].self, forKey: .badge)) ?? []
     }
 }
