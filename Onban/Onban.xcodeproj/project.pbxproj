@@ -19,6 +19,7 @@
 		D47658B627AC9D200058604B /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47658B527AC9D200058604B /* JSONParser.swift */; };
 		D47658BC27ACA5130058604B /* FoodViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47658BB27ACA5130058604B /* FoodViewModel.swift */; };
 		D47658BF27ACC52C0058604B /* FoodListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47658BE27ACC52C0058604B /* FoodListViewModel.swift */; };
+		D4EF054D27B0F77A0059D5D7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EF054C27B0F77A0059D5D7 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		D47658B527AC9D200058604B /* JSONParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
 		D47658BB27ACA5130058604B /* FoodViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodViewModel.swift; sourceTree = "<group>"; };
 		D47658BE27ACC52C0058604B /* FoodListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodListViewModel.swift; sourceTree = "<group>"; };
+		D4EF054C27B0F77A0059D5D7 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		D85E416613F0E894857D167D /* Pods_Onban.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Onban.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC37240A813125EA669CD715 /* Pods-Onban.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Onban.debug.xcconfig"; path = "Target Support Files/Pods-Onban/Pods-Onban.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				D476589D27AB8E890058604B /* FoodListViewController.swift */,
+				D4EF054C27B0F77A0059D5D7 /* DetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 				D47658BC27ACA5130058604B /* FoodViewModel.swift in Sources */,
 				D476589A27AB8E890058604B /* AppDelegate.swift in Sources */,
 				D47658AE27AB97970058604B /* FoodCell.swift in Sources */,
+				D4EF054D27B0F77A0059D5D7 /* DetailViewController.swift in Sources */,
 				D47658B427ABD7440058604B /* Food.swift in Sources */,
 				D476589C27AB8E890058604B /* SceneDelegate.swift in Sources */,
 			);
