@@ -14,6 +14,10 @@
 		EAC2983027AD1285003A3012 /* StoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC2982F27AD1285003A3012 /* StoreCollectionViewCell.swift */; };
 		EAC2983227AD18CC003A3012 /* StoreCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC2983127AD18CC003A3012 /* StoreCollectionViewDataSource.swift */; };
 		EAC2983527AD2026003A3012 /* StoreCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC2983427AD2026003A3012 /* StoreCollectionViewDelegate.swift */; };
+		EAC2983F27AD2235003A3012 /* StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC2983E27AD2235003A3012 /* StoreItem.swift */; };
+		EAC2984127AD80E2003A3012 /* main.json in Resources */ = {isa = PBXBuildFile; fileRef = EAC2984027AD80E2003A3012 /* main.json */; };
+		EAC2984327AD812C003A3012 /* soup.json in Resources */ = {isa = PBXBuildFile; fileRef = EAC2984227AD812C003A3012 /* soup.json */; };
+		EAC2984527AD813E003A3012 /* side.json in Resources */ = {isa = PBXBuildFile; fileRef = EAC2984427AD813E003A3012 /* side.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +30,10 @@
 		EAC2982F27AD1285003A3012 /* StoreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCollectionViewCell.swift; sourceTree = "<group>"; };
 		EAC2983127AD18CC003A3012 /* StoreCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		EAC2983427AD2026003A3012 /* StoreCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCollectionViewDelegate.swift; sourceTree = "<group>"; };
+		EAC2983E27AD2235003A3012 /* StoreItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreItem.swift; sourceTree = "<group>"; };
+		EAC2984027AD80E2003A3012 /* main.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = main.json; sourceTree = "<group>"; };
+		EAC2984227AD812C003A3012 /* soup.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = soup.json; sourceTree = "<group>"; };
+		EAC2984427AD813E003A3012 /* side.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = side.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,11 +66,13 @@
 		EAC2980927AC04CE003A3012 /* Onban */ = {
 			isa = PBXGroup;
 			children = (
+				EAC2983D27AD2224003A3012 /* data */,
+				EAC2983627AD21F2003A3012 /* json */,
+				EAC2982927ACFE51003A3012 /* store */,
 				EAC2981827AC04CE003A3012 /* Info.plist */,
 				EAC2980A27AC04CE003A3012 /* AppDelegate.swift */,
 				EAC2980C27AC04CE003A3012 /* SceneDelegate.swift */,
 				EAC2981327AC04CE003A3012 /* Assets.xcassets */,
-				EAC2982927ACFE51003A3012 /* store */,
 			);
 			path = Onban;
 			sourceTree = "<group>";
@@ -84,6 +94,24 @@
 				EAC2983427AD2026003A3012 /* StoreCollectionViewDelegate.swift */,
 			);
 			path = collectionview;
+			sourceTree = "<group>";
+		};
+		EAC2983627AD21F2003A3012 /* json */ = {
+			isa = PBXGroup;
+			children = (
+				EAC2984427AD813E003A3012 /* side.json */,
+				EAC2984227AD812C003A3012 /* soup.json */,
+				EAC2984027AD80E2003A3012 /* main.json */,
+			);
+			path = json;
+			sourceTree = "<group>";
+		};
+		EAC2983D27AD2224003A3012 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				EAC2983E27AD2235003A3012 /* StoreItem.swift */,
+			);
+			path = data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,6 +172,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAC2984127AD80E2003A3012 /* main.json in Resources */,
+				EAC2984327AD812C003A3012 /* soup.json in Resources */,
+				EAC2984527AD813E003A3012 /* side.json in Resources */,
 				EAC2981427AC04CE003A3012 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -158,6 +189,7 @@
 				EAC2983027AD1285003A3012 /* StoreCollectionViewCell.swift in Sources */,
 				EAC2980F27AC04CE003A3012 /* StoreViewController.swift in Sources */,
 				EAC2980B27AC04CE003A3012 /* AppDelegate.swift in Sources */,
+				EAC2983F27AD2235003A3012 /* StoreItem.swift in Sources */,
 				EAC2983527AD2026003A3012 /* StoreCollectionViewDelegate.swift in Sources */,
 				EAC2983227AD18CC003A3012 /* StoreCollectionViewDataSource.swift in Sources */,
 				EAC2980D27AC04CE003A3012 /* SceneDelegate.swift in Sources */,

@@ -48,6 +48,7 @@ class StoreViewController: UIViewController {
         collectionView.register(StoreCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: StoreConstant.storeCollectionViewCellIdentifier)
         collectionView.dataSource = storeCollectionViewDataSource
         collectionView.delegate = storeCollectionViewDelegate
+        storeCollectionViewDataSource.addJsonData(jsonName: "main")
     }
 }
 
