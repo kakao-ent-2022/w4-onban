@@ -15,7 +15,7 @@ class MainDataSource: NSObject, UICollectionViewDataSource {
         super.init()
     }
     
-    let headerTexts = ["모두가 좋아하는 든든한 메인요리", "정성이 담긴 뜨끈뜨끈 국물요리", "식탁을 풍성하게 하는 정갈한 밑반찬"]
+    final let headerTexts = ["모두가 좋아하는 든든한 메인요리", "정성이 담긴 뜨끈뜨끈 국물요리", "식탁을 풍성하게 하는 정갈한 밑반찬"]
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return foodListVM.numberOfSections()
@@ -36,5 +36,4 @@ class MainDataSource: NSObject, UICollectionViewDataSource {
         header.title.text = headerTexts[indexPath.section]
         return header
     }
-    
 }

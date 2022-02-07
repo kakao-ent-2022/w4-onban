@@ -6,12 +6,13 @@
 //
 
 import UIKit
+import Toaster
 
 class ViewController: UIViewController {
     private let defaultMargin: CGFloat = 16
     
     private let foodListViewModel: FoodListViewModel
-    private let dataSource: UICollectionViewDataSource
+    private let dataSource: MainDataSource
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         foodListViewModel = FoodListViewModelImpl()
@@ -40,6 +41,7 @@ class ViewController: UIViewController {
         let collectionView = UICollectionView(frame: view.safeAreaLayoutGuide.layoutFrame, collectionViewLayout: collectionViewLayout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
+        collectionView.delegate = self
         collectionView.dataSource = dataSource
         collectionView.collectionViewLayout = collectionViewLayout
         
@@ -55,5 +57,12 @@ class ViewController: UIViewController {
             collectionView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor)
         ])
+    }
+}
+
+extension ViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let item = foodListViewModel.get(section: indexPath.section, row: indexPath.row)
+        Toast(text: "\(dataSource.headerTexts[indexPath.section])\n가격은 \(item.actualPrice)").show()
     }
 }
