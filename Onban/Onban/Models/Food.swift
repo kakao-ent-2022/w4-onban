@@ -7,6 +7,11 @@
 
 import Foundation
 
+struct FoodResponse: Decodable {
+    let statusCode: Int
+    let body: [Food]
+}
+
 struct Food: Decodable {
     let hashID: String
     let imageURL: String

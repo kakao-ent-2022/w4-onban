@@ -7,13 +7,28 @@
 
 import Foundation
 
-enum HeaderTitle {
-    static let main = "메인반찬 / 한그릇 뚝딱 메인 요리"
-    static let soup = "국.찌게 / 김이 모락모락 국.찌게"
-    static let side = "밑반찬 / 언제 먹어도 든든한 밑반찬"
-}
-struct FoodListViewModel {
-    let foodsList: [FoodsViewModel]
+class FoodListViewModel {
+    var foodsList: [FoodsViewModel]
+    
+    init(foodsList: [FoodsViewModel]) {
+        self.foodsList = foodsList
+        
+    }
+    
+    func addFoodViewModel(type: FoodsType, completion: @escaping () -> Void) {
+        let url = type.JSONURL()
+
+        JSONLoader.load(from: url, to: FoodResponse.self) { result in
+            switch result{
+            case .success(let foodResponse):
+                let foodVM = FoodsViewModel(type: .main, foods: foodResponse.body)
+                self.foodsList.append(foodVM)
+                completion()
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
     
     var numberOfSection: Int {
         return foodsList.count
@@ -31,11 +46,11 @@ struct FoodListViewModel {
     func titleOfSection(_ section: Int) -> String {
         switch section {
         case 0:
-            return HeaderTitle.main
+            return FoodsType.main.headerTitle()
         case 1:
-            return HeaderTitle.soup
+            return FoodsType.soup.headerTitle()
         case 2:
-            return HeaderTitle.side
+            return FoodsType.side.headerTitle()
         default:
             return ""
         }

@@ -45,10 +45,32 @@ class FoodViewModel {
     }
 }
 
-enum FoodsType {
+enum FoodsType: Int {
     case main
     case side
     case soup
+    
+    func JSONURL() -> String {
+        switch self {
+        case .main:
+            return "https://api.codesquad.kr/onban/main"
+        case .soup:
+            return "https://api.codesquad.kr/onban/soup"
+        case .side:
+            return "https://api.codesquad.kr/onban/side"
+        }
+    }
+    
+    func headerTitle() -> String {
+        switch self {
+        case .main:
+            return "메인반찬 / 한그릇 뚝딱 메인 요리"
+        case .soup:
+            return "국.찌게 / 김이 모락모락 국.찌게"
+        case .side:
+            return "밑반찬 / 언제 먹어도 든든한 밑반찬"
+        }
+    }
 }
 
 struct FoodsViewModel {

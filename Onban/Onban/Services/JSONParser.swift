@@ -22,7 +22,7 @@ struct JSONParser {
         return try? decoder.decode(type, from: data)
     }
     
-    static func load<T: Decodable>(from name: String, to type: T.Type, completion: @escaping (Result<T, JSONParserError>) -> Void) {
+    static func load<T: Decodable>(from name: String, to type: T.Type, completion: (Result<T, JSONParserError>) -> Void) {
         guard let asset = loadAsset(for: name) else {
             completion(.failure(.invalidName))
             return
@@ -32,5 +32,18 @@ struct JSONParser {
             return
         }
         completion(.success(result))
+    }
+}
+
+struct JSONLoader {
+    static func load<T: Decodable>(from urlString: String, to type: T.Type,  completion: @escaping (Result<T, JSONParserError>) -> Void) {
+        
+        guard let url = URL(string: urlString) else { return }
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data, error == nil else { return }
+            let decoder = JSONDecoder()
+            let result = try! decoder.decode(T.self, from: data)
+            completion(.success(result))
+        }.resume()
     }
 }
