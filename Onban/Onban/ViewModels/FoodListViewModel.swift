@@ -12,7 +12,6 @@ class FoodListViewModel {
     
     init(foodsList: [FoodsViewModel]) {
         self.foodsList = foodsList
-        
     }
     
     func addFoodViewModel(type: FoodsType, completion: @escaping () -> Void) {

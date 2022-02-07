@@ -59,7 +59,6 @@ class FoodCell: UICollectionViewCell {
     }()
     private lazy var mainStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [foodImage, informationStackView])
-//        let stackView = UIStackView()
         stackView.alignment = .center
         stackView.distribution = .fill
         stackView.axis = .horizontal
