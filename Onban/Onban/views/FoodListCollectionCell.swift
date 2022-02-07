@@ -7,7 +7,8 @@
 
 import UIKit
 
-class MainCollectionCell: UICollectionViewCell {
+class FoodListCollectionCell: UICollectionViewCell {
+    
     let imageView: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -21,7 +22,6 @@ class MainCollectionCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
     let descriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -29,7 +29,6 @@ class MainCollectionCell: UICollectionViewCell {
         label.font = defaultFont(.sansLight, size: 14)
         return label
     }()
-    
     let actualPriceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -37,7 +36,6 @@ class MainCollectionCell: UICollectionViewCell {
         label.font = defaultFont(.sansBold, size: 14)
         return label
     }()
-    
     let originalPriceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -45,7 +43,6 @@ class MainCollectionCell: UICollectionViewCell {
         label.font = defaultFont(.sansMedium, size: 14)
         return label
     }()
-    
     var badge1: UILabel = {
         let label = BadgeLabel()
         return label

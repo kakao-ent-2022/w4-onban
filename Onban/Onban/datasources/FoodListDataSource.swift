@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainDataSource: NSObject, UICollectionViewDataSource {
+class FoodListDataSource: NSObject, UICollectionViewDataSource {
     let foodListVM: FoodListViewModel
     
     init(_ foodListVM: FoodListViewModel) {
@@ -26,13 +26,13 @@ class MainDataSource: NSObject, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "default", for: indexPath) as! MainCollectionCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "default", for: indexPath) as! FoodListCollectionCell
         let model = foodListVM.get(section: indexPath.section, row: indexPath.row)
         cell.configure(from: model)
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "default-header", for: indexPath) as! MainCollectionHeader
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "default-header", for: indexPath) as! FoodListCollectionHeader
         header.title.text = headerTexts[indexPath.section]
         return header
     }
