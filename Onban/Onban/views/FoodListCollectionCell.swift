@@ -72,27 +72,23 @@ class FoodListCollectionCell: UICollectionViewCell {
             }
             self.originalPriceLabel.attributedText = NSAttributedString.init(string: originalPrice, attributes: [.strikethroughStyle: NSUnderlineStyle.single.rawValue])
         }
-        if let url = URL(string: model.imagePath),
-           let data = try? Data(contentsOf: url) {
-            self.imageView.image = UIImage(data: data as Data)
-        }
+        self.imageView.image = UIImage(named: "loading-food-list")
         
-        if let badge1 = model.badge.count > 0 ? model.badge[0] : nil {
-            self.badge1.isHidden = false
-            self.badge1.backgroundColor = badge1 == .event ? defaultColor(.green) : defaultColor(.lightBlue)
-            self.badge1.text = badge1.rawValue
-        } else {
+        guard let badge1 = model.badge.first(where: { $0 == .event }) ?? model.badge.first(where: { $0 == .launch }) else {
             self.badge1.isHidden = true
+            self.badge2.isHidden = true
+            return
+        }
+        self.badge1.isHidden = false
+        self.badge1.backgroundColor = badge1 == .event ? defaultColor(.green) : defaultColor(.lightBlue)
+        self.badge1.text = badge1 == .event ? "이벤트특가" : "런칭특가"
+        
+        if badge1 == .event && model.badge.contains(where: { $0 == .launch }) {
+            self.badge2.isHidden = false
+            self.badge2.backgroundColor = defaultColor(.lightBlue)
+            self.badge2.text = "런칭특가"
         }
         
-        if let badge2 = model.badge.count > 1 ? model.badge[1] : nil {
-            self.badge2.isHidden = false
-            self.badge2.backgroundColor = badge2 == .event ? defaultColor(.green) : defaultColor(.lightBlue)
-            self.badge2.text = badge2.rawValue
-        } else {
-            self.badge2.isHidden = true
-        }
-
     }
     
     

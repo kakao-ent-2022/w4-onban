@@ -32,6 +32,7 @@
 		5E790D0327ACD918003AF8DA /* DefaultColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E790D0227ACD918003AF8DA /* DefaultColor.swift */; };
 		5E790D0527ACDB75003AF8DA /* DefaultFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E790D0427ACDB75003AF8DA /* DefaultFont.swift */; };
 		5E790D0727ACFF18003AF8DA /* NotoSansKR-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5E790D0627ACFF18003AF8DA /* NotoSansKR-Bold.otf */; };
+		5E790D0927B0EA00003AF8DA /* loading-food-list.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E790D0827B0EA00003AF8DA /* loading-food-list.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		5E790D0227ACD918003AF8DA /* DefaultColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultColor.swift; sourceTree = "<group>"; };
 		5E790D0427ACDB75003AF8DA /* DefaultFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultFont.swift; sourceTree = "<group>"; };
 		5E790D0627ACFF18003AF8DA /* NotoSansKR-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Bold.otf"; sourceTree = "<group>"; };
+		5E790D0827B0EA00003AF8DA /* loading-food-list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loading-food-list.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +236,7 @@
 		5E790CEB27ABC7D2003AF8DA /* etc */ = {
 			isa = PBXGroup;
 			children = (
+				5E790D0827B0EA00003AF8DA /* loading-food-list.png */,
 				5E790D0127ACD90D003AF8DA /* colors */,
 				5E790CF827ABE356003AF8DA /* errors */,
 				5E790CEC27ABC7D9003AF8DA /* fonts */,
@@ -390,6 +393,7 @@
 				5E790CFC27ABE8BE003AF8DA /* soup.json in Resources */,
 				5E790CAF27AB99C1003AF8DA /* LaunchScreen.storyboard in Resources */,
 				5E790CAC27AB99C1003AF8DA /* Assets.xcassets in Resources */,
+				5E790D0927B0EA00003AF8DA /* loading-food-list.png in Resources */,
 				5E790CD627ABAC54003AF8DA /* main.json in Resources */,
 				5E790CAA27AB99C0003AF8DA /* Main.storyboard in Resources */,
 			);

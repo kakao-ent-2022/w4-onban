@@ -16,7 +16,7 @@ protocol FoodListViewModel {
 class FoodListViewModelImpl: FoodListViewModel {
     private var datas: [[Food]] = []
     private enum Path: String, CaseIterable {
-        case main, side, soup
+        case main, soup, side
     }
     
     init() {
