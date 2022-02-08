@@ -17,3 +17,9 @@
 
 - iphoneSE, iphone 13 max
 <image src="https://user-images.githubusercontent.com/95681572/152483539-b9bc5407-cd50-49b3-9072-13875078b1dc.png" width=30%><image src="https://user-images.githubusercontent.com/95681572/152483181-055806bb-7294-4b6e-9228-255aa807bf1c.png" width=30%>
+
+# day3
+- Toaster 이용하여 아이템 클릭시 타이틀 메뉴와 최종 가격 정보 표시
+- local json 파일 대신 네트워크 요청을 통해 item list 가져오도록 수정
+- caches directory에 이미지 파일 저장
+<image src="https://user-images.githubusercontent.com/95681572/152725704-6772a6d9-6393-4f14-9ba7-3fd9c4b9d762.png" width=30%>
