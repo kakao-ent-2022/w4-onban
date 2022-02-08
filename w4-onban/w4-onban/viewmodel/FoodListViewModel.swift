@@ -13,13 +13,14 @@ protocol FoodListViewModel {
     func item(groupIndex: Int, itemIndex: Int) -> Food
 }
 
-class FoodListViewModelImpl: FoodListViewModel {
+class FoodListViewModelImpl: NSObject, FoodListViewModel, URLSessionDelegate {
     private var foodLists = [FoodList]()
     private enum Path: String, CaseIterable {
         case main, soup, side
     }
     
-    init() {
+    override init() {
+        super.init()
         self.foodLists = getData()
     }
     
@@ -41,5 +42,10 @@ class FoodListViewModelImpl: FoodListViewModel {
                 (try? JsonFileParser.parse(path: path.rawValue)) ?? FoodList()
             }
         return data
+    }
+    
+    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
+        let foodList = try? JSONDecoder().decode(FoodList.self, from: data)
+    
     }
 }

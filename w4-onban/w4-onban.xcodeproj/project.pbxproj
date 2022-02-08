@@ -31,6 +31,9 @@
 		2EA09F8327B102DF00ACC11A /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA09F8227B102DF00ACC11A /* UIColor.swift */; };
 		2EA09F8527B10C3E00ACC11A /* FoodListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA09F8427B10C3E00ACC11A /* FoodListViewModel.swift */; };
 		2EA09F8927B11C6C00ACC11A /* BadgeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA09F8827B11C6C00ACC11A /* BadgeLabel.swift */; };
+		2EA09F8C27B2565600ACC11A /* DownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA09F8B27B2565600ACC11A /* DownloadService.swift */; };
+		2EA09F8E27B260A700ACC11A /* JsonDownloadDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA09F8D27B260A700ACC11A /* JsonDownloadDelegate.swift */; };
+		2EA09F9027B274B400ACC11A /* Respository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA09F8F27B274B400ACC11A /* Respository.swift */; };
 		5868FCDE6F21A2F9E40F7B59 /* libPods-w4-onban.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B99FC7D754425F009A9FE0 /* libPods-w4-onban.a */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +64,9 @@
 		2EA09F8227B102DF00ACC11A /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		2EA09F8427B10C3E00ACC11A /* FoodListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodListViewModel.swift; sourceTree = "<group>"; };
 		2EA09F8827B11C6C00ACC11A /* BadgeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeLabel.swift; sourceTree = "<group>"; };
+		2EA09F8B27B2565600ACC11A /* DownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadService.swift; sourceTree = "<group>"; };
+		2EA09F8D27B260A700ACC11A /* JsonDownloadDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonDownloadDelegate.swift; sourceTree = "<group>"; };
+		2EA09F8F27B274B400ACC11A /* Respository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Respository.swift; sourceTree = "<group>"; };
 		3217A2DBF41F899856480DF4 /* Pods-w4-onban.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-w4-onban.debug.xcconfig"; path = "Target Support Files/Pods-w4-onban/Pods-w4-onban.debug.xcconfig"; sourceTree = "<group>"; };
 		92B99FC7D754425F009A9FE0 /* libPods-w4-onban.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-w4-onban.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		99A3DB72852448231BD8DE52 /* Pods-w4-onban.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-w4-onban.release.xcconfig"; path = "Target Support Files/Pods-w4-onban/Pods-w4-onban.release.xcconfig"; sourceTree = "<group>"; };
@@ -106,16 +112,6 @@
 			path = main;
 			sourceTree = "<group>";
 		};
-		2E0CA62E27B000C8001FC85D /* json */ = {
-			isa = PBXGroup;
-			children = (
-				2E0CA62F27B000C8001FC85D /* soup.json */,
-				2E0CA63027B000C8001FC85D /* main.json */,
-				2E0CA63127B000C8001FC85D /* side.json */,
-			);
-			path = json;
-			sourceTree = "<group>";
-		};
 		2E0CA63A27B00791001FC85D /* viewmodel */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,12 +141,12 @@
 		2E754F9327ABCCD400D3DEAA /* w4-onban */ = {
 			isa = PBXGroup;
 			children = (
+				2EA09F9227B274F500ACC11A /* data */,
 				2EA09F7927B0F6B300ACC11A /* font */,
 				2EA09F7627B0F1ED00ACC11A /* extension */,
 				2E0CA63A27B00791001FC85D /* viewmodel */,
-				2E0CA62E27B000C8001FC85D /* json */,
 				2E0CA62827B000AD001FC85D /* view */,
-				2E754FAD27ABE08700D3DEAA /* model */,
+				2E754FAD27ABE08700D3DEAA /* domain */,
 				2E754F9427ABCCD400D3DEAA /* AppDelegate.swift */,
 				2E754F9627ABCCD400D3DEAA /* SceneDelegate.swift */,
 				2E754F9A27ABCCD400D3DEAA /* Main.storyboard */,
@@ -161,7 +157,7 @@
 			path = "w4-onban";
 			sourceTree = "<group>";
 		};
-		2E754FAD27ABE08700D3DEAA /* model */ = {
+		2E754FAD27ABE08700D3DEAA /* domain */ = {
 			isa = PBXGroup;
 			children = (
 				2E0CA63F27B04240001FC85D /* JsonFileParser.swift */,
@@ -169,8 +165,9 @@
 				2E754FB027ABE13B00D3DEAA /* DeliveryType.swift */,
 				2E754FB327ABE26400D3DEAA /* Badge.swift */,
 				2E0CA63827B006A4001FC85D /* FoodList.swift */,
+				2EA09F8F27B274B400ACC11A /* Respository.swift */,
 			);
-			path = model;
+			path = domain;
 			sourceTree = "<group>";
 		};
 		2EA09F7627B0F1ED00ACC11A /* extension */ = {
@@ -190,6 +187,34 @@
 				2EA09F7C27B0F6B300ACC11A /* NotoSansKR-Regular.otf */,
 			);
 			path = font;
+			sourceTree = "<group>";
+		};
+		2EA09F8A27B2561E00ACC11A /* remote */ = {
+			isa = PBXGroup;
+			children = (
+				2EA09F8B27B2565600ACC11A /* DownloadService.swift */,
+				2EA09F8D27B260A700ACC11A /* JsonDownloadDelegate.swift */,
+			);
+			path = remote;
+			sourceTree = "<group>";
+		};
+		2EA09F9227B274F500ACC11A /* data */ = {
+			isa = PBXGroup;
+			children = (
+				2EA09F9327B274FC00ACC11A /* local */,
+				2EA09F8A27B2561E00ACC11A /* remote */,
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
+		2EA09F9327B274FC00ACC11A /* local */ = {
+			isa = PBXGroup;
+			children = (
+				2E0CA62F27B000C8001FC85D /* soup.json */,
+				2E0CA63027B000C8001FC85D /* main.json */,
+				2E0CA63127B000C8001FC85D /* side.json */,
+			);
+			path = local;
 			sourceTree = "<group>";
 		};
 		7C2387B820A8895CAFDF026D /* Pods */ = {
@@ -311,12 +336,15 @@
 				2E0CA62D27B000AD001FC85D /* FoodCell.swift in Sources */,
 				2E754FB127ABE13B00D3DEAA /* DeliveryType.swift in Sources */,
 				2EA09F8327B102DF00ACC11A /* UIColor.swift in Sources */,
+				2EA09F9027B274B400ACC11A /* Respository.swift in Sources */,
 				2EA09F8127B0F78200ACC11A /* UIFont.swift in Sources */,
+				2EA09F8C27B2565600ACC11A /* DownloadService.swift in Sources */,
 				2EA09F8527B10C3E00ACC11A /* FoodListViewModel.swift in Sources */,
 				2E0CA64027B04240001FC85D /* JsonFileParser.swift in Sources */,
 				2E0CA62C27B000AD001FC85D /* MainViewController.swift in Sources */,
 				2E754FAF27ABE09500D3DEAA /* Food.swift in Sources */,
 				2E754F9727ABCCD400D3DEAA /* SceneDelegate.swift in Sources */,
+				2EA09F8E27B260A700ACC11A /* JsonDownloadDelegate.swift in Sources */,
 				2E0CA63627B00415001FC85D /* FoodSource.swift in Sources */,
 				2E0CA63E27B03070001FC85D /* MenuTitleSupplementaryView.swift in Sources */,
 			);
