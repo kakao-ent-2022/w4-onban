@@ -20,7 +20,6 @@ class FoodListViewController: UIViewController {
         dataSource = FoodListDataSource(foodListViewModel)
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
-    
     required init?(coder: NSCoder) {
         foodListViewModel = FoodListViewModelImpl()
         dataSource = FoodListDataSource(foodListViewModel)
@@ -69,15 +68,15 @@ class FoodListViewController: UIViewController {
         }
         
         let request = NetworkRequest()
-        let session = request.getSession(delegate: nil)
+        let session = request.getSessionManager(delegate: nil)
         let urls = [
-            URL(string: "https://api.codesquad.kr/onban/main")!,
-            URL(string: "https://api.codesquad.kr/onban/soup")!,
-            URL(string: "https://api.codesquad.kr/onban/side")!
+            "https://api.codesquad.kr/onban/main",
+            "https://api.codesquad.kr/onban/soup",
+            "https://api.codesquad.kr/onban/side"
         ]
         
         for (i, url) in urls.enumerated() {
-            let task = request.getDataTask(with: url, from: session,
+            let task = session.getDataTask(with: URL(string: url)!,
                                            completionHandler: { data in
                 if let data = data, let result = try? JSONDecoder().decode(DataResponse.self, from: data) {
                     self.foodListViewModel.insert(data: result.body, at: i)
@@ -94,9 +93,9 @@ class FoodListViewController: UIViewController {
     
     private func downloadImage(from foods: [Food]) {
         let request = NetworkRequest()
-        let session = request.getSession(delegate: nil)
+        let session = request.getSessionManager(delegate: nil)
         for food in foods {
-            let task = session.downloadTask(with: URL(string: food.imagePath)!) { (url, response, error) in
+            let task = session.getDownloadTask(with: URL(string: food.imagePath)!) { (url) in
                 if let url = url,
                    let image = UIImage(contentsOfFile: url.path) {
                     DispatchQueue.main.async {
@@ -104,17 +103,15 @@ class FoodListViewController: UIViewController {
                     }
                 }
             }
-            
             task.resume()
         }
-        
     }
     
-    func saveImage(fileName: String, image: UIImage) {
-        guard let documentsDirectory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else { return }
+    private func saveImage(fileName: String, image: UIImage) {
+        guard let cachesDirectory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else { return }
         
         let fileName = fileName
-        let fileURL = documentsDirectory.appendingPathComponent(fileName)
+        let fileURL = cachesDirectory.appendingPathComponent(fileName)
         guard let data = image.jpegData(compressionQuality: 1) else { return }
         
         if FileManager.default.fileExists(atPath: fileURL.path) {
@@ -123,13 +120,9 @@ class FoodListViewController: UIViewController {
         do {
             try data.write(to: fileURL)
         } catch let error {
-            print("error saving file with error", error)
+            print("error saving file", error)
         }
     }
-    
-    
-    
-    
 }
 
 extension FoodListViewController: UICollectionViewDelegate {
@@ -138,9 +131,4 @@ extension FoodListViewController: UICollectionViewDelegate {
         Toast(text: "\(dataSource.headerTexts[indexPath.section])\n가격은 \(item.actualPrice)").show()
     }
 }
-//
-//extension FoodListViewController: URLSessionDownloadDelegate {
-//    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
-//
-//    }
 

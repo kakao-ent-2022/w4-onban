@@ -133,10 +133,10 @@ class FoodListCollectionCell: UICollectionViewCell {
     
     private func loadImageFromDiskWith(fileName: String) -> UIImage? {
         
-        let documentDirectory = FileManager.SearchPathDirectory.cachesDirectory
+        let cachesDirectory = FileManager.SearchPathDirectory.cachesDirectory
         
         let userDomainMask = FileManager.SearchPathDomainMask.userDomainMask
-        let paths = NSSearchPathForDirectoriesInDomains(documentDirectory, userDomainMask, true)
+        let paths = NSSearchPathForDirectoriesInDomains(cachesDirectory, userDomainMask, true)
         
         if let dirPath = paths.first {
             let imageUrl = URL(fileURLWithPath: dirPath).appendingPathComponent(fileName)
@@ -146,9 +146,7 @@ class FoodListCollectionCell: UICollectionViewCell {
         return nil
     }
     
-    
-    
-    class BadgeLabel: UILabel {
+    private class BadgeLabel: UILabel {
         
         var topInset: CGFloat = 4.0
         var bottomInset: CGFloat = 4.0

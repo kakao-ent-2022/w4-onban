@@ -9,13 +9,22 @@ import Foundation
 
 struct NetworkRequest {
     
-    func getSession(delegate: URLSessionDelegate?) -> URLSession {
+    func getSessionManager(delegate: URLSessionDelegate?) -> SessionManager {
         let configuration = URLSessionConfiguration.default
         configuration.waitsForConnectivity = true
-        return URLSession(configuration: configuration, delegate: delegate, delegateQueue: nil)
+        let session = URLSession(configuration: configuration, delegate: delegate, delegateQueue: nil)
+        return SessionManager(session: session)
     }
+}
+
+class SessionManager {
     
-    func getDataTask(with url: URL, from session: URLSession, networkErrorHandler: ((Error) -> Void)?, responseErrorHandler: ((URLResponse?) -> Void)?, completionHandler: @escaping (Data?) -> Void ) -> URLSessionTask {
+    let session: URLSession
+    
+    init(session: URLSession) {
+        self.session = session
+    }
+    func getDataTask(with url: URL, networkErrorHandler: ((Error) -> Void)?, responseErrorHandler: ((URLResponse?) -> Void)?, completionHandler: @escaping (Data?) -> Void) -> URLSessionTask {
         return session.dataTask(with: url) { (data, response, error) in
             if let error = error {
                 networkErrorHandler?(error)
@@ -30,8 +39,20 @@ struct NetworkRequest {
         }
     }
     
-    func getDataTask(with url: URL, from session: URLSession, completionHandler: @escaping (Data?) -> Void) -> URLSessionTask {
-        getDataTask(with: url, from: session, networkErrorHandler: nil, responseErrorHandler: nil, completionHandler: completionHandler)
+    func getDataTask(with url: URL, completionHandler: @escaping (Data?) -> Void) -> URLSessionTask {
+        getDataTask(with: url, networkErrorHandler: nil, responseErrorHandler: nil, completionHandler: completionHandler)
     }
     
+    func getDownloadTask(with url: URL, completionHandler: @escaping (URL?) -> Void) -> URLSessionDownloadTask {
+        return session.downloadTask(with: url, completionHandler: { (url, response, error) in
+            if let _ = error {
+                return
+            }
+            guard let httpResponse = response as? HTTPURLResponse,
+                  (200...299).contains(httpResponse.statusCode) else {
+                      return
+                  }
+            completionHandler(url)
+        })
+    }
 }
