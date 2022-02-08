@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct StoreItem : Decodable {
+struct Food : Decodable {
     let detailHash: String
     let image: String
     let alt: String
@@ -16,7 +16,15 @@ struct StoreItem : Decodable {
     let description: String
     let beforeSalePrice: String?
     let salePrice: String
-    let badge: [Badge]
+    private let badge: [Badge]
+    
+    var launchEventBadge: Badge? {
+        return badge.first { $0 == Badge.launchEvent }
+    }
+    
+    var eventBadge: Badge? {
+        return badge.first { $0 == Badge.event }
+    }
     
     private enum CodingKeys: String, CodingKey {
         case detailHash = "detail_hash"

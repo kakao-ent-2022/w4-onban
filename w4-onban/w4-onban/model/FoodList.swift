@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct StoreItemGroup: Decodable {
-    private var items: [StoreItem]
+struct FoodList: Decodable {
+    private var items: [Food]
     
-    subscript(index: Int) -> StoreItem {
+    subscript(index: Int) -> Food {
         get {
             return items[index]
         }
@@ -20,8 +20,12 @@ struct StoreItemGroup: Decodable {
         return items.count
     }
     
+    init() {
+        items = []
+    }
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        items = try container.decode([StoreItem].self)
+        items = try container.decode([Food].self)
     }
 }
