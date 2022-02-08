@@ -13,6 +13,8 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.isNavigationBarHidden = false
+        view.backgroundColor = defaultColor(.background)
         setupScrollView()
         setUpViews()
     }
@@ -87,12 +89,14 @@ class DetailViewController: UIViewController {
     private let deliveryLabel: SubDescriptionLabel = {
         let label = SubDescriptionLabel()
         label.textColor = defaultColor(.gray2)
+        label.numberOfLines = 0
         return label
     }()
     
     private let deliveryFeeLabel: SubDescriptionLabel = {
         let label = SubDescriptionLabel()
         label.textColor = defaultColor(.gray2)
+        label.numberOfLines = 0
         return label
     }()
     
@@ -132,11 +136,11 @@ class DetailViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            imageView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            imageView.widthAnchor.constraint(equalTo: view.widthAnchor),
             imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor),
             titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 24),
-            titleLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
-            titleLabel.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -16),
+            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             titleLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 60),
             descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
             descriptionLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
@@ -183,8 +187,6 @@ class DetailViewController: UIViewController {
         deliveryFee.setAttributes([.font: UIFont.boldSystemFont(ofSize: 14)], range: NSRange(6..<deliveryFeeString.count))
         deliveryFeeLabel.attributedText = deliveryFee
         
-        
-        
         scrollView.addSubview(pointDescriptionLabel)
         scrollView.addSubview(deliveryDescriptionLabel)
         scrollView.addSubview(deliveryFeeDescriptionLabel)
@@ -194,16 +196,18 @@ class DetailViewController: UIViewController {
         NSLayoutConstraint.activate([
             pointDescriptionLabel.topAnchor.constraint(equalTo: divider1.bottomAnchor, constant: 24),
             pointDescriptionLabel.leadingAnchor.constraint(equalTo: divider1.leadingAnchor),
-            deliveryDescriptionLabel.topAnchor.constraint(equalTo: pointDescriptionLabel.bottomAnchor, constant: 16),
-            deliveryDescriptionLabel.leadingAnchor.constraint(equalTo: divider1.leadingAnchor),
-            deliveryFeeDescriptionLabel.topAnchor.constraint(equalTo: deliveryDescriptionLabel.bottomAnchor, constant: 16),
-            deliveryFeeDescriptionLabel.leadingAnchor.constraint(equalTo: divider1.leadingAnchor),
             pointLabel.topAnchor.constraint(equalTo: pointDescriptionLabel.topAnchor),
             pointLabel.leadingAnchor.constraint(equalTo: pointDescriptionLabel.trailingAnchor, constant: 16),
+            deliveryDescriptionLabel.topAnchor.constraint(equalTo: pointDescriptionLabel.bottomAnchor, constant: 16),
+            deliveryDescriptionLabel.leadingAnchor.constraint(equalTo: divider1.leadingAnchor),
             deliveryLabel.topAnchor.constraint(equalTo: deliveryDescriptionLabel.topAnchor),
             deliveryLabel.leadingAnchor.constraint(equalTo: pointLabel.leadingAnchor),
+            deliveryLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            deliveryFeeDescriptionLabel.topAnchor.constraint(equalTo: deliveryLabel.bottomAnchor, constant: 16),
+            deliveryFeeDescriptionLabel.leadingAnchor.constraint(equalTo: divider1.leadingAnchor),
             deliveryFeeLabel.topAnchor.constraint(equalTo: deliveryFeeDescriptionLabel.topAnchor),
             deliveryFeeLabel.leadingAnchor.constraint(equalTo: pointLabel.leadingAnchor),
+            deliveryFeeLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
         ])
         
         let divider2: UIView = {
@@ -217,8 +221,8 @@ class DetailViewController: UIViewController {
             divider2.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             divider2.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
             divider2.heightAnchor.constraint(equalToConstant: 1),
-            divider2.topAnchor.constraint(equalTo: deliveryFeeDescriptionLabel.bottomAnchor, constant: 24),
-            divider2.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+            divider2.topAnchor.constraint(equalTo: deliveryFeeLabel.bottomAnchor, constant: 24),
+            divider2.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -16)
         ])
     }
     
