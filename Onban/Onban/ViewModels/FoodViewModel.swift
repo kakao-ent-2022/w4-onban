@@ -14,35 +14,41 @@ class FoodViewModel {
     var title: String { food.title }
     var description: String { food.description}
     var nPrice: String? { food.nPrice }
-//    var nPrice: String? {
-//        food.nPrice == nil ? nil : food.nPrice! + "원"
-//    }
     var sPrice: String { food.sPrice }
-    var imageData: Data?
-    var image: UIImage?
     var isEvent: Bool {
         return food.badges?.contains("이벤트특가") ?? false
     }
     var isNew: Bool {
         return food.badges?.contains("런칭특가") ?? false
     }
+    private let imageCache = NSCache<NSString, UIImage>()
+    private var imageKey: NSString?
     
     init(food: Food) {
         self.food = food
     }
     
     func loadImage(completion: @escaping (UIImage?) -> Void) {
-        if let image = self.image {
-            completion(image)
+        if let key = self.imageKey {
+            let cachedImage = imageCache.object(forKey: key)
+            completion(cachedImage)
         } else {
             guard let imageURL = URL(string: food.imageURL) else { return }
-            let task = URLSession.shared.dataTask(with: imageURL) { [self] data, response, error in
-                guard let data = data, error == nil else { return }
-                let image = UIImage(data: data)
-                self.image  = image
+            let config = URLSessionConfiguration.default
+            let session = URLSession(configuration: config)
+            let downloadTask = session.downloadTask(with: imageURL) { url, response, error in
+                guard
+                    let url = url, error == nil,
+                    let data = try? Data(contentsOf: url),
+                    let image = UIImage(data: data)
+                else {
+                    return
+                }
+                let cacheKey = url.lastPathComponent as NSString
+                self.imageCache.setObject(image, forKey: cacheKey)
                 completion(image)
             }
-            task.resume()
+            downloadTask.resume()
         }
     }
 }
