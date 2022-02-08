@@ -49,6 +49,13 @@ class FoodCell: UICollectionViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    
+    private let badgeStackView: UIStackView = {
+        $0.axis = .horizontal
+        $0.spacing = 4
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        return $0
+    }(UIStackView())
 
     let eventBadgeLable: UILabel = {
         let view = BadgeLabel(badge: .event)
@@ -80,8 +87,10 @@ class FoodCell: UICollectionViewCell {
         contentView.addSubview(descriptionLabel)
         contentView.addSubview(salePriceLabel)
         contentView.addSubview(beforeSalePriceLabel)
-        contentView.addSubview(eventBadgeLable)
-        contentView.addSubview(launchEventBadgeLable)
+        
+        badgeStackView.addArrangedSubview(eventBadgeLable)
+        badgeStackView.addArrangedSubview(launchEventBadgeLable)
+        contentView.addSubview(badgeStackView)
     }
     
     private func configureConstraints() {
@@ -90,8 +99,7 @@ class FoodCell: UICollectionViewCell {
         constrainDescriptionLabel()
         constrainSalePriceLabel()
         constrainBeforePriceLabel()
-        constrainEventBadgeLabel()
-        constrainLaunchEventBadgeLabel()
+        constrainBadgeStackView()
     }
     
     func set(content: Food) {
@@ -105,18 +113,8 @@ class FoodCell: UICollectionViewCell {
         
         setBeforeSalePriceLabel(value: content.beforeSalePrice)
         
-        // FIXME: 오류 해결하기
-        if content.eventBadge == nil && contentView.subviews.contains(eventBadgeLable) {
-            eventBadgeLable.removeFromSuperview()
-        }
-        
-        if content.eventBadge != nil && !contentView.subviews.contains(eventBadgeLable) {
-            contentView.addSubview(eventBadgeLable)
-            constrainEventBadgeLabel()
-        }
-        
-        launchEventBadgeLable.isHidden = (content.launchEventBadge == nil)
-        layoutIfNeeded()
+        eventBadgeLable.isHidden = content.eventBadge == nil
+        launchEventBadgeLable.isHidden = content.launchEventBadge == nil
     }
     
     private func setBeforeSalePriceLabel(value: String?) {
@@ -191,33 +189,10 @@ extension FoodCell {
         NSLayoutConstraint.activate(constraints)
     }
     
-    private func constrainEventBadgeLabel() {
-        let constraints = [
-            eventBadgeLable.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10),
-            eventBadgeLable.widthAnchor.constraint(greaterThanOrEqualToConstant: 72),
-            eventBadgeLable.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12.5),
-        ]
-        
-        NSLayoutConstraint.activate(constraints)
-    }
-    
-    private func constrainLaunchEventBadgeLabel() {
-        let firstPriorityConstraints = [
-            launchEventBadgeLable.leadingAnchor.constraint(
-                equalTo: eventBadgeLable.trailingAnchor,
-                constant: 4),
-            launchEventBadgeLable.bottomAnchor.constraint(equalTo: eventBadgeLable.bottomAnchor),
-            launchEventBadgeLable.widthAnchor.constraint(greaterThanOrEqualToConstant: 61),
-        ]
-        
-        let secondPriorityConstraints = [
-            launchEventBadgeLable.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10),
-            launchEventBadgeLable.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12.5)
-        ]
-            
-        secondPriorityConstraints.forEach { $0.priority = UILayoutPriority.defaultHigh }
-        
-        NSLayoutConstraint.activate(firstPriorityConstraints)
-        NSLayoutConstraint.activate(secondPriorityConstraints)
+    private func constrainBadgeStackView() {
+        NSLayoutConstraint.activate([
+            badgeStackView.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10),
+            badgeStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12.5),
+        ])
     }
 }
