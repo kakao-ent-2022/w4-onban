@@ -10,6 +10,7 @@ import UIKit
 
 class BadgeLabel: UILabel {
     private let inset = UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)
+    
     var rightInset: CGFloat {
         return inset.right
     }
