@@ -28,6 +28,7 @@ class FoodListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.isHidden = true
         requestData()
         setUpView()
     }
@@ -40,7 +41,6 @@ class FoodListViewController: UIViewController {
         collectionViewLayout.headerReferenceSize = CGSize(width: view.safeAreaLayoutGuide.layoutFrame.width, height: FoodListCollectionHeader.height)
         
         let collectionView = UICollectionView(frame: view.safeAreaLayoutGuide.layoutFrame, collectionViewLayout: collectionViewLayout)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
         
         collectionView.delegate = self
         collectionView.dataSource = dataSource
@@ -49,15 +49,7 @@ class FoodListViewController: UIViewController {
         collectionView.register(FoodListCollectionCell.self, forCellWithReuseIdentifier: "default")
         collectionView.register(FoodListCollectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "default-header")
         
-        view.addSubview(collectionView)
-        
-        let safeArea = view.safeAreaLayoutGuide
-        NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: safeArea.topAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor)
-        ])
+        self.view = collectionView
         self.collectionView = collectionView
     }
     
