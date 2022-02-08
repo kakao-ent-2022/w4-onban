@@ -37,31 +37,34 @@ struct DetailFoodData: Decodable {
 
 class DetailViewController: UIViewController {
     var hashID: String!
-    var foodImage: UIImageView = UIImageView(image: UIImage(named: "foodThumbnail.png"))
     
+    let scrollView: UIScrollView = UIScrollView()
+    var foodImage: UIImageView = UIImageView(image: UIImage(named: "foodThumbnail.png"))
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.font = UIFont.boldSystemFont(ofSize: 30)
         return label
     }()
     let detailLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.textColor = .gray
         return label
     }()
-    let currentPrice: UILabel = {
+    let currentPriceLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.font = UIFont.boldSystemFont(ofSize: 28)
         return label
     }()
-    let originalPrice: UILabel = {
+    let originalPriceLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.font = UIFont.preferredFont(forTextStyle: .title3)
+        label.textColor = .gray
         return label
     }()
     private lazy var priceStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [currentPrice, originalPrice])
-        stackView.alignment = .center
+        let stackView = UIStackView(arrangedSubviews: [currentPriceLabel, originalPriceLabel])
+        stackView.alignment = .bottom
         stackView.distribution = .fill
         stackView.axis = .horizontal
         stackView.spacing = 10
@@ -78,36 +81,301 @@ class DetailViewController: UIViewController {
         stackView.spacing = 10
         return stackView
     }()
-    private lazy var mainStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [titleLabel, detailLabel, priceStackView, tagStackView])
-        stackView.alignment = .leading
+    let lineView1: UIView = {
+        let view = UIView(frame: CGRect())
+        view.backgroundColor = .gray
+        return view
+    }()
+    let pointTitleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.textColor = .gray
+        label.text = "적립금"
+        return label
+    }()
+    let pointLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.textColor = .darkGray
+        return label
+    }()
+    private lazy var pointStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [pointTitleLabel, pointLabel])
+        stackView.alignment = .center
         stackView.distribution = .fill
-        stackView.axis = .vertical
+        stackView.axis = .horizontal
         stackView.spacing = 10
         return stackView
     }()
 
+    let deliveryInfoTitleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.textColor = .gray
+        label.text = "배송정보"
+        return label
+    }()
+    let deliveryInfoLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.numberOfLines = 0
+        label.textColor = .darkGray
+        return label
+    }()
+    private lazy var deliveryInfoStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [deliveryInfoTitleLabel, deliveryInfoLabel])
+        stackView.alignment = .center
+        stackView.distribution = .fill
+        stackView.axis = .horizontal
+        stackView.spacing = 10
+        return stackView
+    }()
+    
+    let deliveryFeeTitleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.textColor = .gray
+        label.text = "배송비"
+        return label
+    }()
+    let deliveryFeeLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.textColor = .darkGray
+        return label
+    }()
+    private lazy var deliveryFeeStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [deliveryFeeTitleLabel, deliveryFeeLabel])
+        stackView.alignment = .center
+        stackView.distribution = .fill
+        stackView.axis = .horizontal
+        stackView.spacing = 10
+        return stackView
+    }()
+    let lineView2: UIView = {
+        let view = UIView(frame: CGRect())
+        view.backgroundColor = .gray
+        return view
+    }()
+    let stockTitleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.textColor = .gray
+        label.text = "수량"
+        return label
+    }()
+    let stockTextField: UITextField = {
+        let textField = UITextField()
+        textField.text = "1"
+        return textField
+    }()
+    
+    let increaseStockButton: UIButton = {
+        let button = UIButton()
+        let image = UIImage(systemName: "chevron.up")
+        button.setImage(image, for: .normal)
+        return button
+    }()
+    let decreaseStockButton: UIButton = {
+        let button = UIButton()
+        let image = UIImage(systemName: "chevron.down")
+        button.setImage(image, for: .normal)
+        return button
+    }()
+    private lazy var stockButtonStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [increaseStockButton, decreaseStockButton])
+        stackView.alignment = .center
+        stackView.distribution = .fill
+        stackView.axis = .vertical
+        stackView.spacing = 0
+        return stackView
+    }()
+    private lazy var stockControlStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [stockTextField, stockButtonStackView])
+        stackView.alignment = .center
+        stackView.distribution = .fill
+        stackView.axis = .horizontal
+        stackView.spacing = 0
+        return stackView
+    }()
+    private lazy var stockStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [stockTitleLabel, stockControlStackView])
+        stackView.alignment = .center
+        stackView.distribution = .fill
+        stackView.axis = .horizontal
+        stackView.spacing = 150
+        return stackView
+    }()
+    
+    let totalPriceTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "총 주문금액"
+        label.font = .preferredFont(forTextStyle: .body)
+        return label
+    }()
+    let totalPriceLabel: UILabel = {
+        let label = UILabel()
+        label.text = "5,200원"
+        label.font = .preferredFont(forTextStyle: .title1)
+        return label
+    }()
+    private lazy var totalPriceStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [totalPriceTitleLabel, totalPriceLabel])
+        stackView.alignment = .center
+        stackView.distribution = .fill
+        stackView.axis = .horizontal
+        stackView.spacing = 150
+        return stackView
+    }()
+    let orderButton: UIButton = {
+        let button = UIButton()
+        let image = UIImage(named: "orderButton")
+        button.setImage(image, for: .normal)
+        return button
+    }()
+    let soldoutButton: UIButton = {
+        let button = UIButton()
+        let image = UIImage(named: "soldoutButton")
+        button.setImage(image, for: .normal)
+        return button
+    }()
+    
+    let bottomImageView1 = UIImageView()
+    let bottomImageView2 = UIImageView()
+    let bottomImageView3 = UIImageView()
+    
+    let contentsView: UIView = UIView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         setViews()
-        
     }
     
     func setViews() {
-        self.view.addSubview(foodImage)
+        view.addSubview(scrollView)
+        scrollView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        scrollView.addSubview(contentsView)
+        contentsView.snp.makeConstraints { make in
+            make.width.equalTo(scrollView.frameLayoutGuide.snp.width)
+            make.leading.equalTo(scrollView.contentLayoutGuide.snp.leading)
+            make.trailing.equalTo(scrollView.contentLayoutGuide.snp.trailing)
+            make.top.equalTo(scrollView.contentLayoutGuide.snp.top)
+            make.bottom.equalTo(scrollView.contentLayoutGuide.snp.bottom)
+        }
+        
+        
+        contentsView.addSubview(foodImage)
         foodImage.snp.makeConstraints { make in
-            make.top.equalTo(self.view.snp.topMargin)
-            make.centerX.equalTo(self.view.snp.centerX)
-            make.width.equalTo(self.view.snp.width)
+            make.top.equalTo(self.contentsView.snp.topMargin)
+            make.centerX.equalTo(self.contentsView.snp.centerX)
+            make.width.equalTo(self.contentsView.snp.width)
             make.height.equalTo(foodImage.snp.width)
         }
         
-        self.view.addSubview(mainStackView)
-        mainStackView.snp.makeConstraints { make in
-            make.top.equalTo(foodImage.snp.bottom)
-            make.centerX.equalTo(self.view.snp.centerX)
+        contentsView.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(foodImage.snp.bottom).offset(20)
+            make.leading.equalToSuperview().offset(20)
         }
+
+        contentsView.addSubview(detailLabel)
+        detailLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(10)
+            make.leading.equalTo(titleLabel.snp.leading)
+        }
+
+        contentsView.addSubview(priceStackView)
+        priceStackView.snp.makeConstraints { make in
+            make.top.equalTo(detailLabel.snp.bottom).offset(20)
+            make.leading.equalTo(titleLabel.snp.leading)
+        }
+
+        contentsView.addSubview(tagStackView)
+        tagStackView.snp.makeConstraints { make in
+            make.top.equalTo(priceStackView.snp.bottom).offset(10)
+            make.leading.equalTo(titleLabel.snp.leading)
+        }
+        contentsView.addSubview(lineView1)
+        lineView1.snp.makeConstraints { make in
+            make.top.equalTo(tagStackView.snp.bottom).offset(30)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
+            make.height.equalTo(1)
+        }
+
+        contentsView.addSubview(pointStackView)
+        pointStackView.snp.makeConstraints { make in
+            make.top.equalTo(lineView1.snp.bottom).offset(30)
+            make.leading.equalTo(titleLabel.snp.leading)
+        }
+
+        pointLabel.snp.makeConstraints { make in
+            make.leading.equalTo(self.contentsView.snp.trailing).multipliedBy(0.3)
+        }
+
+        contentsView.addSubview(deliveryInfoStackView)
+        deliveryInfoStackView.snp.makeConstraints { make in
+            make.top.equalTo(pointStackView.snp.bottom).offset(20)
+            make.leading.equalTo(titleLabel.snp.leading)
+            make.trailing.equalToSuperview().offset(-20)
+        }
+        deliveryInfoLabel.snp.makeConstraints { make in
+            make.leading.equalTo(self.contentsView.snp.trailing).multipliedBy(0.3)
+            make.trailing.equalToSuperview()
+        }
+        
+        contentsView.addSubview(deliveryFeeStackView)
+        deliveryFeeStackView.snp.makeConstraints { make in
+            make.top.equalTo(deliveryInfoStackView.snp.bottom).offset(20)
+            make.leading.equalTo(titleLabel.snp.leading)
+            make.trailing.equalToSuperview().offset(-20)
+        }
+
+        deliveryFeeLabel.snp.makeConstraints { make in
+            make.leading.equalTo(self.contentsView.snp.trailing).multipliedBy(0.3)
+            make.trailing.equalToSuperview()
+        }
+        
+        contentsView.addSubview(lineView2)
+        lineView2.snp.makeConstraints { make in
+            make.top.equalTo(deliveryFeeStackView.snp.bottom).offset(30)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
+            make.height.equalTo(1)
+        }
+        
+        contentsView.addSubview(stockStackView)
+        stockStackView.snp.makeConstraints { make in
+            make.top.equalTo(lineView2.snp.bottom).offset(30)
+            make.leading.equalTo(titleLabel.snp.leading)
+        }
+        contentsView.addSubview(totalPriceStackView)
+        totalPriceStackView.snp.makeConstraints { make in
+            make.top.equalTo(stockStackView.snp.bottom).offset(30)
+            make.leading.equalTo(titleLabel.snp.leading)
+        }
+        contentsView.addSubview(orderButton)
+        orderButton.snp.makeConstraints { make in
+            make.top.equalTo(totalPriceLabel.snp.bottom).offset(20)
+            make.width.equalToSuperview().multipliedBy(0.9)
+            make.height.equalTo(100)
+            make.centerX.equalToSuperview()
+        }
+        contentsView.addSubview(bottomImageView1)
+        bottomImageView1.snp.makeConstraints { make in
+            make.top.equalTo(orderButton.snp.bottom).offset(20)
+            make.width.equalToSuperview().multipliedBy(0.9)
+            make.height.equalTo(200)
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
+        
+        
+        
     }
     
     func configure(hashID: String) {
@@ -121,8 +389,17 @@ class DetailViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.titleLabel.text = data.data.productDescription
                     self.detailLabel.text = data.data.productDescription
-                    self.originalPrice.text = data.data.prices[0]
-                    self.currentPrice.text = data.data.prices[1]
+                    self.currentPriceLabel.text = data.data.prices[1]
+                    let originalPrice = data.data.prices[0]
+                    let attributeString = NSMutableAttributedString(string: originalPrice)
+                    attributeString.addAttribute(.strikethroughStyle, value: NSUnderlineStyle.single.rawValue, range: NSMakeRange(0, attributeString.length))
+                    self.originalPriceLabel.attributedText = attributeString
+                    self.pointLabel.text = data.data.point
+                    self.deliveryInfoLabel.text = data.data.deliveryInfo
+                    self.deliveryFeeLabel.text = data.data.deliveryFee
+                    let url1 = URL(string: data.data.detailSection[0])
+                    guard let data = try? Data(contentsOf: url1!) else { return }
+                    self.bottomImageView1.image = UIImage(data: data)
                 }
             case .failure(let error):
                 print(error)

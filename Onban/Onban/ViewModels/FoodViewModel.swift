@@ -13,9 +13,10 @@ class FoodViewModel {
     var hashID: String { food.hashID }
     var title: String { food.title }
     var description: String { food.description}
-    var nPrice: String? {
-        food.nPrice == nil ? nil : food.nPrice! + "원"
-    }
+    var nPrice: String? { food.nPrice }
+//    var nPrice: String? {
+//        food.nPrice == nil ? nil : food.nPrice! + "원"
+//    }
     var sPrice: String { food.sPrice }
     var imageData: Data?
     var image: UIImage?
@@ -23,7 +24,7 @@ class FoodViewModel {
         return food.badges?.contains("이벤트특가") ?? false
     }
     var isNew: Bool {
-        return food.badges?.contains("론칭특가") ?? false
+        return food.badges?.contains("런칭특가") ?? false
     }
     
     init(food: Food) {
