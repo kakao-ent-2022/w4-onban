@@ -9,6 +9,24 @@ import UIKit
 
 class DetailViewController: UIViewController {
     var model: Food?
+    let scrollView = UIScrollView()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupScrollView()
+        setUpViews()
+    }
+    
+    func setupScrollView() {
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(scrollView)
+        NSLayoutConstraint.activate([
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
+    }
     
     let imageView: UIImageView = {
         let view = UIImageView()
@@ -78,32 +96,13 @@ class DetailViewController: UIViewController {
         return label
     }()
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("not yet implemented")
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        navigationController?.isNavigationBarHidden = false
-        
-        view = UIScrollView()
-        view.backgroundColor = .white
-        setUpView()
-    }
-    
-    private func setUpView() {
-        
-        view.addSubview(imageView)
-        view.addSubview(titleLabel)
-        view.addSubview(descriptionLabel)
-        view.addSubview(actualPriceLabel)
-        view.addSubview(originalPriceLabel)
-        view.addSubview(badgeStack)
+    func setUpViews() {
+        scrollView.addSubview(imageView)
+        scrollView.addSubview(titleLabel)
+        scrollView.addSubview(descriptionLabel)
+        scrollView.addSubview(actualPriceLabel)
+        scrollView.addSubview(originalPriceLabel)
+        scrollView.addSubview(badgeStack)
         
         if let id = model?.id {
             imageView.image = loadImageFromDiskWith(fileName: id)
@@ -131,14 +130,13 @@ class DetailViewController: UIViewController {
             badgeStack.addArrangedSubview(launchLabel)
         }
         
-        let safeArea = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: safeArea.topAnchor),
-            imageView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            imageView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            imageView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor),
             titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 24),
-            titleLabel.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16),
-            titleLabel.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16),
+            titleLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
+            titleLabel.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -16),
             titleLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 60),
             descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
             descriptionLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
@@ -157,7 +155,7 @@ class DetailViewController: UIViewController {
             view.backgroundColor = .systemGray5
             return view
         }()
-        view.addSubview(divider1)
+        scrollView.addSubview(divider1)
         NSLayoutConstraint.activate([
             divider1.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             divider1.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
@@ -187,12 +185,12 @@ class DetailViewController: UIViewController {
         
         
         
-        view.addSubview(pointDescriptionLabel)
-        view.addSubview(deliveryDescriptionLabel)
-        view.addSubview(deliveryFeeDescriptionLabel)
-        view.addSubview(pointLabel)
-        view.addSubview(deliveryLabel)
-        view.addSubview(deliveryFeeLabel)
+        scrollView.addSubview(pointDescriptionLabel)
+        scrollView.addSubview(deliveryDescriptionLabel)
+        scrollView.addSubview(deliveryFeeDescriptionLabel)
+        scrollView.addSubview(pointLabel)
+        scrollView.addSubview(deliveryLabel)
+        scrollView.addSubview(deliveryFeeLabel)
         NSLayoutConstraint.activate([
             pointDescriptionLabel.topAnchor.constraint(equalTo: divider1.bottomAnchor, constant: 24),
             pointDescriptionLabel.leadingAnchor.constraint(equalTo: divider1.leadingAnchor),
@@ -205,7 +203,7 @@ class DetailViewController: UIViewController {
             deliveryLabel.topAnchor.constraint(equalTo: deliveryDescriptionLabel.topAnchor),
             deliveryLabel.leadingAnchor.constraint(equalTo: pointLabel.leadingAnchor),
             deliveryFeeLabel.topAnchor.constraint(equalTo: deliveryFeeDescriptionLabel.topAnchor),
-            deliveryFeeLabel.leadingAnchor.constraint(equalTo: pointLabel.leadingAnchor)
+            deliveryFeeLabel.leadingAnchor.constraint(equalTo: pointLabel.leadingAnchor),
         ])
         
         let divider2: UIView = {
@@ -214,12 +212,13 @@ class DetailViewController: UIViewController {
             view.backgroundColor = .systemGray5
             return view
         }()
-        view.addSubview(divider2)
+        scrollView.addSubview(divider2)
         NSLayoutConstraint.activate([
             divider2.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             divider2.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
             divider2.heightAnchor.constraint(equalToConstant: 1),
-            divider2.topAnchor.constraint(equalTo: deliveryFeeDescriptionLabel.bottomAnchor, constant: 24)
+            divider2.topAnchor.constraint(equalTo: deliveryFeeDescriptionLabel.bottomAnchor, constant: 24),
+            divider2.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
         ])
     }
     

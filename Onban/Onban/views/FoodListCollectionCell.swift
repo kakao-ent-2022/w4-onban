@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SwiftUI
 
 class FoodListCollectionCell: UICollectionViewCell {
     
@@ -63,7 +62,7 @@ class FoodListCollectionCell: UICollectionViewCell {
     }
     
     func configure(from model: Food) {
-    
+        
         self.titleLabel.text = model.title
         self.descriptionLabel.text = model.description
         self.actualPriceLabel.text = model.actualPrice
@@ -101,7 +100,7 @@ class FoodListCollectionCell: UICollectionViewCell {
         eventLabel.text = "이벤트특가"
         eventLabel.backgroundColor = defaultColor(.green)
         badgeStack.addArrangedSubview(eventLabel)
-    
+        
         let launchLabel = BadgeLabel()
         launchLabel.text = "런칭특가"
         launchLabel.backgroundColor = defaultColor(.lightBlue)
@@ -145,7 +144,7 @@ class FoodListCollectionCell: UICollectionViewCell {
         return nil
     }
     
-   
+    
     
 }
 
