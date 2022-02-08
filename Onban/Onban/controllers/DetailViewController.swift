@@ -60,6 +60,24 @@ class DetailViewController: UIViewController {
         return stackView
     }()
     
+    private let pointLabel: SubDescriptionLabel = {
+        let label = SubDescriptionLabel()
+        label.textColor = defaultColor(.gray2)
+        return label
+    }()
+    
+    private let deliveryLabel: SubDescriptionLabel = {
+        let label = SubDescriptionLabel()
+        label.textColor = defaultColor(.gray2)
+        return label
+    }()
+    
+    private let deliveryFeeLabel: SubDescriptionLabel = {
+        let label = SubDescriptionLabel()
+        label.textColor = defaultColor(.gray2)
+        return label
+    }()
+    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
@@ -113,7 +131,6 @@ class DetailViewController: UIViewController {
             badgeStack.addArrangedSubview(launchLabel)
         }
         
-        
         let safeArea = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: safeArea.topAnchor),
@@ -121,7 +138,8 @@ class DetailViewController: UIViewController {
             imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor),
             titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 24),
             titleLabel.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16),
-            titleLabel.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: 16),
+            titleLabel.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16),
+            titleLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 60),
             descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
             descriptionLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             descriptionLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
@@ -130,9 +148,90 @@ class DetailViewController: UIViewController {
             originalPriceLabel.bottomAnchor.constraint(equalTo: actualPriceLabel.bottomAnchor),
             originalPriceLabel.leadingAnchor.constraint(equalTo: actualPriceLabel.trailingAnchor, constant: 8),
             badgeStack.leadingAnchor.constraint(equalTo: actualPriceLabel.leadingAnchor),
-            badgeStack.topAnchor.constraint(equalTo: actualPriceLabel.bottomAnchor, constant: 8)
-            
+            badgeStack.topAnchor.constraint(equalTo: actualPriceLabel.bottomAnchor, constant: 8),
         ])
+        
+        let divider1: UIView = {
+            let view = UIView()
+            view.translatesAutoresizingMaskIntoConstraints = false
+            view.backgroundColor = .systemGray5
+            return view
+        }()
+        view.addSubview(divider1)
+        NSLayoutConstraint.activate([
+            divider1.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            divider1.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
+            divider1.heightAnchor.constraint(equalToConstant: 1),
+            divider1.topAnchor.constraint(equalTo: badgeStack.bottomAnchor, constant: 24)
+        ])
+        
+        let pointDescriptionLabel = SubDescriptionLabel()
+        pointDescriptionLabel.text = "적립금"
+        pointDescriptionLabel.textColor = defaultColor(.gray3)
+        
+        let deliveryDescriptionLabel = SubDescriptionLabel()
+        deliveryDescriptionLabel.text = "배송정보"
+        deliveryDescriptionLabel.textColor = defaultColor(.gray3)
+        
+        let deliveryFeeDescriptionLabel = SubDescriptionLabel()
+        deliveryFeeDescriptionLabel.text = "배송비"
+        deliveryFeeDescriptionLabel.textColor = defaultColor(.gray3)
+        
+        pointLabel.text = String(Int((model?.actualPrice ?? "0").filter { $0.isNumber })! / 100)
+        deliveryLabel.text = "서울 경기 새벽배송 / 전국택배 (제주 및 도서산간 불가) [월 · 화 · 수 · 목 · 금 · 토] 수령 가능한 상품입니다"
+        
+        let deliveryFeeString = "2,500원 (40,000원 이상 구매 시 무료)"
+        let deliveryFee = NSMutableAttributedString(string: deliveryFeeString)
+        deliveryFee.setAttributes([.font: UIFont.boldSystemFont(ofSize: 14)], range: NSRange(6..<deliveryFeeString.count))
+        deliveryFeeLabel.attributedText = deliveryFee
+        
+        
+        
+        view.addSubview(pointDescriptionLabel)
+        view.addSubview(deliveryDescriptionLabel)
+        view.addSubview(deliveryFeeDescriptionLabel)
+        view.addSubview(pointLabel)
+        view.addSubview(deliveryLabel)
+        view.addSubview(deliveryFeeLabel)
+        NSLayoutConstraint.activate([
+            pointDescriptionLabel.topAnchor.constraint(equalTo: divider1.bottomAnchor, constant: 24),
+            pointDescriptionLabel.leadingAnchor.constraint(equalTo: divider1.leadingAnchor),
+            deliveryDescriptionLabel.topAnchor.constraint(equalTo: pointDescriptionLabel.bottomAnchor, constant: 16),
+            deliveryDescriptionLabel.leadingAnchor.constraint(equalTo: divider1.leadingAnchor),
+            deliveryFeeDescriptionLabel.topAnchor.constraint(equalTo: deliveryDescriptionLabel.bottomAnchor, constant: 16),
+            deliveryFeeDescriptionLabel.leadingAnchor.constraint(equalTo: divider1.leadingAnchor),
+            pointLabel.topAnchor.constraint(equalTo: pointDescriptionLabel.topAnchor),
+            pointLabel.leadingAnchor.constraint(equalTo: pointDescriptionLabel.trailingAnchor, constant: 16),
+            deliveryLabel.topAnchor.constraint(equalTo: deliveryDescriptionLabel.topAnchor),
+            deliveryLabel.leadingAnchor.constraint(equalTo: pointLabel.leadingAnchor),
+            deliveryFeeLabel.topAnchor.constraint(equalTo: deliveryFeeDescriptionLabel.topAnchor),
+            deliveryFeeLabel.leadingAnchor.constraint(equalTo: pointLabel.leadingAnchor)
+        ])
+        
+        let divider2: UIView = {
+            let view = UIView()
+            view.translatesAutoresizingMaskIntoConstraints = false
+            view.backgroundColor = .systemGray5
+            return view
+        }()
+        view.addSubview(divider2)
+        NSLayoutConstraint.activate([
+            divider2.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            divider2.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
+            divider2.heightAnchor.constraint(equalToConstant: 1),
+            divider2.topAnchor.constraint(equalTo: deliveryFeeDescriptionLabel.bottomAnchor, constant: 24)
+        ])
+    }
+    
+    private class SubDescriptionLabel: UILabel {
+        required init?(coder: NSCoder) {
+            fatalError("not yet implemented")
+        }
+        init() {
+            super.init(frame: CGRect.zero)
+            translatesAutoresizingMaskIntoConstraints = false
+            font = defaultFont(.sansLight, size: 14)
+        }
     }
     
     private func loadImageFromDiskWith(fileName: String) -> UIImage? {
