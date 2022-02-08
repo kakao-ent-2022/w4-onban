@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class FoodListCollectionCell: UICollectionViewCell {
     
@@ -43,13 +44,12 @@ class FoodListCollectionCell: UICollectionViewCell {
         label.font = defaultFont(.sansMedium, size: 14)
         return label
     }()
-    var badge1: UILabel = {
-        let label = BadgeLabel()
-        return label
-    }()
-    var badge2: UILabel = {
-        let label = BadgeLabel()
-        return label
+    let badgeStack: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.spacing = 4
+        return stackView
     }()
     
     override init(frame: CGRect) {
@@ -63,6 +63,7 @@ class FoodListCollectionCell: UICollectionViewCell {
     }
     
     func configure(from model: Food) {
+    
         self.titleLabel.text = model.title
         self.descriptionLabel.text = model.description
         self.actualPriceLabel.text = model.actualPrice
@@ -79,20 +80,12 @@ class FoodListCollectionCell: UICollectionViewCell {
             self.imageView.image = UIImage(named: "loading-food-list")
         }
         
-        guard let badge1 = model.badge.first(where: { $0 == .event }) ?? model.badge.first(where: { $0 == .launch }) else {
-            self.badge1.isHidden = true
-            self.badge2.isHidden = true
-            return
-        }
-        self.badge1.isHidden = false
-        self.badge1.backgroundColor = badge1 == .event ? defaultColor(.green) : defaultColor(.lightBlue)
-        self.badge1.text = badge1.rawValue
-        
-        if let badge2 = model.badge.first(where: { $0 == .launch }), badge1 == .event {
-            self.badge2.isHidden = false
-            self.badge2.backgroundColor = defaultColor(.lightBlue)
-            self.badge2.text = badge2.rawValue
-        }
+        badgeStack.arrangedSubviews[0].isHidden = !model.badge.contains { $0 == .event }
+        badgeStack.arrangedSubviews[1].isHidden = !model.badge.contains { $0 == .launch }
+    }
+    
+    func clear() {
+        originalPriceLabel.text = ""
     }
     
     
@@ -102,8 +95,17 @@ class FoodListCollectionCell: UICollectionViewCell {
         addSubview(descriptionLabel)
         addSubview(actualPriceLabel)
         addSubview(originalPriceLabel)
-        addSubview(badge1)
-        addSubview(badge2)
+        addSubview(badgeStack)
+        
+        let eventLabel = BadgeLabel()
+        eventLabel.text = "이벤트특가"
+        eventLabel.backgroundColor = defaultColor(.green)
+        badgeStack.addArrangedSubview(eventLabel)
+    
+        let launchLabel = BadgeLabel()
+        launchLabel.text = "런칭특가"
+        launchLabel.backgroundColor = defaultColor(.lightBlue)
+        badgeStack.addArrangedSubview(launchLabel)
         
         let safeArea = safeAreaLayoutGuide
         NSLayoutConstraint.activate([
@@ -123,11 +125,8 @@ class FoodListCollectionCell: UICollectionViewCell {
             actualPriceLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 8),
             originalPriceLabel.topAnchor.constraint(equalTo: actualPriceLabel.topAnchor),
             originalPriceLabel.leadingAnchor.constraint(equalTo: actualPriceLabel.trailingAnchor, constant: 4),
-            badge1.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-            badge1.topAnchor.constraint(equalTo: actualPriceLabel.bottomAnchor, constant: 8),
-            badge1.bottomAnchor.constraint(lessThanOrEqualTo: safeArea.bottomAnchor),
-            badge2.leadingAnchor.constraint(equalTo: badge1.trailingAnchor, constant: 4),
-            badge2.topAnchor.constraint(equalTo: badge1.topAnchor)
+            badgeStack.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            badgeStack.topAnchor.constraint(equalTo: actualPriceLabel.bottomAnchor, constant: 8)
         ])
     }
     
@@ -146,40 +145,7 @@ class FoodListCollectionCell: UICollectionViewCell {
         return nil
     }
     
-    private class BadgeLabel: UILabel {
-        
-        var topInset: CGFloat = 4.0
-        var bottomInset: CGFloat = 4.0
-        var leftInset: CGFloat = 5.0
-        var rightInset: CGFloat = 5.0
-        
-        required init?(coder: NSCoder) {
-            super.init(coder: coder)
-        }
-        
-        init() {
-            super.init(frame: CGRect.zero)
-            translatesAutoresizingMaskIntoConstraints = false
-            textColor = .white
-            font = defaultFont(.sansBold, size: 12)
-        }
-        
-        override func drawText(in rect: CGRect) {
-            self.layer.cornerRadius = 5
-            self.clipsToBounds = true
-            let insets = UIEdgeInsets(top: topInset, left: leftInset, bottom: bottomInset, right: rightInset)
-            super.drawText(in: rect.inset(by: insets))
-        }
-        
-        override var intrinsicContentSize: CGSize {
-            get {
-                var contentSize = super.intrinsicContentSize
-                contentSize.height += topInset + bottomInset
-                contentSize.width += leftInset + rightInset
-                return contentSize
-            }
-        }
-    }
+   
     
 }
 

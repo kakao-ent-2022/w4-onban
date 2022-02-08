@@ -21,16 +21,17 @@ class FoodListViewController: UIViewController {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     required init?(coder: NSCoder) {
-        foodListViewModel = FoodListViewModelImpl()
-        dataSource = FoodListDataSource(foodListViewModel)
-        super.init(coder: coder)
+        fatalError("not yet implemented")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.isHidden = true
         requestData()
         setUpView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = true
     }
     
     private func setUpView() {
@@ -120,7 +121,10 @@ class FoodListViewController: UIViewController {
 extension FoodListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let item = foodListViewModel.get(section: indexPath.section, row: indexPath.row)
-        Toast(text: "\(dataSource.headerTexts[indexPath.section])\n가격은 \(item.actualPrice)").show()
+        let destination = DetailViewController()
+        destination.model = item
+        destination.title = item.title
+        show(destination, sender: self)
     }
 }
 

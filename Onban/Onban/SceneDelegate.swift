@@ -16,8 +16,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         let navigationController = UINavigationController(rootViewController: FoodListViewController())
-        navigationController.navigationBar.barStyle = .default
-//        navigationController.navigationBar.isHidden = true
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
         self.window = window

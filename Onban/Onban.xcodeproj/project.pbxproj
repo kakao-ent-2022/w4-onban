@@ -30,6 +30,8 @@
 		5E790D0727ACFF18003AF8DA /* NotoSansKR-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5E790D0627ACFF18003AF8DA /* NotoSansKR-Bold.otf */; };
 		5E790D0927B0EA00003AF8DA /* loading-food-list.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E790D0827B0EA00003AF8DA /* loading-food-list.png */; };
 		5E790D0B27B0F32B003AF8DA /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E790D0A27B0F32B003AF8DA /* NetworkRequest.swift */; };
+		5E790D1127B243B2003AF8DA /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E790D1027B243B2003AF8DA /* DetailViewController.swift */; };
+		5E790D1327B255E5003AF8DA /* BadgeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E790D1227B255E5003AF8DA /* BadgeLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +81,8 @@
 		5E790D0627ACFF18003AF8DA /* NotoSansKR-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Bold.otf"; sourceTree = "<group>"; };
 		5E790D0827B0EA00003AF8DA /* loading-food-list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loading-food-list.png"; sourceTree = "<group>"; };
 		5E790D0A27B0F32B003AF8DA /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
+		5E790D1027B243B2003AF8DA /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		5E790D1227B255E5003AF8DA /* BadgeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				5E790CA627AB99C0003AF8DA /* FoodListViewController.swift */,
+				5E790D1027B243B2003AF8DA /* DetailViewController.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -211,6 +216,7 @@
 			children = (
 				5E790CE327ABB534003AF8DA /* FoodListCollectionCell.swift */,
 				5E790CF127ABD95C003AF8DA /* FoodListCollectionHeader.swift */,
+				5E790D1227B255E5003AF8DA /* BadgeLabel.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -441,9 +447,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E790D1127B243B2003AF8DA /* DetailViewController.swift in Sources */,
 				5E790CA727AB99C0003AF8DA /* FoodListViewController.swift in Sources */,
 				5E790CFA27ABE36A003AF8DA /* CommonError.swift in Sources */,
 				5E790CDF27ABB05B003AF8DA /* Food.swift in Sources */,
+				5E790D1327B255E5003AF8DA /* BadgeLabel.swift in Sources */,
 				5E790D0327ACD918003AF8DA /* DefaultColor.swift in Sources */,
 				5E790CF727ABE1BA003AF8DA /* FoodListViewModel.swift in Sources */,
 				5E790D0527ACDB75003AF8DA /* DefaultFont.swift in Sources */,
