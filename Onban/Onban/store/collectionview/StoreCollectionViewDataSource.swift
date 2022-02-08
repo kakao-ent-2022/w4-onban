@@ -10,15 +10,27 @@ import UIKit
 
 class StoreCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
+    let storeIndex = [
+        "main": 0,
+        "soup": 1,
+        "side": 2,
+    ]
+    
     let headerTexts = [
         "메인반찬 / 한그릇 뚝딱 메인 요리",
         "국.찌게 / 김이 모락모락 국.찌게",
         "밑반찬 / 언제 먹어도 든든한 밑반찬",
     ]
-    var stores: [StoreItem] = []
+    lazy var stores : [[StoreItem]] = {
+        Array(repeating: [], count: storeIndex.count)
+    }()
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return storeIndex.count
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return stores.count
+        return stores[section].count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -26,7 +38,7 @@ class StoreCollectionViewDataSource: NSObject, UICollectionViewDataSource {
             fatalError("no cell")
         }
         
-        let store = stores[indexPath.row]
+        let store = stores[indexPath.section][indexPath.row]
         cell.bind(store: store)
         
         return cell
@@ -40,7 +52,7 @@ class StoreCollectionViewDataSource: NSObject, UICollectionViewDataSource {
                 fatalError("no view")
             }
             
-            let headerText = headerTexts[indexPath.row]
+            let headerText = headerTexts[indexPath.section]
             headerView.bind(headerText: headerText)
             
             return headerView
@@ -50,12 +62,18 @@ class StoreCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         }
     }
     
-    func addJsonData(jsonName: String) {
+    func initJson() {
+        for (name, index) in storeIndex {
+            addJsonData(jsonName: name, index: index)
+        }
+    }
+    
+    func addJsonData(jsonName: String, index: Int) {
         if let url = Bundle.main.url(forResource: jsonName, withExtension: "json") {
             do {
                 let data = try Data(contentsOf: url)
                 let addStores = try JSONDecoder().decode([StoreItem].self, from: data)
-                stores.append(contentsOf: addStores)
+                stores.insert(addStores, at: index)
             } catch let error {
                 print(error.localizedDescription)
             }

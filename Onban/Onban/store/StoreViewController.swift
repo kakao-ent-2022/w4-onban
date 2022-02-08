@@ -54,9 +54,10 @@ class StoreViewController: UIViewController {
     private func initCollectionView() {
         collectionView.register(StoreCollectionViewHeader.classForCoder(), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: StoreConstant.storeCollectionViewHeaderIdentifier)
         collectionView.register(StoreCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: StoreConstant.storeCollectionViewCellIdentifier)
+        
         collectionView.dataSource = storeCollectionViewDataSource
         collectionView.delegate = storeCollectionViewDelegate
-        storeCollectionViewDataSource.addJsonData(jsonName: "main")
+        storeCollectionViewDataSource.initJson()
     }
 }
 
