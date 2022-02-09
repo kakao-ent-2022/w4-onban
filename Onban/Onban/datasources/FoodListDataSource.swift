@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainDataSource: NSObject, UICollectionViewDataSource {
+class FoodListDataSource: NSObject, UICollectionViewDataSource {
     let foodListVM: FoodListViewModel
     
     init(_ foodListVM: FoodListViewModel) {
@@ -15,7 +15,7 @@ class MainDataSource: NSObject, UICollectionViewDataSource {
         super.init()
     }
     
-    let headerTexts = ["모두가 좋아하는 든든한 메인요리", "정성이 담긴 뜨끈뜨끈 국물요리", "식탁을 풍성하게 하는 정갈한 밑반찬"]
+    final let headerTexts = ["모두가 좋아하는 든든한 메인요리", "정성이 담긴 뜨끈뜨끈 국물요리", "식탁을 풍성하게 하는 정갈한 밑반찬"]
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return foodListVM.numberOfSections()
@@ -26,15 +26,14 @@ class MainDataSource: NSObject, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "default", for: indexPath) as! MainCollectionCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "default", for: indexPath) as! FoodListCollectionCell
         let model = foodListVM.get(section: indexPath.section, row: indexPath.row)
         cell.configure(from: model)
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "default-header", for: indexPath) as! MainCollectionHeader
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "default-header", for: indexPath) as! FoodListCollectionHeader
         header.title.text = headerTexts[indexPath.section]
         return header
     }
-    
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainCollectionHeader: UICollectionReusableView {
+class FoodListCollectionHeader: UICollectionReusableView {
     private static let horizontalMargin: CGFloat = 18
     private static let verticalMargin: CGFloat = 24
     private static let fontSize: CGFloat = 22
@@ -27,8 +27,8 @@ class MainCollectionHeader: UICollectionReusableView {
         addSubview(title)
         NSLayoutConstraint.activate([
             title.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
-            title.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: MainCollectionHeader.horizontalMargin),
-            title.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: MainCollectionHeader.horizontalMargin)
+            title.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: FoodListCollectionHeader.horizontalMargin),
+            title.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: FoodListCollectionHeader.horizontalMargin)
         ])
     }
     required init?(coder: NSCoder) {
