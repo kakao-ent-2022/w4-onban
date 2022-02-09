@@ -106,26 +106,26 @@ class FoodListCollectionCell: UICollectionViewCell {
         launchLabel.backgroundColor = defaultColor(.lightBlue)
         badgeStack.addArrangedSubview(launchLabel)
         
-        let safeArea = safeAreaLayoutGuide
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: safeArea.topAnchor),
-            imageView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
-            imageView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            imageView.heightAnchor.constraint(equalTo: safeArea.heightAnchor),
+            imageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            imageView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            imageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            imageView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor),
             imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor),
             titleLabel.topAnchor.constraint(lessThanOrEqualTo: imageView.topAnchor, constant: 11),
             titleLabel.topAnchor.constraint(greaterThanOrEqualTo: imageView.topAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10),
-            titleLabel.trailingAnchor.constraint(lessThanOrEqualTo: safeArea.trailingAnchor),
+            titleLabel.trailingAnchor.constraint(lessThanOrEqualTo: safeAreaLayoutGuide.trailingAnchor),
             descriptionLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-            descriptionLabel.trailingAnchor.constraint(lessThanOrEqualTo: safeArea.trailingAnchor),
+            descriptionLabel.trailingAnchor.constraint(lessThanOrEqualTo: safeAreaLayoutGuide.trailingAnchor),
             descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4),
             actualPriceLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             actualPriceLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 8),
             originalPriceLabel.topAnchor.constraint(equalTo: actualPriceLabel.topAnchor),
             originalPriceLabel.leadingAnchor.constraint(equalTo: actualPriceLabel.trailingAnchor, constant: 4),
             badgeStack.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-            badgeStack.topAnchor.constraint(equalTo: actualPriceLabel.bottomAnchor, constant: 8)
+            badgeStack.topAnchor.constraint(equalTo: actualPriceLabel.bottomAnchor, constant: 8),
+            badgeStack.bottomAnchor.constraint(lessThanOrEqualTo: safeAreaLayoutGuide.bottomAnchor),
         ])
     }
     
