@@ -10,11 +10,7 @@ import UIKit
 
 class StoreCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
-    let storeIndex = [
-        "main": 0,
-        "soup": 1,
-        "side": 2,
-    ]
+    let storeIndex = ["main", "soup", "side"]
     
     let headerTexts = [
         "메인반찬 / 한그릇 뚝딱 메인 요리",
@@ -63,8 +59,8 @@ class StoreCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     }
     
     func initJson() {
-        for (name, index) in storeIndex {
-            addJsonData(jsonName: name, index: index)
+        for (index, element) in storeIndex.enumerated() {
+            addJsonData(jsonName: element, index: index)
         }
     }
     
