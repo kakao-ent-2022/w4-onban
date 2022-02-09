@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Toaster
 
 class StoreCollectionViewCell: UICollectionViewCell {
     
@@ -124,6 +125,14 @@ class StoreCollectionViewCell: UICollectionViewCell {
                 let eventBadgeLabel = EventBadgeLabel(text: event)
                 eventBadgeContainer.addArrangedSubview(eventBadgeLabel)
             }
+        }
+    }
+    
+    func toastMessage() {
+        if let titleText = storeTitleLabel.text,
+           let finalPriceText = finalPriceLabel.text {
+            let message = Toast(text: "\(titleText)\n\(finalPriceText)", duration: Delay.short)
+            message.show()
         }
     }
 }

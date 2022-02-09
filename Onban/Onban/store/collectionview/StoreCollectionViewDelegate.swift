@@ -23,4 +23,9 @@ class StoreCollectionViewDelegate: NSString, UICollectionViewDelegateFlowLayout 
         let width = collectionView.frame.width
         return CGSize(width: width, height: 80)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as? StoreCollectionViewCell
+        cell?.toastMessage()
+    }
 }
