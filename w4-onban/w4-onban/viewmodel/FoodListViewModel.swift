@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol FoodListViewModel {
     func numberOfSections() -> Int
@@ -13,15 +14,31 @@ protocol FoodListViewModel {
     func item(groupIndex: Int, itemIndex: Int) -> Food
 }
 
-class FoodListViewModelImpl: NSObject, FoodListViewModel, URLSessionDelegate {
-    private var foodLists = [FoodList]()
-    private enum Path: String, CaseIterable {
-        case main, soup, side
-    }
+extension NSNotification.Name {
+    static let main = NSNotification.Name("main")
+    static let soup = NSNotification.Name("soup")
+    static let side = NSNotification.Name("side")
+}
+
+enum FoodCategory: CaseIterable {
+    case main, soup, side
     
-    override init() {
+    static func findBy(index: Int) -> FoodCategory? {
+        if allCases.indices.contains(index) {
+            return allCases[index]
+        }
+        return nil
+    }
+}
+
+class FoodListViewModelImpl: NSObject, FoodListViewModel, URLSessionDelegate {
+    private let repository: Repository
+    private var foodLists = [FoodCategory: FoodList]()
+
+    init(repository: Repository) {
+        self.repository = repository
         super.init()
-        self.foodLists = getData()
+        self.getData()
     }
     
     func numberOfSections() -> Int{
@@ -29,23 +46,25 @@ class FoodListViewModelImpl: NSObject, FoodListViewModel, URLSessionDelegate {
     }
     
     func numbersOfItems(groupIndex: Int) -> Int {
-        return foodLists[groupIndex].count
+        let category = FoodCategory.findBy(index: groupIndex) ?? FoodCategory.main
+        return foodLists[category]?.count ?? 0
     }
     
     func item(groupIndex: Int, itemIndex: Int) -> Food {
-        return foodLists[groupIndex][itemIndex]
+        let category = FoodCategory.findBy(index: groupIndex) ?? FoodCategory.main
+        let foodList =  foodLists[category] ?? FoodList()
+        return foodList[itemIndex]
     }
     
-    private func getData() -> [FoodList] {
-        let data: [FoodList] = Path.allCases
-            .map { path in
-                (try? JsonFileParser.parse(path: path.rawValue)) ?? FoodList()
-            }
-        return data
-    }
-    
-    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
-        let foodList = try? JSONDecoder().decode(FoodList.self, from: data)
-    
+    private func getData() {
+        repository.getMainFoodLists { foodList in
+            self.foodLists[FoodCategory.main] = foodList
+        }
+        repository.getSoupFoodLists { foodList in
+            self.foodLists[FoodCategory.soup] = foodList
+        }
+        repository.getSideFoodLists { foodList in
+            self.foodLists[FoodCategory.side] = foodList
+        }
     }
 }
