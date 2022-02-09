@@ -56,4 +56,8 @@ class SessionManager {
             completionHandler(url)
         })
     }
+    
+    deinit {
+        session.finishTasksAndInvalidate()
+    }
 }

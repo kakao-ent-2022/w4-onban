@@ -16,6 +16,14 @@ class DetailViewController: UIViewController {
     }()
     var foodItem: Food?
     
+    required init?(coder: NSCoder) {
+        fatalError("not yet implemented")
+    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         title = foodItem?.title
@@ -23,7 +31,8 @@ class DetailViewController: UIViewController {
         view.backgroundColor = defaultColor(.background)
         
         setupScrollView()
-        
+        contentView.detailImageDownloadDelegate = self
+
         let _ = try? requestData()
     }
     
@@ -65,5 +74,13 @@ class DetailViewController: UIViewController {
         } )
         task.resume()
         throw CommonError.NETWORK_ERROR
+    }
+}
+
+extension DetailViewController: URLSessionDownloadDelegate {
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+        if let image = UIImage(contentsOfFile: location.path) {
+            self.contentView.loadDetailSection(with: image)
+        }
     }
 }

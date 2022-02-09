@@ -8,7 +8,8 @@
 import UIKit
 
 class DetailView: UIView {
-    
+    var detailImageDownloadDelegate: URLSessionDelegate?
+
     required init?(coder: NSCoder) {
         fatalError("not yet implemented")
     }
@@ -89,6 +90,16 @@ class DetailView: UIView {
         return label
     }()
     
+    let detailSection: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.distribution = .fill
+        stackView.spacing = 0
+        stackView.isLayoutMarginsRelativeArrangement = false
+        return stackView
+    }()
+    
     class SubDescriptionLabel: UILabel {
         required init?(coder: NSCoder) {
             fatalError("not yet implemented")
@@ -101,7 +112,6 @@ class DetailView: UIView {
     }
     
     func configure(from model: FoodDetail, with food: Food?) {
-        
         titleLabel.text = food?.title
         if model.prices.count < 2 {
             actualPriceLabel.text = model.prices[0]
@@ -135,23 +145,37 @@ class DetailView: UIView {
             launchLabel.backgroundColor = defaultColor(.lightBlue)
             badgeStack.addArrangedSubview(launchLabel)
         }
-    }
-    
-    
-    private func loadImageFromDiskWith(fileName: String) -> UIImage? {
+        let session = NetworkRequest().getSessionManager(delegate: nil)
+        let topImageTask = session.getDownloadTask(with: URL(string: model.topImage)!, completionHandler: { downloadUrl in
+            if let downloadUrl = downloadUrl, let image = try? Data(contentsOf: downloadUrl) {
+                DispatchQueue.main.async {
+                    self.imageView.image = UIImage(data: image)
+                }
+            }
+        })
+        topImageTask.resume()
         
-        let cachesDirectory = FileManager.SearchPathDirectory.cachesDirectory
         
-        let userDomainMask = FileManager.SearchPathDomainMask.userDomainMask
-        let paths = NSSearchPathForDirectoriesInDomains(cachesDirectory, userDomainMask, true)
-        
-        if let dirPath = paths.first {
-            let imageUrl = URL(fileURLWithPath: dirPath).appendingPathComponent(fileName)
-            let image = UIImage(contentsOfFile: imageUrl.path)
-            return image
+        let detailSession = NetworkRequest().getSessionManager(delegate: detailImageDownloadDelegate)
+        for (i, url) in model.detailSection.enumerated() {
+            let task = detailSession.session.downloadTask(with: URL(string: url)!)
+            // [TODO] priority는 순서를 완전히 보장하지 않음.
+            task.priority = 1.0 - (0.1 * Float(i))
+            task.resume()
         }
-        return nil
     }
+    
+    func loadDetailSection(with image: UIImage) {
+        DispatchQueue.main.async {
+            let imageView = UIImageView(image: image)
+            self.detailSection.addArrangedSubview(imageView)
+            imageView.translatesAutoresizingMaskIntoConstraints = false
+            imageView.widthAnchor.constraint(equalTo: self.detailSection.widthAnchor).isActive = true
+            imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: image.size.height / image.size.width).isActive = true
+            imageView.contentMode = .scaleAspectFit
+        }
+    }
+
     
     private func setupView() {
         addSubview(imageView)
@@ -242,7 +266,15 @@ class DetailView: UIView {
             divider2.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
             divider2.heightAnchor.constraint(equalToConstant: 1),
             divider2.topAnchor.constraint(equalTo: deliveryFeeLabel.bottomAnchor, constant: 24),
-            divider2.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16)
+        ])
+        
+        addSubview(detailSection)
+        NSLayoutConstraint.activate([
+            detailSection.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            detailSection.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
+            detailSection.topAnchor.constraint(equalTo: divider2.bottomAnchor, constant: 16),
+            detailSection.bottomAnchor.constraint(equalTo: bottomAnchor),
+            detailSection.centerXAnchor.constraint(equalTo: centerXAnchor),
         ])
     }
 }
