@@ -75,7 +75,7 @@ class FoodListViewController: UIViewController {
                     self.foodListViewModel.insert(data: result.body, at: i)
                     DispatchQueue.main.async {
                         self.collectionView?.reloadSections(IndexSet(integer: i))
-                        self.downloadImage(from: self.foodListViewModel.get(section: i))
+                        self.downloadImage(section: i)
                     }
                 }
             } )
@@ -84,15 +84,19 @@ class FoodListViewController: UIViewController {
         }
     }
     
-    private func downloadImage(from foods: [Food]) {
+    private func downloadImage(section: Int) {
+        let foods = self.foodListViewModel.get(section: section)
         let request = NetworkRequest()
         let session = request.getSessionManager(delegate: nil)
         for food in foods {
             let task = session.getDownloadTask(with: URL(string: food.imagePath)!) { (url) in
                 if let url = url,
                    let image = UIImage(contentsOfFile: url.path) {
-                    DispatchQueue.main.async {
+                    DispatchQueue.global().async {
                         self.saveImage(fileName: food.id, image: image)
+                        DispatchQueue.main.async {
+                            self.collectionView?.reloadItems(at: [IndexPath(row: 1, section: 1)])
+                        }
                     }
                 }
             }
