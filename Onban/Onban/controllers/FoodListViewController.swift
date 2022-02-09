@@ -26,8 +26,8 @@ class FoodListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        requestData()
         setUpView()
+        requestData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -70,7 +70,7 @@ class FoodListViewController: UIViewController {
         
         for (i, url) in urls.enumerated() {
             let task = session.getDataTask(with: URL(string: url)!,
-                                           completionHandler: { data in
+                                           successHandler: { data in
                 if let data = data, let result = try? JSONDecoder().decode(DataResponse.self, from: data) {
                     self.foodListViewModel.insert(data: result.body, at: i)
                     DispatchQueue.main.async {
@@ -126,8 +126,7 @@ extension FoodListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let item = foodListViewModel.get(section: indexPath.section, row: indexPath.row)
         let destination = DetailViewController()
-        destination.model = item
-        destination.title = item.title
+        destination.foodItem = item
         show(destination, sender: self)
     }
 }
