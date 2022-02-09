@@ -20,6 +20,7 @@ class FoodListViewController: UIViewController {
     }
 
     private func setLayout() {
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
         view.backgroundColor = .white
         collectionView.register(FoodCell.self, forCellWithReuseIdentifier: "sideDishCell")
         collectionView.register(FoodHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "itemHeaderView")
