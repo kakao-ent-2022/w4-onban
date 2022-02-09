@@ -23,3 +23,9 @@
 - local json 파일 대신 네트워크 요청을 통해 item list 가져오도록 수정
 - caches directory에 이미지 파일 저장
 <image src="https://user-images.githubusercontent.com/95681572/152725704-6772a6d9-6393-4f14-9ba7-3fd9c4b9d762.png" width=30%>
+
+# day4
+- navigation controller 추가
+- 상세페이지 뷰 구현
+- 상세 페이지에 scroll view 추가 
+![2022-02-08 20 00 41](https://user-images.githubusercontent.com/95681572/152974414-1a8e6cf7-5d25-4ae7-98e8-79314d7abfd2.gif)
