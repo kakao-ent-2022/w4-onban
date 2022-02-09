@@ -18,9 +18,18 @@ class FoodListViewController: UIViewController {
         setLayout()
         addFoodData()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
 
     private func setLayout() {
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
         view.backgroundColor = .white
         collectionView.register(FoodCell.self, forCellWithReuseIdentifier: "sideDishCell")
         collectionView.register(FoodHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "itemHeaderView")
