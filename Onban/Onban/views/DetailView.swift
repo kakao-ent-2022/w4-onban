@@ -22,8 +22,6 @@ class DetailView: UIView {
     let imageView: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .orange
-        view.image = UIImage(named: "loading-food-list")
         return view
     }()
     
@@ -112,6 +110,16 @@ class DetailView: UIView {
     }
     
     func configure(from model: FoodDetail, with food: Food?) {
+        let session = NetworkRequest().getSessionManager(delegate: nil)
+        let topImageTask = session.getDownloadTask(with: URL(string: model.topImage)!, completionHandler: { downloadUrl in
+            if let downloadUrl = downloadUrl, let image = try? Data(contentsOf: downloadUrl) {
+                DispatchQueue.main.async {
+                    self.imageView.image = UIImage(data: image)
+                }
+            }
+        })
+        topImageTask.resume()
+        
         titleLabel.text = food?.title
         if model.prices.count < 2 {
             actualPriceLabel.text = model.prices[0]
@@ -145,15 +153,7 @@ class DetailView: UIView {
             launchLabel.backgroundColor = defaultColor(.lightBlue)
             badgeStack.addArrangedSubview(launchLabel)
         }
-        let session = NetworkRequest().getSessionManager(delegate: nil)
-        let topImageTask = session.getDownloadTask(with: URL(string: model.topImage)!, completionHandler: { downloadUrl in
-            if let downloadUrl = downloadUrl, let image = try? Data(contentsOf: downloadUrl) {
-                DispatchQueue.main.async {
-                    self.imageView.image = UIImage(data: image)
-                }
-            }
-        })
-        topImageTask.resume()
+        
         
         
         let detailSession = NetworkRequest().getSessionManager(delegate: detailImageDownloadDelegate)

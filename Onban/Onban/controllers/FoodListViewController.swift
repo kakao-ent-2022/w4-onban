@@ -19,6 +19,8 @@ class FoodListViewController: UIViewController {
         foodListViewModel = FoodListViewModelImpl()
         dataSource = FoodListDataSource(foodListViewModel)
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        setupView()
+        requestData()
     }
     required init?(coder: NSCoder) {
         fatalError("not yet implemented")
@@ -26,15 +28,13 @@ class FoodListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpView()
-        requestData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = true
     }
     
-    private func setUpView() {
+    private func setupView() {
         
         let collectionViewLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         collectionViewLayout.itemSize = CGSize(width: view.safeAreaLayoutGuide.layoutFrame.width - defaultMargin*2, height: 130)
@@ -91,7 +91,8 @@ class FoodListViewController: UIViewController {
         for food in foods {
             let task = session.getDownloadTask(with: URL(string: food.imagePath)!) { (url) in
                 if let url = url,
-                   let image = UIImage(contentsOfFile: url.path) {
+                   let image = UIImage(contentsOfFile: url.path),
+                   self.ifFileExist(fileName: food.id) {
                     DispatchQueue.global().async {
                         self.saveImage(fileName: food.id, image: image)
                         DispatchQueue.main.async {
@@ -111,14 +112,20 @@ class FoodListViewController: UIViewController {
         let fileURL = cachesDirectory.appendingPathComponent(fileName)
         guard let data = image.jpegData(compressionQuality: 1) else { return }
         
-        if FileManager.default.fileExists(atPath: fileURL.path) {
-            return
-        }
         do {
             try data.write(to: fileURL)
         } catch let error {
             print("error saving file", error)
         }
+    }
+    
+    private func ifFileExist(fileName: String) -> Bool {
+        guard let cachesDirectory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else { return false }
+        
+        let fileName = fileName
+        let fileURL = cachesDirectory.appendingPathComponent(fileName)
+        
+        return FileManager.default.fileExists(atPath: fileURL.path)
     }
 }
 
