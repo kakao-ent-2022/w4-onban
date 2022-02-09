@@ -8,5 +8,7 @@
 import Foundation
 
 protocol Repository {
-    func getFoodLists() -> [FoodList]
+    func getMainFoodLists(onCompletionHandler: @escaping (FoodList?) -> ())
+    func getSoupFoodLists(onCompletionHandler: @escaping (FoodList?) -> ())
+    func getSideFoodLists(onCompletionHandler: @escaping (FoodList?) -> ())
 }
