@@ -196,7 +196,7 @@ class DetailViewController: UIViewController {
         stackView.alignment = .center
         stackView.distribution = .fill
         stackView.axis = .horizontal
-        stackView.spacing = 0
+        stackView.spacing = 10
         return stackView
     }()
     private lazy var stockStackView: UIStackView = {
@@ -204,7 +204,7 @@ class DetailViewController: UIViewController {
         stackView.alignment = .center
         stackView.distribution = .fill
         stackView.axis = .horizontal
-        stackView.spacing = 150
+        stackView.spacing = 260
         return stackView
     }()
     
@@ -353,6 +353,7 @@ class DetailViewController: UIViewController {
             make.top.equalTo(lineView2.snp.bottom).offset(30)
             make.leading.equalTo(titleLabel.snp.leading)
         }
+        
         contentsView.addSubview(totalPriceStackView)
         totalPriceStackView.snp.makeConstraints { make in
             make.top.equalTo(stockStackView.snp.bottom).offset(30)
@@ -369,12 +370,26 @@ class DetailViewController: UIViewController {
         bottomImageView1.snp.makeConstraints { make in
             make.top.equalTo(orderButton.snp.bottom).offset(20)
             make.width.equalToSuperview().multipliedBy(0.9)
-            make.height.equalTo(200)
+            make.height.equalTo(400)
+            make.centerX.equalToSuperview()
+        }
+        
+        contentsView.addSubview(bottomImageView2)
+        bottomImageView2.snp.makeConstraints { make in
+            make.top.equalTo(bottomImageView1.snp.bottom).offset(20)
+            make.width.equalToSuperview().multipliedBy(0.9)
+            make.height.equalTo(400)
+            make.centerX.equalToSuperview()
+        }
+        
+        contentsView.addSubview(bottomImageView3)
+        bottomImageView3.snp.makeConstraints { make in
+            make.top.equalTo(bottomImageView2.snp.bottom).offset(20)
+            make.width.equalToSuperview().multipliedBy(0.9)
+            make.height.equalTo(400)
             make.centerX.equalToSuperview()
             make.bottom.equalToSuperview()
         }
-        
-        
         
     }
     
@@ -397,9 +412,22 @@ class DetailViewController: UIViewController {
                     self.pointLabel.text = data.data.point
                     self.deliveryInfoLabel.text = data.data.deliveryInfo
                     self.deliveryFeeLabel.text = data.data.deliveryFee
+                    
+                    let url = URL(string: data.data.thumbImages[0])
+                    guard let imageData = try? Data(contentsOf: url!) else { return }
+                    self.foodImage.image = UIImage(data: imageData)
+                    
                     let url1 = URL(string: data.data.detailSection[0])
-                    guard let data = try? Data(contentsOf: url1!) else { return }
-                    self.bottomImageView1.image = UIImage(data: data)
+                    guard let imageData1 = try? Data(contentsOf: url1!) else { return }
+                    self.bottomImageView1.image = UIImage(data: imageData1)
+                    
+                    let url2 = URL(string: data.data.detailSection[1])
+                    guard let imageData2 = try? Data(contentsOf: url2!) else { return }
+                    self.bottomImageView2.image = UIImage(data: imageData2)
+                    
+                    let url3 = URL(string: data.data.detailSection[2])
+                    guard let imageData3 = try? Data(contentsOf: url3!) else { return }
+                    self.bottomImageView3.image = UIImage(data: imageData3)
                 }
             case .failure(let error):
                 print(error)
