@@ -69,6 +69,15 @@ struct FoodsViewModel {
         return foods.count
     }
     
+    init(type: FoodsType, foods: [Food]) {
+        self.type = type
+        self.foods = foods
+        self.foods.forEach { food in
+            let url = food.imageURL
+            ImageCacheManager.shared.loadImage(imageURL: url, completion: nil)
+        }
+    }
+    
     subscript(index: Int) -> FoodViewModel {
         return FoodViewModel(food: foods[index])
     }

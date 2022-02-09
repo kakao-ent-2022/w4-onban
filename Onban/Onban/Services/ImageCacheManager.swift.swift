@@ -16,12 +16,12 @@ class ImageCacheManager {
     
     private init() {}
     
-    func loadImage(imageURL: String, completion: @escaping (UIImage?) -> Void) {
+    func loadImage(imageURL: String, completion: ((UIImage?) -> Void)?) {
         let key = imageURL as NSString
         guard let url = URL(string: imageURL) else { return }
         if keys.contains(key) {
             let image = cache.object(forKey: key)
-            completion(image)
+            completion?(image)
         } else {
             let config = URLSessionConfiguration.default
             let session = URLSession(configuration: config)
@@ -34,11 +34,9 @@ class ImageCacheManager {
                     return
                 }
                 self.cache.setObject(image, forKey: key)
-                completion(image)
+                completion?(image)
             }
             downloadTask.resume()
-            
-            
         }
     }
 }
