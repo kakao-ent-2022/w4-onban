@@ -371,7 +371,8 @@ class DetailViewController: UIViewController {
         bottomImageView1.snp.makeConstraints { make in
             make.top.equalTo(orderButton.snp.bottom).offset(20)
             make.width.equalToSuperview().multipliedBy(0.9)
-            make.height.equalTo(400)
+            let aspectRatio = bottomImageView1.image?.aspectRatio ?? 1
+            make.height.equalTo(bottomImageView1.snp.width).multipliedBy(1 / aspectRatio)
             make.centerX.equalToSuperview()
         }
         
@@ -379,7 +380,8 @@ class DetailViewController: UIViewController {
         bottomImageView2.snp.makeConstraints { make in
             make.top.equalTo(bottomImageView1.snp.bottom).offset(20)
             make.width.equalToSuperview().multipliedBy(0.9)
-            make.height.equalTo(400)
+            let aspectRatio = bottomImageView2.image?.aspectRatio ?? 1
+            make.height.equalTo(bottomImageView2.snp.width).multipliedBy(1 / aspectRatio)
             make.centerX.equalToSuperview()
         }
         
@@ -387,7 +389,8 @@ class DetailViewController: UIViewController {
         bottomImageView3.snp.makeConstraints { make in
             make.top.equalTo(bottomImageView2.snp.bottom).offset(20)
             make.width.equalToSuperview().multipliedBy(0.9)
-            make.height.equalTo(400)
+            let aspectRatio = bottomImageView3.image?.aspectRatio ?? 1
+            make.height.equalTo(bottomImageView3.snp.width).multipliedBy(1 / aspectRatio)
             make.centerX.equalToSuperview()
             make.bottom.equalToSuperview()
         }
@@ -413,25 +416,21 @@ class DetailViewController: UIViewController {
                     self.pointLabel.text = data.data.point
                     self.deliveryInfoLabel.text = data.data.deliveryInfo
                     self.deliveryFeeLabel.text = data.data.deliveryFee
-                    
                     ImageCacheManager.shared.loadImage(imageURL: data.data.thumbImages[0]) { image in
                         DispatchQueue.main.async {
                             self.foodImage.image = image
                         }
                     }
-                    
                     ImageCacheManager.shared.loadImage(imageURL: data.data.detailSection[0]) { image in
                         DispatchQueue.main.async {
                             self.bottomImageView1.image = image
                         }
                     }
-                    
                     ImageCacheManager.shared.loadImage(imageURL: data.data.detailSection[1]) { image in
                         DispatchQueue.main.async {
                             self.bottomImageView2.image = image
                         }
                     }
-                    
                     ImageCacheManager.shared.loadImage(imageURL: data.data.detailSection[2]) { image in
                         DispatchQueue.main.async {
                             self.bottomImageView3.image = image
