@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D0C3E203FAE83AABEF55AD40 /* Pods_Onban.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 933F52CAC3D4CE91762B2878 /* Pods_Onban.framework */; };
 		EAB4516F27B10A3C00333760 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB4516E27B10A3C00333760 /* String.swift */; };
 		EAB4517127B2C9F900333760 /* StoreCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB4517027B2C9F900333760 /* StoreCollectionViewHeader.swift */; };
 		EAB4517327B2EBDE00333760 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB4517227B2EBDE00333760 /* UIColor.swift */; };
@@ -25,6 +26,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		662B2E0EA3B2137CD0EA0B0C /* Pods-Onban.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Onban.debug.xcconfig"; path = "Target Support Files/Pods-Onban/Pods-Onban.debug.xcconfig"; sourceTree = "<group>"; };
+		933F52CAC3D4CE91762B2878 /* Pods_Onban.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Onban.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B0175419BFA7F3EECC34E36 /* Pods-Onban.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Onban.release.xcconfig"; path = "Target Support Files/Pods-Onban/Pods-Onban.release.xcconfig"; sourceTree = "<group>"; };
 		EAB4516E27B10A3C00333760 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		EAB4517027B2C9F900333760 /* StoreCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCollectionViewHeader.swift; sourceTree = "<group>"; };
 		EAB4517227B2EBDE00333760 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
@@ -49,12 +53,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0C3E203FAE83AABEF55AD40 /* Pods_Onban.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		07EDE5AEEE56F34DD8235808 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				933F52CAC3D4CE91762B2878 /* Pods_Onban.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		68F340005CEDC11B450DC81A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				662B2E0EA3B2137CD0EA0B0C /* Pods-Onban.debug.xcconfig */,
+				9B0175419BFA7F3EECC34E36 /* Pods-Onban.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		EAB4516D27B10A2800333760 /* extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -77,6 +100,8 @@
 			children = (
 				EAC2980927AC04CE003A3012 /* Onban */,
 				EAC2980827AC04CE003A3012 /* Products */,
+				68F340005CEDC11B450DC81A /* Pods */,
+				07EDE5AEEE56F34DD8235808 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -149,9 +174,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EAC2981B27AC04CE003A3012 /* Build configuration list for PBXNativeTarget "Onban" */;
 			buildPhases = (
+				CA39B01AF2F987A2D3D35C96 /* [CP] Check Pods Manifest.lock */,
 				EAC2980327AC04CE003A3012 /* Sources */,
 				EAC2980427AC04CE003A3012 /* Frameworks */,
 				EAC2980527AC04CE003A3012 /* Resources */,
+				5DD1D881147075CE94A6D939 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -208,6 +235,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5DD1D881147075CE94A6D939 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Onban/Pods-Onban-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Onban/Pods-Onban-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Onban/Pods-Onban-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CA39B01AF2F987A2D3D35C96 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Onban-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EAC2980327AC04CE003A3012 /* Sources */ = {
@@ -349,6 +418,7 @@
 		};
 		EAC2981C27AC04CE003A3012 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 662B2E0EA3B2137CD0EA0B0C /* Pods-Onban.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -375,6 +445,7 @@
 		};
 		EAC2981D27AC04CE003A3012 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9B0175419BFA7F3EECC34E36 /* Pods-Onban.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
