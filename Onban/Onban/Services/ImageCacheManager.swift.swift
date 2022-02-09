@@ -10,17 +10,21 @@ import UIKit
 class ImageCacheManager {
     
     static let shared = ImageCacheManager()
-    
-    let cache = NSCache<NSString, UIImage>()
-    var keys = Set<NSString>()
-    
+    let fileManager = FileManager()
     private init() {}
     
     func loadImage(imageURL: String, completion: ((UIImage?) -> Void)?) {
-        let key = imageURL as NSString
         guard let url = URL(string: imageURL) else { return }
-        if keys.contains(key) {
-            let image = cache.object(forKey: key)
+        guard let path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first else { return }
+        
+        var filePath = URL(fileURLWithPath: path)
+        filePath.appendPathComponent(url.lastPathComponent)
+        
+        if fileManager.fileExists(atPath: filePath.path) {
+            guard let imageData  = try? Data(contentsOf: filePath) else {
+                return
+            }
+            let image = UIImage(data: imageData)
             completion?(image)
         } else {
             let config = URLSessionConfiguration.default
@@ -33,7 +37,7 @@ class ImageCacheManager {
                 else {
                     return
                 }
-                self.cache.setObject(image, forKey: key)
+                self.fileManager.createFile(atPath: filePath.path, contents: data, attributes: nil)
                 completion?(image)
             }
             downloadTask.resume()

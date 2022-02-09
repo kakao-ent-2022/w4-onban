@@ -253,6 +253,7 @@ class DetailViewController: UIViewController {
         setViews()
     }
     
+    
     func setViews() {
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints { make in
@@ -413,21 +414,29 @@ class DetailViewController: UIViewController {
                     self.deliveryInfoLabel.text = data.data.deliveryInfo
                     self.deliveryFeeLabel.text = data.data.deliveryFee
                     
-                    let url = URL(string: data.data.thumbImages[0])
-                    guard let imageData = try? Data(contentsOf: url!) else { return }
-                    self.foodImage.image = UIImage(data: imageData)
+                    ImageCacheManager.shared.loadImage(imageURL: data.data.thumbImages[0]) { image in
+                        DispatchQueue.main.async {
+                            self.foodImage.image = image
+                        }
+                    }
                     
-                    let url1 = URL(string: data.data.detailSection[0])
-                    guard let imageData1 = try? Data(contentsOf: url1!) else { return }
-                    self.bottomImageView1.image = UIImage(data: imageData1)
+                    ImageCacheManager.shared.loadImage(imageURL: data.data.detailSection[0]) { image in
+                        DispatchQueue.main.async {
+                            self.bottomImageView1.image = image
+                        }
+                    }
                     
-                    let url2 = URL(string: data.data.detailSection[1])
-                    guard let imageData2 = try? Data(contentsOf: url2!) else { return }
-                    self.bottomImageView2.image = UIImage(data: imageData2)
+                    ImageCacheManager.shared.loadImage(imageURL: data.data.detailSection[1]) { image in
+                        DispatchQueue.main.async {
+                            self.bottomImageView2.image = image
+                        }
+                    }
                     
-                    let url3 = URL(string: data.data.detailSection[2])
-                    guard let imageData3 = try? Data(contentsOf: url3!) else { return }
-                    self.bottomImageView3.image = UIImage(data: imageData3)
+                    ImageCacheManager.shared.loadImage(imageURL: data.data.detailSection[2]) { image in
+                        DispatchQueue.main.async {
+                            self.bottomImageView3.image = image
+                        }
+                    }
                 }
             case .failure(let error):
                 print(error)
