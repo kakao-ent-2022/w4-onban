@@ -55,10 +55,12 @@ class StoreCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    private let eventBadgeLabel: UILabel = {
-        let label = UILabel()
-        
-        return label
+    private let eventBadgeContainer: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 4
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
     }()
     
     func addViews() {
@@ -67,6 +69,7 @@ class StoreCollectionViewCell: UICollectionViewCell {
         addSubview(storeDescriptionLabel)
         addSubview(finalPriceLabel)
         addSubview(previousPriceLabel)
+        addSubview(eventBadgeContainer)
         
         storeImageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         storeImageView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
@@ -75,8 +78,8 @@ class StoreCollectionViewCell: UICollectionViewCell {
         
         storeTitleLabel.leadingAnchor.constraint(equalTo: storeImageView.trailingAnchor, constant: 10).isActive = true
         storeTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        storeTitleLabel.topAnchor.constraint(lessThanOrEqualTo: storeImageView.topAnchor, constant: 20).isActive = true
-    
+        storeTitleLabel.topAnchor.constraint(lessThanOrEqualTo: storeImageView.topAnchor, constant: 8).isActive = true
+        
         storeDescriptionLabel.topAnchor.constraint(equalTo: storeTitleLabel.bottomAnchor, constant: 4).isActive = true
         storeDescriptionLabel.leadingAnchor.constraint(equalTo: storeTitleLabel.leadingAnchor).isActive = true
         storeDescriptionLabel.trailingAnchor.constraint(equalTo: storeTitleLabel.trailingAnchor).isActive = true
@@ -86,7 +89,10 @@ class StoreCollectionViewCell: UICollectionViewCell {
         
         previousPriceLabel.leadingAnchor.constraint(equalTo: finalPriceLabel.trailingAnchor, constant: 4).isActive = true
         previousPriceLabel.topAnchor.constraint(equalTo: finalPriceLabel.topAnchor).isActive = true
-        previousPriceLabel.bottomAnchor.constraint(lessThanOrEqualTo: bottomAnchor, constant: 20).isActive = true
+        
+        eventBadgeContainer.topAnchor.constraint(equalTo: finalPriceLabel.bottomAnchor, constant: 8).isActive = true
+        eventBadgeContainer.leadingAnchor.constraint(equalTo: storeTitleLabel.leadingAnchor).isActive = true
+        eventBadgeContainer.heightAnchor.constraint(equalToConstant: 25).isActive = true
     }
     
     func bind(store: StoreItem) {
@@ -106,6 +112,14 @@ class StoreCollectionViewCell: UICollectionViewCell {
             previousPriceLabel.attributedText = "\(nPrice)원".strikeThrough()
         } else {
             previousPriceLabel.isHidden = true
+        }
+        
+        eventBadgeContainer.subviews.forEach({ $0.removeFromSuperview() })
+        if let events = store.badge {
+            for event in events {
+                let eventBadgeLabel = EventBadgeLabel(text: event)
+                eventBadgeContainer.addArrangedSubview(eventBadgeLabel)
+            }
         }
     }
 }
