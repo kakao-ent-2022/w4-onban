@@ -23,6 +23,7 @@ class StoreCollectionViewHeader: UICollectionReusableView {
     private let headerLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 22)
+        label.textColor = .basicText
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

@@ -29,6 +29,7 @@ class StoreCollectionViewCell: UICollectionViewCell {
     private let storeTitleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.textColor = .basicText
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -37,6 +38,7 @@ class StoreCollectionViewCell: UICollectionViewCell {
     private let storeDescriptionLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = .descriptionText
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -44,6 +46,7 @@ class StoreCollectionViewCell: UICollectionViewCell {
     private let finalPriceLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.textColor = .basicText
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -51,6 +54,7 @@ class StoreCollectionViewCell: UICollectionViewCell {
     private let previousPriceLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = .cancleText
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

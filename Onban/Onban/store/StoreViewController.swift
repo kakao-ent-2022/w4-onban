@@ -41,7 +41,7 @@ class StoreViewController: UIViewController {
     }
     
     private func initView() {
-        view.backgroundColor = .white
+        view.backgroundColor = .basicBackground
         
         view.addSubview(collectionView)
         

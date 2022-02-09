@@ -9,6 +9,11 @@ import Foundation
 import UIKit
 
 extension UIColor {
+    static let basicBackground = UIColor(named: "basicBackground")
+    static let basicText = UIColor(named: "basicText")
+    static let descriptionText = UIColor(named: "descriptionText")
+    static let cancleText = UIColor(named: "cancleText")
+    
     convenience init(hex: String, alpha: CGFloat = 1.0) {
         var hexFormatted: String = hex.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).uppercased()
         
