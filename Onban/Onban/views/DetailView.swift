@@ -102,19 +102,20 @@ class DetailView: UIView {
     
     func configure(from model: FoodDetail, with food: Food?) {
         
-        titleLabel.text = model.productDescription
-        guard model.prices.count >= 2 else {
-            return
+        titleLabel.text = food?.title
+        if model.prices.count < 2 {
+            actualPriceLabel.text = model.prices[0]
+        } else {
+            actualPriceLabel.text = model.prices[1]
+            
+            let originalPrice = model.prices[0].last == "원" ? model.prices[0] : model.prices[0] + "원"
+            self.originalPriceLabel.attributedText = NSAttributedString.init(string: originalPrice, attributes: [.strikethroughStyle: NSUnderlineStyle.single.rawValue])
         }
-        actualPriceLabel.text = model.prices[1]
-
-        let originalPrice = model.prices[0].last == "원" ? model.prices[0] : model.prices[0] + "원"
-        self.originalPriceLabel.attributedText = NSAttributedString.init(string: originalPrice, attributes: [.strikethroughStyle: NSUnderlineStyle.single.rawValue])
         
         deliveryInfoLabel.text = model.deliveryInfo
         pointLabel.text = model.point
         
-        descriptionLabel.text = food?.description
+        descriptionLabel.text = model.productDescription
         
         if let boldStartIndex = model.deliveryFee.firstIndex(of: "(")?.utf16Offset(in: model.deliveryFee) {
             let deliveryFee = NSMutableAttributedString(string: model.deliveryFee)

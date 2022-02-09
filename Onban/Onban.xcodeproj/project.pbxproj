@@ -33,6 +33,7 @@
 		5E790D1127B243B2003AF8DA /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E790D1027B243B2003AF8DA /* DetailViewController.swift */; };
 		5E790D1327B255E5003AF8DA /* BadgeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E790D1227B255E5003AF8DA /* BadgeLabel.swift */; };
 		5E790D1527B375B6003AF8DA /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E790D1427B375B6003AF8DA /* DetailView.swift */; };
+		5E790D1727B3877E003AF8DA /* FoodDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E790D1627B3877E003AF8DA /* FoodDetail.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,7 @@
 		5E790D1027B243B2003AF8DA /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		5E790D1227B255E5003AF8DA /* BadgeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeLabel.swift; sourceTree = "<group>"; };
 		5E790D1427B375B6003AF8DA /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		5E790D1627B3877E003AF8DA /* FoodDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				5E790CDE27ABB05B003AF8DA /* Food.swift */,
+				5E790D1627B3877E003AF8DA /* FoodDetail.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -456,6 +459,7 @@
 				5E790CDF27ABB05B003AF8DA /* Food.swift in Sources */,
 				5E790D1327B255E5003AF8DA /* BadgeLabel.swift in Sources */,
 				5E790D0327ACD918003AF8DA /* DefaultColor.swift in Sources */,
+				5E790D1727B3877E003AF8DA /* FoodDetail.swift in Sources */,
 				5E790CF727ABE1BA003AF8DA /* FoodListViewModel.swift in Sources */,
 				5E790D0527ACDB75003AF8DA /* DefaultFont.swift in Sources */,
 				5E790CA327AB99C0003AF8DA /* AppDelegate.swift in Sources */,
