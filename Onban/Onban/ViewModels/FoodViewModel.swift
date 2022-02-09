@@ -21,7 +21,6 @@ class FoodViewModel {
     var isNew: Bool {
         return food.badges?.contains("런칭특가") ?? false
     }
-    private let imageCache = NSCache<NSString, UIImage>()
     private var imageKey: NSString?
     
     init(food: Food) {
@@ -29,26 +28,8 @@ class FoodViewModel {
     }
     
     func loadImage(completion: @escaping (UIImage?) -> Void) {
-        if let key = self.imageKey {
-            let cachedImage = imageCache.object(forKey: key)
-            completion(cachedImage)
-        } else {
-            guard let imageURL = URL(string: food.imageURL) else { return }
-            let config = URLSessionConfiguration.default
-            let session = URLSession(configuration: config)
-            let downloadTask = session.downloadTask(with: imageURL) { url, response, error in
-                guard
-                    let url = url, error == nil,
-                    let data = try? Data(contentsOf: url),
-                    let image = UIImage(data: data)
-                else {
-                    return
-                }
-                let cacheKey = url.lastPathComponent as NSString
-                self.imageCache.setObject(image, forKey: cacheKey)
-                completion(image)
-            }
-            downloadTask.resume()
+        ImageCacheManager.shared.loadImage(imageURL: food.imageURL) { image in
+            completion(image)
         }
     }
 }
