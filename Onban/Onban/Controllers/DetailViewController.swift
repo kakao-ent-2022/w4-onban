@@ -10,6 +10,17 @@ import UIKit
 class DetailViewController: UIViewController {
     let scrollView: UIScrollView = UIScrollView()
     let contentsView: UIView = UIView()
+    let collectionViewDelegate = CarouselCollectionView()
+    
+    lazy var collectionView: UICollectionView = {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .horizontal
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        collectionView.dataSource = collectionViewDelegate
+        collectionView.delegate = collectionViewDelegate
+        collectionView.register(CarouselCell.self, forCellWithReuseIdentifier: "carouselCell")
+        return collectionView
+    }()
     
     var foodImage: UIImageView = UIImageView(image: UIImage(named: "foodThumbnail.png"))
     let titleLabel: UILabel = {
@@ -221,7 +232,6 @@ class DetailViewController: UIViewController {
         return stackView
     }()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
@@ -243,18 +253,17 @@ class DetailViewController: UIViewController {
             make.bottom.equalTo(scrollView.contentLayoutGuide.snp.bottom)
         }
         
-        
-        contentsView.addSubview(foodImage)
-        foodImage.snp.makeConstraints { make in
+        contentsView.addSubview(collectionView)
+        collectionView.snp.makeConstraints { make in
             make.top.equalTo(self.contentsView.snp.topMargin)
             make.centerX.equalTo(self.contentsView.snp.centerX)
             make.width.equalTo(self.contentsView.snp.width)
-            make.height.equalTo(foodImage.snp.width)
+            make.height.equalTo(300)
         }
         
         contentsView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(foodImage.snp.bottom).offset(20)
+            make.top.equalTo(collectionView.snp.bottom).offset(20)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
         }
@@ -375,11 +384,15 @@ class DetailViewController: UIViewController {
                     self.deliveryInfoLabel.text = foodData.deliveryInfo
                     self.deliveryFeeLabel.text = foodData.deliveryFee
                     self.totalPriceLabel.text = foodData.prices.count == 1 ? foodData.prices[0] : foodData.prices[1]
-                    ImageCacheManager.shared.loadImage(imageURL: foodData.thumbImages[0]) { image in
-                        DispatchQueue.main.async {
-                            self.foodImage.image = image
-                        }
-                    }
+                    let detailThumnailVM = DetailThumnailViewModel(urlStrings: foodData.thumbImages)
+                    self.collectionViewDelegate.detailThumnailVM = detailThumnailVM
+                    self.collectionView.reloadData()
+                    print(detailThumnailVM.numberOfItemsInsection(1))
+//                    ImageCacheManager.shared.loadImage(imageURL: foodData.thumbImages[0]) { image in
+//                        DispatchQueue.main.async {
+//                            self.foodImage.image = image
+//                        }
+//                    }
                     
                     foodData.detailSection.forEach { imageURL in
                         ImageCacheManager.shared.loadImage(imageURL: imageURL) { image in
