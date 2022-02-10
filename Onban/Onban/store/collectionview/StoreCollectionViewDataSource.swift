@@ -60,20 +60,23 @@ class StoreCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
     func initJson() {
         for (index, element) in storeIndex.enumerated() {
-            addJsonData(jsonName: element, index: index)
+            addJsonFileData(jsonName: element, index: index)
         }
     }
     
-    func addJsonData(jsonName: String, index: Int) {
+    func addJsonFileData(jsonName: String, index: Int) {
         if let url = Bundle.main.url(forResource: jsonName, withExtension: "json") {
             do {
                 let data = try Data(contentsOf: url)
                 let addStores = try JSONDecoder().decode([StoreItem].self, from: data)
-                stores.insert(addStores, at: index)
+                addStoreData(index: index, data: addStores)
             } catch let error {
                 print(error.localizedDescription)
             }
         }
     }
     
+    func addStoreData(index: Int, data: [StoreItem]) {
+        stores[index] = data
+    }
 }

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		D0C3E203FAE83AABEF55AD40 /* Pods_Onban.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 933F52CAC3D4CE91762B2878 /* Pods_Onban.framework */; };
+		EA66566B27B4AE2700A53AA9 /* URLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA66566A27B4AE2700A53AA9 /* URLSession.swift */; };
+		EA66566D27B4D3DE00A53AA9 /* StoreApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA66566C27B4D3DE00A53AA9 /* StoreApiService.swift */; };
+		EA66566F27B4DECB00A53AA9 /* ApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA66566E27B4DECB00A53AA9 /* ApiResponse.swift */; };
 		EAB4516F27B10A3C00333760 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB4516E27B10A3C00333760 /* String.swift */; };
 		EAB4517127B2C9F900333760 /* StoreCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB4517027B2C9F900333760 /* StoreCollectionViewHeader.swift */; };
 		EAB4517327B2EBDE00333760 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB4517227B2EBDE00333760 /* UIColor.swift */; };
@@ -29,6 +32,9 @@
 		662B2E0EA3B2137CD0EA0B0C /* Pods-Onban.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Onban.debug.xcconfig"; path = "Target Support Files/Pods-Onban/Pods-Onban.debug.xcconfig"; sourceTree = "<group>"; };
 		933F52CAC3D4CE91762B2878 /* Pods_Onban.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Onban.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B0175419BFA7F3EECC34E36 /* Pods-Onban.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Onban.release.xcconfig"; path = "Target Support Files/Pods-Onban/Pods-Onban.release.xcconfig"; sourceTree = "<group>"; };
+		EA66566A27B4AE2700A53AA9 /* URLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSession.swift; sourceTree = "<group>"; };
+		EA66566C27B4D3DE00A53AA9 /* StoreApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreApiService.swift; sourceTree = "<group>"; };
+		EA66566E27B4DECB00A53AA9 /* ApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiResponse.swift; sourceTree = "<group>"; };
 		EAB4516E27B10A3C00333760 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		EAB4517027B2C9F900333760 /* StoreCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCollectionViewHeader.swift; sourceTree = "<group>"; };
 		EAB4517227B2EBDE00333760 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
@@ -74,8 +80,17 @@
 				662B2E0EA3B2137CD0EA0B0C /* Pods-Onban.debug.xcconfig */,
 				9B0175419BFA7F3EECC34E36 /* Pods-Onban.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		EA66566927B4AE1800A53AA9 /* network */ = {
+			isa = PBXGroup;
+			children = (
+				EA66566A27B4AE2700A53AA9 /* URLSession.swift */,
+				EA66566C27B4D3DE00A53AA9 /* StoreApiService.swift */,
+				EA66566E27B4DECB00A53AA9 /* ApiResponse.swift */,
+			);
+			path = network;
 			sourceTree = "<group>";
 		};
 		EAB4516D27B10A2800333760 /* extension */ = {
@@ -116,6 +131,7 @@
 		EAC2980927AC04CE003A3012 /* Onban */ = {
 			isa = PBXGroup;
 			children = (
+				EA66566927B4AE1800A53AA9 /* network */,
 				EAB4516D27B10A2800333760 /* extension */,
 				EAC2983D27AD2224003A3012 /* data */,
 				EAC2983627AD21F2003A3012 /* json */,
@@ -286,14 +302,17 @@
 				EAC2983027AD1285003A3012 /* StoreCollectionViewCell.swift in Sources */,
 				EAC2980F27AC04CE003A3012 /* StoreViewController.swift in Sources */,
 				EAC2980B27AC04CE003A3012 /* AppDelegate.swift in Sources */,
+				EA66566F27B4DECB00A53AA9 /* ApiResponse.swift in Sources */,
 				EAC2983F27AD2235003A3012 /* StoreItem.swift in Sources */,
 				EAC2983527AD2026003A3012 /* StoreCollectionViewDelegate.swift in Sources */,
 				EAB4517627B34B5700333760 /* EventBadgeLabel.swift in Sources */,
 				EAC2983227AD18CC003A3012 /* StoreCollectionViewDataSource.swift in Sources */,
+				EA66566D27B4D3DE00A53AA9 /* StoreApiService.swift in Sources */,
 				EAB4516F27B10A3C00333760 /* String.swift in Sources */,
 				EAC2980D27AC04CE003A3012 /* SceneDelegate.swift in Sources */,
 				EAB4517127B2C9F900333760 /* StoreCollectionViewHeader.swift in Sources */,
 				EAB4517327B2EBDE00333760 /* UIColor.swift in Sources */,
+				EA66566B27B4AE2700A53AA9 /* URLSession.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

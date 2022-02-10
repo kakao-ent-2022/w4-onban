@@ -57,7 +57,27 @@ class StoreViewController: UIViewController {
         
         collectionView.dataSource = storeCollectionViewDataSource
         collectionView.delegate = storeCollectionViewDelegate
-        storeCollectionViewDataSource.initJson()
+        
+        addData()
+    }
+    
+    private func addData() {
+        let storeIndex = storeCollectionViewDataSource.storeIndex
+        
+        for (index, element) in storeIndex.enumerated() {
+            StoreApiService.shared.getStores(resource: element) { result in
+                switch result {
+                case .success(let data):
+                    self.storeCollectionViewDataSource.addStoreData(index: index, data: data)
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadSections(IndexSet(index...index))
+                    }
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
+        
     }
 }
 
