@@ -9,7 +9,6 @@ import UIKit
 
 class DetailView: UIView {
     var detailImageDownloadDelegate: URLSessionDelegate?
-
     required init?(coder: NSCoder) {
         fatalError("not yet implemented")
     }

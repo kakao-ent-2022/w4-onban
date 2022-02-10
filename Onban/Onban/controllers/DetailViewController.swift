@@ -33,8 +33,8 @@ class DetailViewController: UIViewController {
         
         setupScrollView()
         contentView.detailImageDownloadDelegate = self
-
-        let _ = try? requestData()
+        
+        try? requestData()
     }
     
     private func setupScrollView() {
@@ -55,7 +55,7 @@ class DetailViewController: UIViewController {
         ])
     }
     
-    private func requestData() throws -> FoodDetail {
+    private func requestData() throws {
         struct DataResponse: Decodable {
             let hash: String
             let data: FoodDetail
