@@ -19,6 +19,7 @@ class DetailViewController: UIViewController {
         collectionView.dataSource = collectionViewDelegate
         collectionView.delegate = collectionViewDelegate
         collectionView.register(CarouselCell.self, forCellWithReuseIdentifier: "carouselCell")
+        collectionView.isPagingEnabled = true
         return collectionView
     }()
     
