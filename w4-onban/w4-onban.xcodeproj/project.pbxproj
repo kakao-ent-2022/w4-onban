@@ -103,7 +103,8 @@
 		2E0CA62827B000AD001FC85D /* view */ = {
 			isa = PBXGroup;
 			children = (
-				2EA09F8827B11C6C00ACC11A /* BadgeLabel.swift */,
+				2E872B1627B4BC6400F70191 /* detail */,
+				2E872B1527B4BC5E00F70191 /* custom */,
 				2E0CA62927B000AD001FC85D /* main */,
 			);
 			path = view;
@@ -176,6 +177,21 @@
 				2EA09F8F27B274B400ACC11A /* Respository.swift */,
 			);
 			path = domain;
+			sourceTree = "<group>";
+		};
+		2E872B1527B4BC5E00F70191 /* custom */ = {
+			isa = PBXGroup;
+			children = (
+				2EA09F8827B11C6C00ACC11A /* BadgeLabel.swift */,
+			);
+			path = custom;
+			sourceTree = "<group>";
+		};
+		2E872B1627B4BC6400F70191 /* detail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = detail;
 			sourceTree = "<group>";
 		};
 		2EA09F7627B0F1ED00ACC11A /* extension */ = {
