@@ -24,21 +24,6 @@
             </objects>
             <point key="canvasLocation" x="1802.8985507246377" y="97.767857142857139"/>
         </scene>
-        <!--DetailViewController-->
-        <scene sceneID="zlk-fQ-XS3">
-            <objects>
-                <viewController storyboardIdentifier="DetailViewController" id="zfs-jK-DXb" userLabel="DetailViewController" customClass="DetailViewController" customModule="w4_onban" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="vdM-H0-GVo">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="hvw-cq-Iuv"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kUo-HJ-D8h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2610" y="98"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="VTN-Zb-CgB">
             <objects>

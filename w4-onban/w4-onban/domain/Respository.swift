@@ -8,9 +8,11 @@
 import Foundation
 
 protocol Repository {
-    func getMainFoodLists(onCompletionHandler: @escaping (Result<FoodList, NetworkError>) -> ())
+    func mainFoodLists(onCompletionHandler: @escaping (Result<FoodList, NetworkError>) -> ())
     
-    func getSoupFoodLists(onCompletionHandler:@escaping (Result<FoodList, NetworkError>) -> ())
+    func soupFoodLists(onCompletionHandler:@escaping (Result<FoodList, NetworkError>) -> ())
     
-    func getSideFoodLists(onCompletionHandler: @escaping (Result<FoodList, NetworkError>) -> ())
+    func sideFoodLists(onCompletionHandler: @escaping (Result<FoodList, NetworkError>) -> ())
+    
+    func foodDetail(hash: String,onCompletionHandler: @escaping (Result<FoodDetail, NetworkError>) -> ())
 }

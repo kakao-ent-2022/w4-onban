@@ -17,7 +17,7 @@ enum NetworkError: Error {
 }
 
 enum Path: String, CaseIterable {
-    case main, soup, side
+    case main, soup, side, detail
     
     static func findBy(rawValue: String) -> Path? {
         return self.allCases
@@ -53,6 +53,26 @@ class NetworkHandler: NSObject, URLSessionDelegate {
             
             let foodList = response.body
             onCompletionHandler(.success(foodList))
+        }.resume()
+    }
+    
+    func requestFoodDetail(hash: String, onCompletionHandler: @escaping (Result<FoodDetail, NetworkError>) -> Void) {
+        guard let url = baseUrl?.appendingPathComponent(Path.detail.rawValue)
+            .appendingPathComponent(hash) else {
+            onCompletionHandler(.failure(.url))
+            return
+        }
+    
+        defaultSession.dataTask(with: url) { data, response, error in
+            guard let data = data,
+                  let response = try? JSONDecoder().decode(FoodDetailResponse.self, from: data)
+            else {
+                onCompletionHandler(.failure(.parseError))
+                return
+            }
+            
+            let foodDetail = response.data
+            onCompletionHandler(.success(foodDetail))
         }.resume()
     }
 }

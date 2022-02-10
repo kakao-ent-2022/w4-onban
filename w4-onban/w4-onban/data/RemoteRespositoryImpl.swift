@@ -8,17 +8,21 @@
 import Foundation
 
 class RemoteRepositoryImple: NSObject, Repository, URLSessionDataDelegate {
+    func foodDetail(hash: String, onCompletionHandler: @escaping (Result<FoodDetail, NetworkError>) -> ()) {
+        networkHandler.requestFoodDetail(hash: hash, onCompletionHandler: onCompletionHandler)
+    }
+    
     let networkHandler = NetworkHandler.instance
     
-    func getMainFoodLists(onCompletionHandler: @escaping (Result<FoodList, NetworkError>) -> ()) {
+    func mainFoodLists(onCompletionHandler: @escaping (Result<FoodList, NetworkError>) -> ()) {
         networkHandler.requestFoodList(path: .main, onCompletionHandler: onCompletionHandler)
     }
     
-    func getSoupFoodLists(onCompletionHandler:@escaping (Result<FoodList, NetworkError>) -> ()) {
+    func soupFoodLists(onCompletionHandler:@escaping (Result<FoodList, NetworkError>) -> ()) {
         networkHandler.requestFoodList(path: .main, onCompletionHandler: onCompletionHandler)
     }
     
-    func getSideFoodLists(onCompletionHandler: @escaping (Result<FoodList, NetworkError>) -> ()) {
+    func sideFoodLists(onCompletionHandler: @escaping (Result<FoodList, NetworkError>) -> ()) {
         networkHandler.requestFoodList(path: .main, onCompletionHandler: onCompletionHandler)
     }
 }

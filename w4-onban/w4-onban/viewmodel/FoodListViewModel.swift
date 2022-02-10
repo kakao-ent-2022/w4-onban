@@ -61,7 +61,7 @@ class FoodListViewModelImpl: NSObject, FoodListViewModel, URLSessionDelegate {
     }
     
     private func getData() {
-        repository.getMainFoodLists { result in
+        repository.mainFoodLists { result in
             switch result{
             case .success(_):
                 self.foodLists[FoodCategory.main] = try? result.get()
@@ -72,7 +72,7 @@ class FoodListViewModelImpl: NSObject, FoodListViewModel, URLSessionDelegate {
                 break
             }
         }
-        repository.getSoupFoodLists { result in
+        repository.soupFoodLists { result in
             switch result{
             case .success(_):
                 self.foodLists[FoodCategory.soup] = try? result.get()
@@ -83,7 +83,7 @@ class FoodListViewModelImpl: NSObject, FoodListViewModel, URLSessionDelegate {
                 break
             }
         }
-        repository.getSideFoodLists { result in
+        repository.sideFoodLists { result in
             switch result{
             case .success(_):
                 self.foodLists[FoodCategory.side] = try? result.get()

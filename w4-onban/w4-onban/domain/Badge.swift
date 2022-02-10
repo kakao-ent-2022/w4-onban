@@ -9,5 +9,5 @@ import Foundation
 
 enum Badge: String, Decodable {
     case event = "이벤트특가"
-    case launchEvent = "론칭특가"
+    case launchEvent = "런칭특가"
 }

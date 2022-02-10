@@ -10,7 +10,6 @@ import UIKit
 
 class FoodCell: UICollectionViewCell {
     static let reuseIdentifier = "storeitem-reuse-identifier"
-    private static let beforeSalePriceSuffix = "원"
     
     private let imageView: UIImageView = {
         let view = UIImageView()
@@ -129,10 +128,6 @@ class FoodCell: UICollectionViewCell {
     
     private func setBeforeSalePriceLabel(value: String?) {
         var beforeSalePrice = value ?? ""
-        
-        if !beforeSalePrice.isEmpty {
-            beforeSalePrice += FoodCell.beforeSalePriceSuffix
-        }
         
         let attributeString = NSMutableAttributedString(string: beforeSalePrice)
         attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: NSUnderlineStyle.single.rawValue, range: NSMakeRange(0,attributeString.length))
