@@ -18,8 +18,16 @@ class DetailView: UIView {
         setupView()
     }
 
-    let imageView: UIImageView = {
-        let view = UIImageView()
+    let thumbnailScrollView: UIScrollView = {
+        let view = UIScrollView()
+        view.isPagingEnabled = true
+        view.showsHorizontalScrollIndicator = false
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    let thumbnailStack: UIStackView = {
+        let view = UIStackView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -123,15 +131,24 @@ class DetailView: UIView {
     }
     
     func configure(from model: FoodDetail, with food: Food?) {
-        let session = NetworkRequest().getSessionManager(delegate: nil)
-        let topImageTask = session.getDownloadTask(with: URL(string: model.topImage)!, completionHandler: { downloadUrl in
-            if let downloadUrl = downloadUrl, let image = try? Data(contentsOf: downloadUrl) {
-                DispatchQueue.main.async {
-                    self.imageView.image = UIImage(data: image)
+        
+        for item in model.thumbnails {
+            
+            let session = NetworkRequest().getSessionManager(delegate: nil)
+            let topImageTask = session.getDownloadTask(with: URL(string: item)!, completionHandler: { downloadUrl in
+                if let downloadUrl = downloadUrl, let data = try? Data(contentsOf: downloadUrl) {
+                    DispatchQueue.main.async {
+                        let image = UIImage(data: data)
+                        let imageView = UIImageView(image: image)
+                        self.thumbnailStack.addArrangedSubview(imageView)
+                        imageView.translatesAutoresizingMaskIntoConstraints = false
+                        imageView.heightAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+                        imageView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+                    }
                 }
-            }
-        })
-        topImageTask.resume()
+            })
+            topImageTask.resume()
+        }
         
         titleLabel.text = food?.title
         if model.prices.count < 2 {
@@ -191,18 +208,23 @@ class DetailView: UIView {
 
     
     private func setupView() {
-        addSubview(imageView)
+        addSubview(thumbnailScrollView)
         addSubview(titleLabel)
         addSubview(descriptionLabel)
         addSubview(actualPriceLabel)
         addSubview(originalPriceLabel)
         addSubview(badgeStack)
         
+        thumbnailScrollView.addSubview(thumbnailStack)
+        
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: topAnchor),
-            imageView.widthAnchor.constraint(equalTo: widthAnchor),
-            imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor),
-            titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 24),
+            thumbnailScrollView.topAnchor.constraint(equalTo: topAnchor),
+            thumbnailScrollView.widthAnchor.constraint(equalTo: widthAnchor),
+            thumbnailScrollView.heightAnchor.constraint(equalTo: thumbnailScrollView.widthAnchor),
+            thumbnailStack.topAnchor.constraint(equalTo: thumbnailScrollView.topAnchor),
+            thumbnailStack.leadingAnchor.constraint(equalTo: thumbnailScrollView.leadingAnchor),
+            thumbnailStack.trailingAnchor.constraint(equalTo: thumbnailScrollView.trailingAnchor),
+            titleLabel.topAnchor.constraint(equalTo: thumbnailScrollView.bottomAnchor, constant: 24),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             titleLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 60),
