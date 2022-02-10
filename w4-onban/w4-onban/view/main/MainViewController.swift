@@ -97,7 +97,7 @@ extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let item = foodListViewModel.item(groupIndex: indexPath.section, itemIndex: indexPath.row)
         let detailViewController = DetailViewController()
-        detailViewController.set(food: item)
+        detailViewController.set(food: item!)
         navigationController?.pushViewController(detailViewController, animated: false)
     }
 }

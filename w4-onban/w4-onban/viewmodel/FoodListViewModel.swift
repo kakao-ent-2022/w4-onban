@@ -11,7 +11,7 @@ import UIKit
 protocol FoodListViewModel {
     func numberOfSections() -> Int
     func numbersOfItems(groupIndex: Int) -> Int
-    func item(groupIndex: Int, itemIndex: Int) -> Food
+    func item(groupIndex: Int, itemIndex: Int) -> Food?
     func addMainObserver(observer: Any, selector: Selector)
     func addSideObserver(observer: Any, selector: Selector)
     func addSoupObserver(observer: Any, selector: Selector)
@@ -54,7 +54,7 @@ class FoodListViewModelImpl: NSObject, FoodListViewModel, URLSessionDelegate {
         return foodLists[category]?.count ?? 0
     }
     
-    func item(groupIndex: Int, itemIndex: Int) -> Food {
+    func item(groupIndex: Int, itemIndex: Int) -> Food? {
         let category = FoodCategory.findBy(index: groupIndex) ?? FoodCategory.main
         let foodList =  foodLists[category] ?? FoodList()
         return foodList[itemIndex]

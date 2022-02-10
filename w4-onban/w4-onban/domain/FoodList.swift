@@ -10,9 +10,9 @@ import Foundation
 struct FoodList: Decodable {
     private var items: [Food]
     
-    subscript(index: Int) -> Food {
+    subscript(index: Int) -> Food? {
         get {
-            return items[index]
+            return items[safe: index]
         }
     }
     

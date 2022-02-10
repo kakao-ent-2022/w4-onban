@@ -31,7 +31,7 @@ class FoodSource: NSObject, UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FoodCell.reuseIdentifier, for: indexPath) as! FoodCell
         let storeItem = foodListViewModel.item(groupIndex: indexPath.section, itemIndex: indexPath.row)
         
-        cell.set(content: storeItem)
+        cell.set(content: storeItem!)
         
         return cell
     }
