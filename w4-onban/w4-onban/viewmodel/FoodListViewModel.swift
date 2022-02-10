@@ -13,8 +13,8 @@ protocol FoodListViewModel {
     func numbersOfItems(groupIndex: Int) -> Int
     func item(groupIndex: Int, itemIndex: Int) -> Food
     func addMainObserver(observer: Any, selector: Selector)
-        func addSideObserver(observer: Any, selector: Selector)
-            func addSoupObserver(observer: Any, selector: Selector)
+    func addSideObserver(observer: Any, selector: Selector)
+    func addSoupObserver(observer: Any, selector: Selector)
 }
 
 extension NSNotification.Name {
@@ -62,12 +62,12 @@ class FoodListViewModelImpl: NSObject, FoodListViewModel, URLSessionDelegate {
     
     private func getData() {
         repository.getMainFoodLists { result in
-            
             switch result{
             case .success(_):
                 self.foodLists[FoodCategory.main] = try? result.get()
                 self.notificationCenter.post(name: .main, object: self)
             case .failure(_):
+                // TODO: show error view
                 print("load main fail")
                 break
             }
@@ -78,6 +78,7 @@ class FoodListViewModelImpl: NSObject, FoodListViewModel, URLSessionDelegate {
                 self.foodLists[FoodCategory.soup] = try? result.get()
                 self.notificationCenter.post(name: .main, object: self)
             case .failure(_):
+                // TODO: show error view
                 print("load soup fail")
                 break
             }
@@ -86,9 +87,9 @@ class FoodListViewModelImpl: NSObject, FoodListViewModel, URLSessionDelegate {
             switch result{
             case .success(_):
                 self.foodLists[FoodCategory.side] = try? result.get()
-                print("viewModel load foodList: \(String(describing: try? result.get()))")
                 self.notificationCenter.post(name: .main, object: self)
             case .failure(_):
+                // TODO: show error view
                 print("load soup fail")
                 break
             }

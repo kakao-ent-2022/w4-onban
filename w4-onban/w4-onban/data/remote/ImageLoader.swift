@@ -14,7 +14,10 @@ enum ImageLoadError: Error {
 }
 
 class ImageLoader {
+    static let instance = ImageLoader()
     let urlSession = URLSession(configuration: .default)
+    
+    private init() {}
     
     func load(from: String, completionHandler: @escaping (Result<Data, ImageLoadError>) -> Void) {
         guard let url = URL(string: from) else {
@@ -31,18 +34,24 @@ class ImageLoader {
                   let location = location,
                 response.statusCode == 200
             else {
-                completionHandler(.failure(.network))
+                DispatchQueue.main.async {
+                    completionHandler(.failure(.network))
+                }
                 return
             }
             
             guard let imageData = try? Data(contentsOf: location),
                   ImageCacheManager.instance.cache(fileName: location.path, data: imageData)
             else {
-                completionHandler(.failure(.cacheFail))
+                DispatchQueue.main.async {
+                    completionHandler(.failure(.cacheFail))
+                }
                 return
             }
-            
-            completionHandler(.success(imageData))
+        
+            DispatchQueue.main.async {
+                completionHandler(.success(imageData))
+            }
         }
         
         task.resume()

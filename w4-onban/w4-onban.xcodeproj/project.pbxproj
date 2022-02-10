@@ -26,7 +26,8 @@
 		2E754FB427ABE26400D3DEAA /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E754FB327ABE26400D3DEAA /* Badge.swift */; };
 		2E872B0A27B495D100F70191 /* RemoteRespositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E872B0927B495D100F70191 /* RemoteRespositoryImpl.swift */; };
 		2E872B0E27B4970000F70191 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E872B0D27B4970000F70191 /* Response.swift */; };
-		2E872B1027B49D4700F70191 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E872B0F27B49D4700F70191 /* ImageDownloader.swift */; };
+		2E872B1027B49D4700F70191 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E872B0F27B49D4700F70191 /* ImageLoader.swift */; };
+		2E872B1427B4AD1300F70191 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E872B1327B4AD1300F70191 /* ImageCacheManager.swift */; };
 		2EA09F7827B0F1F400ACC11A /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA09F7727B0F1F400ACC11A /* Array.swift */; };
 		2EA09F7D27B0F6B300ACC11A /* NotoSansKR-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2EA09F7A27B0F6B300ACC11A /* NotoSansKR-Bold.otf */; };
 		2EA09F7F27B0F6B300ACC11A /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2EA09F7C27B0F6B300ACC11A /* NotoSansKR-Regular.otf */; };
@@ -62,7 +63,8 @@
 		2E754FB327ABE26400D3DEAA /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		2E872B0927B495D100F70191 /* RemoteRespositoryImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteRespositoryImpl.swift; sourceTree = "<group>"; };
 		2E872B0D27B4970000F70191 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
-		2E872B0F27B49D4700F70191 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
+		2E872B0F27B49D4700F70191 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		2E872B1327B4AD1300F70191 /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
 		2EA09F7727B0F1F400ACC11A /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		2EA09F7A27B0F6B300ACC11A /* NotoSansKR-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Bold.otf"; sourceTree = "<group>"; };
 		2EA09F7C27B0F6B300ACC11A /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
@@ -201,7 +203,8 @@
 				2E872B0D27B4970000F70191 /* Response.swift */,
 				2EA09F8B27B2565600ACC11A /* NetworkHandler.swift */,
 				2EA09F8D27B260A700ACC11A /* JsonDownloadDelegate.swift */,
-				2E872B0F27B49D4700F70191 /* ImageDownloader.swift */,
+				2E872B0F27B49D4700F70191 /* ImageLoader.swift */,
+				2E872B1327B4AD1300F70191 /* ImageCacheManager.swift */,
 			);
 			path = remote;
 			sourceTree = "<group>";
@@ -343,7 +346,7 @@
 				2E754F9527ABCCD400D3DEAA /* AppDelegate.swift in Sources */,
 				2EA09F7827B0F1F400ACC11A /* Array.swift in Sources */,
 				2E0CA62D27B000AD001FC85D /* FoodCell.swift in Sources */,
-				2E872B1027B49D4700F70191 /* ImageDownloader.swift in Sources */,
+				2E872B1027B49D4700F70191 /* ImageLoader.swift in Sources */,
 				2E754FB127ABE13B00D3DEAA /* DeliveryType.swift in Sources */,
 				2E872B0A27B495D100F70191 /* RemoteRespositoryImpl.swift in Sources */,
 				2EA09F8327B102DF00ACC11A /* UIColor.swift in Sources */,
@@ -356,6 +359,7 @@
 				2E754FAF27ABE09500D3DEAA /* Food.swift in Sources */,
 				2E754F9727ABCCD400D3DEAA /* SceneDelegate.swift in Sources */,
 				2E872B0E27B4970000F70191 /* Response.swift in Sources */,
+				2E872B1427B4AD1300F70191 /* ImageCacheManager.swift in Sources */,
 				2EA09F8E27B260A700ACC11A /* JsonDownloadDelegate.swift in Sources */,
 				2E0CA63627B00415001FC85D /* FoodSource.swift in Sources */,
 				2E0CA63E27B03070001FC85D /* MenuTitleSupplementaryView.swift in Sources */,

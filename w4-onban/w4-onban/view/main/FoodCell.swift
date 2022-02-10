@@ -103,9 +103,18 @@ class FoodCell: UICollectionViewCell {
     }
     
     func set(content: Food) {
-        // TODO: imageView url로부터 이미지 로드하도록 수정하기
         let image = UIImage(named: "menuDefaultImage")
         imageView.image = image
+        
+        ImageLoader.instance.load(from: content.image) { result in
+            switch(result) {
+            
+            case .success(let data):
+                self.imageView.image = UIImage(data: data)
+            case .failure(let error):
+                print("fail load FoodCell image: \(error)")
+            }
+        }
         
         titleLabel.text = content.title
         descriptionLabel.text = content.description

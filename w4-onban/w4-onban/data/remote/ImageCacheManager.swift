@@ -20,11 +20,14 @@ class ImageCacheManager {
     private init() {}
     
     func cache(fileName: String, data: Data) -> Bool {
-        let fileUrl = cacheDirectory.appendingPathComponent(fileName)
+        guard let url = URL(string: fileName) else { return false}
+        
+        
+        let fileUrl = cacheDirectory.appendingPathComponent(url.lastPathComponent)
         let filePath = fileUrl.path
         
         if !fileManager.fileExists(atPath: filePath) {
-            let isSuccess = fileManager.createFile(atPath: filePath, contents: data)
+            let isSuccess = fileManager.createFile(atPath: filePath, contents: data, attributes: nil)
             return isSuccess
         }
         return false

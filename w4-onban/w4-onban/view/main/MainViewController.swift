@@ -53,7 +53,6 @@ class MainViewController: UIViewController {
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
         
-        
         foodListViewModel.addMainObserver(observer: self, selector: #selector(menuObserver))
         foodListViewModel.addSideObserver(observer: self, selector: #selector(menuObserver))
         foodListViewModel.addSoupObserver(observer: self, selector: #selector(menuObserver))
