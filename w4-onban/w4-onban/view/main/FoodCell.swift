@@ -122,12 +122,12 @@ class FoodCell: UICollectionViewCell {
         
         setBeforeSalePriceLabel(value: content.beforeSalePrice)
         
-        eventBadgeLable.isHidden = content.eventBadge == nil
-        launchEventBadgeLable.isHidden = content.launchEventBadge == nil
+        eventBadgeLable.isHidden = !content.hashEventBadge
+        launchEventBadgeLable.isHidden = !content.hasLaunchEvent
     }
     
     private func setBeforeSalePriceLabel(value: String?) {
-        var beforeSalePrice = value ?? ""
+        let beforeSalePrice = value ?? ""
         
         let attributeString = NSMutableAttributedString(string: beforeSalePrice)
         attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: NSUnderlineStyle.single.rawValue, range: NSMakeRange(0,attributeString.length))

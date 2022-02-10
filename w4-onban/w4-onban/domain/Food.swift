@@ -18,12 +18,12 @@ struct Food : Decodable {
     let salePrice: String
     private let badge: [Badge]
     
-    var launchEventBadge: Badge? {
-        return badge.first { $0 == Badge.launchEvent }
+    var hashEventBadge: Bool {
+        return badge.first { $0 == Badge.event } != nil
     }
     
-    var eventBadge: Badge? {
-        return badge.first { $0 == Badge.event }
+    var hasLaunchEvent: Bool {
+        return badge.first { $0 == Badge.launchEvent } != nil
     }
     
     private enum CodingKeys: String, CodingKey {
