@@ -19,6 +19,7 @@ class FoodListViewController: UIViewController {
         foodListViewModel = FoodListViewModelImpl()
         dataSource = FoodListDataSource(foodListViewModel)
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        
         setupView()
         requestData()
     }
@@ -35,17 +36,10 @@ class FoodListViewController: UIViewController {
     }
     
     private func setupView() {
-        
-        let collectionViewLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        collectionViewLayout.itemSize = CGSize(width: view.safeAreaLayoutGuide.layoutFrame.width - defaultMargin*2, height: 130)
-        collectionViewLayout.sectionInset = UIEdgeInsets(top: 0, left: defaultMargin, bottom: 24, right: defaultMargin)
-        collectionViewLayout.headerReferenceSize = CGSize(width: view.safeAreaLayoutGuide.layoutFrame.width, height: FoodListCollectionHeader.height)
-        
-        let collectionView = UICollectionView(frame: view.safeAreaLayoutGuide.layoutFrame, collectionViewLayout: collectionViewLayout)
+        let collectionView = UICollectionView(frame: view.safeAreaLayoutGuide.layoutFrame, collectionViewLayout: UICollectionViewFlowLayout())
         
         collectionView.delegate = self
         collectionView.dataSource = dataSource
-        collectionView.collectionViewLayout = collectionViewLayout
         
         collectionView.register(FoodListCollectionCell.self, forCellWithReuseIdentifier: "default")
         collectionView.register(FoodListCollectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "default-header")
@@ -92,10 +86,9 @@ class FoodListViewController: UIViewController {
             let task = session.getDownloadTask(with: URL(string: food.imagePath)!) { (url) in
                 if let url = url,
                    let image = UIImage(contentsOfFile: url.path),
-                   self.ifFileExist(fileName: food.id) {
+                   !self.ifFileExist(fileName: food.id) {
                     DispatchQueue.global().async {
-                        self.saveImage(fileName: food.id, image: image)
-                        DispatchQueue.main.async {
+                        self.saveImage(fileName: food.id, image: image) {
                             self.collectionView?.reloadItems(at: [IndexPath(row: 1, section: 1)])
                         }
                     }
@@ -105,7 +98,7 @@ class FoodListViewController: UIViewController {
         }
     }
     
-    private func saveImage(fileName: String, image: UIImage) {
+    private func saveImage(fileName: String, image: UIImage, successHandler: (() -> Void)?) {
         guard let cachesDirectory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else { return }
         
         let fileName = fileName
@@ -114,6 +107,9 @@ class FoodListViewController: UIViewController {
         
         do {
             try data.write(to: fileURL)
+            DispatchQueue.main.async {
+                successHandler?()
+            }
         } catch let error {
             print("error saving file", error)
         }
@@ -129,12 +125,25 @@ class FoodListViewController: UIViewController {
     }
 }
 
-extension FoodListViewController: UICollectionViewDelegate {
+extension FoodListViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let item = foodListViewModel.get(section: indexPath.section, row: indexPath.row)
         let destination = DetailViewController()
         destination.foodItem = item
+        
         show(destination, sender: self)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: defaultMargin, bottom: 24, right: defaultMargin)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.safeAreaLayoutGuide.layoutFrame.width - defaultMargin*2, height: 130)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: view.safeAreaLayoutGuide.layoutFrame.width, height: FoodListCollectionHeader.height)
     }
 }
 
