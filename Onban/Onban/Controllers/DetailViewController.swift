@@ -7,34 +7,6 @@
 
 import UIKit
 
-struct DetailFood: Decodable {
-    let hash: String
-    let data: DetailFoodData
-}
-
-struct DetailFoodData: Decodable {
-    let topImage: String
-    let thumbImages: [String]
-    let productDescription: String
-    let point: String
-    let deliveryInfo: String
-    let deliveryFee: String
-    let prices: [String]
-    let detailSection: [String]
-    
-    private enum CodingKeys: String, CodingKey {
-        
-        case topImage = "top_image"
-        case thumbImages = "thumb_images"
-        case productDescription = "product_description"
-        case point
-        case deliveryInfo = "delivery_info"
-        case deliveryFee = "delivery_fee"
-        case prices
-        case detailSection = "detail_section"
-    }
-}
-
 class DetailViewController: UIViewController {
     var hashID: String!
     
@@ -386,32 +358,35 @@ class DetailViewController: UIViewController {
         }
     }
     
-    func configure(hashID: String, title: String) {
-        self.hashID = hashID
+    func configure(foodVM: FoodViewModel) {
         let baseURL = "https://api.codesquad.kr/onban/detail/"
-        let urlString = baseURL + hashID
-        JSONLoader.load(from: urlString, to: DetailFood.self) { result in
+        let urlString = baseURL + foodVM.hashID
+        JSONLoader.load(from: urlString, to: FoodDescriptionData.self) { result in
             switch result {
             case .success(let data):
-                print(data.data)
+                let foodData = data.data
+                print(foodData)
                 DispatchQueue.main.async {
-                    self.titleLabel.text = title
-                    self.detailLabel.text = data.data.productDescription
-                    if data.data.prices.count == 1 {
-                        self.currentPriceLabel.text = data.data.prices[0]
+                    self.titleLabel.text = foodVM.title
+                    self.detailLabel.text = foodData.productDescription
+                    if foodData.prices.count == 1 {
+                        self.currentPriceLabel.text = foodData.prices[0]
                     } else {
-                        self.currentPriceLabel.text = data.data.prices[1]
-                        self.originalPriceLabel.attributedText = data.data.prices[0].strikeThrough()
+                        self.currentPriceLabel.text = foodData.prices[1]
+                        self.originalPriceLabel.attributedText = foodData.prices[0].strikeThrough()
                     }
-                    self.pointLabel.text = data.data.point
-                    self.deliveryInfoLabel.text = data.data.deliveryInfo
-                    self.deliveryFeeLabel.text = data.data.deliveryFee
-                    ImageCacheManager.shared.loadImage(imageURL: data.data.thumbImages[0]) { image in
+                    self.newTagImage.isHidden = !foodVM.isNew
+                    self.eventTagImage.isHidden = !foodVM.isEvent
+                    self.pointLabel.text = foodData.point
+                    self.deliveryInfoLabel.text = foodData.deliveryInfo
+                    self.deliveryFeeLabel.text = foodData.deliveryFee
+                    self.totalPriceLabel.text = foodData.prices.count == 1 ? foodData.prices[0] : foodData.prices[1]
+                    ImageCacheManager.shared.loadImage(imageURL: foodData.thumbImages[0]) { image in
                         DispatchQueue.main.async {
                             self.foodImage.image = image
                         }
                     }
-                    data.data.detailSection.forEach { imageURL in
+                    foodData.detailSection.forEach { imageURL in
                         ImageCacheManager.shared.loadImage(imageURL: imageURL) { image in
                             DispatchQueue.main.async {
                                 let imageView = UIImageView(image: image)

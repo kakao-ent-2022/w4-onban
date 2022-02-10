@@ -86,7 +86,8 @@ extension FoodListViewController: UICollectionViewDataSource, UICollectionViewDe
         guard let foodVM = foodListVM?.foodAtIndex(indexPath) else { return }
         let hashID = foodVM.hashID
         let detailVC = DetailViewController()
-        detailVC.configure(hashID: hashID, title: foodVM.title)
+//        detailVC.configure(hashID: hashID, title: foodVM.title)
+        detailVC.configure(foodVM: foodVM)
         self.navigationController?.pushViewController(detailVC, animated: true)
         
     }

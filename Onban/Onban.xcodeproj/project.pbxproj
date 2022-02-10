@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		50A0AAB10BCB38D71700F023 /* Pods_Onban.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85E416613F0E894857D167D /* Pods_Onban.framework */; };
 		D41AF45827B497B600F2AFDA /* String+StrikeThrough.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41AF45727B497B600F2AFDA /* String+StrikeThrough.swift */; };
+		D41AF45A27B49A5B00F2AFDA /* FoodDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41AF45927B49A5B00F2AFDA /* FoodDescription.swift */; };
 		D476589A27AB8E890058604B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D476589927AB8E890058604B /* AppDelegate.swift */; };
 		D476589C27AB8E890058604B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D476589B27AB8E890058604B /* SceneDelegate.swift */; };
 		D476589E27AB8E890058604B /* FoodListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D476589D27AB8E890058604B /* FoodListViewController.swift */; };
@@ -28,6 +29,7 @@
 /* Begin PBXFileReference section */
 		657A489C65EFF028B3DBCE70 /* Pods-Onban.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Onban.release.xcconfig"; path = "Target Support Files/Pods-Onban/Pods-Onban.release.xcconfig"; sourceTree = "<group>"; };
 		D41AF45727B497B600F2AFDA /* String+StrikeThrough.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+StrikeThrough.swift"; sourceTree = "<group>"; };
+		D41AF45927B49A5B00F2AFDA /* FoodDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDescription.swift; sourceTree = "<group>"; };
 		D476589627AB8E890058604B /* Onban.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Onban.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D476589927AB8E890058604B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D476589B27AB8E890058604B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				D47658B327ABD7440058604B /* Food.swift */,
+				D41AF45927B49A5B00F2AFDA /* FoodDescription.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 			files = (
 				D47658B227ABA9440058604B /* FoodHeaderView.swift in Sources */,
 				D476589E27AB8E890058604B /* FoodListViewController.swift in Sources */,
+				D41AF45A27B49A5B00F2AFDA /* FoodDescription.swift in Sources */,
 				D492958127B34D89005E2F49 /* ImageCacheManager.swift.swift in Sources */,
 				D492958327B3790F005E2F49 /* UIImage+AspectRatio.swift in Sources */,
 				D47658BF27ACC52C0058604B /* FoodListViewModel.swift in Sources */,
