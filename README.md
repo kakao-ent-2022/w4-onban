@@ -31,3 +31,15 @@
 ![2022-02-08 20 00 41](https://user-images.githubusercontent.com/95681572/152974414-1a8e6cf7-5d25-4ae7-98e8-79314d7abfd2.gif)
 
 ## day5
+- 이름이 길어질 경우
+<img src="https://user-images.githubusercontent.com/95681572/153126661-19628f8d-6619-44e5-84b4-5fa90ec4eaf3.png" width=30%>
+<img src="https://user-images.githubusercontent.com/95681572/153126698-e425cd81-aa26-4be1-be5e-9d22a83a8736.png" width=30%>
+<img src="https://user-images.githubusercontent.com/95681572/153126890-ee69fb1b-e402-4eee-ab48-e3111fd9cd07.png" width=30%>
+
+- 상세페이지 상세설명 화면 추가
+![2022-02-09 17 34 34](https://user-images.githubusercontent.com/95681572/153156855-1e74638a-d828-41a8-a31d-354d0f332638.gif)
+
+## day6
+- 상세페이지 화면 구성
+<img src="https://user-images.githubusercontent.com/95681572/153355910-573cd972-86aa-4f69-afbe-94574e40936d.png" width=30%>
+

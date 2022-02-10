@@ -343,9 +343,6 @@ class DetailView: UIView {
             purchaseButton.heightAnchor.constraint(equalToConstant: 58)
         ])
         
-        
-        
-        
         addSubview(detailSection)
         NSLayoutConstraint.activate([
             detailSection.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
