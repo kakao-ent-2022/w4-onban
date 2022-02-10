@@ -290,6 +290,7 @@ class DetailViewController: UIViewController {
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(foodImage.snp.bottom).offset(20)
             make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
         }
 
         contentsView.addSubview(detailLabel)
@@ -385,15 +386,16 @@ class DetailViewController: UIViewController {
         }
     }
     
-    func configure(hashID: String) {
+    func configure(hashID: String, title: String) {
         self.hashID = hashID
         let baseURL = "https://api.codesquad.kr/onban/detail/"
         let urlString = baseURL + hashID
         JSONLoader.load(from: urlString, to: DetailFood.self) { result in
             switch result {
             case .success(let data):
+                print(data.data)
                 DispatchQueue.main.async {
-                    self.titleLabel.text = data.data.productDescription
+                    self.titleLabel.text = title
                     self.detailLabel.text = data.data.productDescription
                     if data.data.prices.count == 1 {
                         self.currentPriceLabel.text = data.data.prices[0]
