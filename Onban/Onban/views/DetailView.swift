@@ -9,6 +9,7 @@ import UIKit
 
 class DetailView: UIView {
     var detailImageDownloadDelegate: URLSessionDelegate?
+    var timer: Timer?
     required init?(coder: NSCoder) {
         fatalError("not yet implemented")
     }
@@ -16,6 +17,11 @@ class DetailView: UIView {
     init() {
         super.init(frame: CGRect.zero)
         setupView()
+        startTimer()
+    }
+    
+    private func startTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 0.7, target: self, selector: #selector(changeThumbnail), userInfo: nil, repeats: true)
     }
 
     let thumbnailScrollView: UIScrollView = {
@@ -130,6 +136,15 @@ class DetailView: UIView {
         }
     }
     
+    @objc func changeThumbnail() {
+        let currentOffset = thumbnailScrollView.contentOffset
+        var offsetToMove = CGPoint(x: currentOffset.x + frame.width, y: currentOffset.y)
+        if offsetToMove.x >= thumbnailStack.frame.width {
+            offsetToMove.x = 0
+        }
+        thumbnailScrollView.setContentOffset(offsetToMove, animated: true)
+    }
+    
     func configure(from model: FoodDetail, with food: Food?) {
         
         for item in model.thumbnails {
@@ -216,7 +231,7 @@ class DetailView: UIView {
         addSubview(badgeStack)
         
         thumbnailScrollView.addSubview(thumbnailStack)
-        
+        thumbnailScrollView.delegate = self
         NSLayoutConstraint.activate([
             thumbnailScrollView.topAnchor.constraint(equalTo: topAnchor),
             thumbnailScrollView.widthAnchor.constraint(equalTo: widthAnchor),
@@ -372,5 +387,15 @@ class DetailView: UIView {
             detailSection.bottomAnchor.constraint(equalTo: bottomAnchor),
             detailSection.centerXAnchor.constraint(equalTo: centerXAnchor),
         ])
+    }
+}
+
+extension DetailView: UIScrollViewDelegate {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        timer?.invalidate()
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        startTimer()
     }
 }

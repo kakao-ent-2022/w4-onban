@@ -35,6 +35,7 @@ class DetailViewController: UIViewController {
         contentView.detailImageDownloadDelegate = self
         
         try? requestData()
+        
     }
     
     private func setupScrollView() {
