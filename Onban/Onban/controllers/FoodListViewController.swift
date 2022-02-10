@@ -19,9 +19,6 @@ class FoodListViewController: UIViewController {
         foodListViewModel = FoodListViewModelImpl()
         dataSource = FoodListDataSource(foodListViewModel)
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        
-        setupView()
-        requestData()
     }
     required init?(coder: NSCoder) {
         fatalError("not yet implemented")
@@ -29,6 +26,8 @@ class FoodListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
+        requestData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -128,9 +127,7 @@ class FoodListViewController: UIViewController {
 extension FoodListViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let item = foodListViewModel.get(section: indexPath.section, row: indexPath.row)
-        let destination = DetailViewController()
-        destination.foodItem = item
-        
+        let destination = DetailViewController(foodItem: item)
         show(destination, sender: self)
     }
     

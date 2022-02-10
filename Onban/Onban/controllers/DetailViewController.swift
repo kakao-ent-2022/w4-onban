@@ -14,19 +14,20 @@ class DetailViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    var foodItem: Food?
+    let foodItem: Food
+    
+    init(foodItem: Food) {
+        self.foodItem = foodItem
+        super.init(nibName: nil, bundle: nil)
+    }
     
     required init?(coder: NSCoder) {
         fatalError("not yet implemented")
     }
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = foodItem?.title
+        title = foodItem.title
         navigationController?.isNavigationBarHidden = false
         view.backgroundColor = defaultColor(.background)
         
@@ -46,11 +47,11 @@ class DetailViewController: UIViewController {
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            scrollView.heightAnchor.constraint(greaterThanOrEqualTo: view.heightAnchor),
             contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            contentView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: view.widthAnchor)
         ])
     }
     
@@ -62,7 +63,7 @@ class DetailViewController: UIViewController {
         
         let request = NetworkRequest()
         let session = request.getSessionManager(delegate: nil)
-        let url = "https://api.codesquad.kr/onban/detail/" + (self.foodItem?.id ?? "")
+        let url = "https://api.codesquad.kr/onban/detail/" + self.foodItem.id
         
         let task = session.getDataTask(with: URL(string: url)!,
                                        successHandler: { data in
