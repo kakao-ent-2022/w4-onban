@@ -96,7 +96,8 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
 extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let item = foodListViewModel.item(groupIndex: indexPath.section, itemIndex: indexPath.row)
-        Toast(text: "\(item.title)의 판매 가격: \(item.salePrice)").show()
+        let detailViewController = storyboard?.instantiateViewController(withIdentifier: DetailViewController.identifier) as! DetailViewController
+        navigationController?.pushViewController(detailViewController, animated: false)
     }
 }
 
