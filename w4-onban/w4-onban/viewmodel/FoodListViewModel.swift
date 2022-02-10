@@ -12,6 +12,9 @@ protocol FoodListViewModel {
     func numberOfSections() -> Int
     func numbersOfItems(groupIndex: Int) -> Int
     func item(groupIndex: Int, itemIndex: Int) -> Food
+    func addMainObserver(observer: Any, selector: Selector)
+        func addSideObserver(observer: Any, selector: Selector)
+            func addSoupObserver(observer: Any, selector: Selector)
 }
 
 extension NSNotification.Name {
@@ -35,7 +38,7 @@ class FoodListViewModelImpl: NSObject, FoodListViewModel, URLSessionDelegate {
     private let repository: Repository
     private var foodLists = [FoodCategory: FoodList]()
     let notificationCenter = NotificationCenter()
-
+    
     init(repository: Repository) {
         self.repository = repository
         super.init()
@@ -58,17 +61,37 @@ class FoodListViewModelImpl: NSObject, FoodListViewModel, URLSessionDelegate {
     }
     
     private func getData() {
-        repository.getMainFoodLists { foodList in
-            self.foodLists[FoodCategory.main] = foodList
-            self.notificationCenter.post(name: .main, object: self)
+        repository.getMainFoodLists { result in
+            
+            switch result{
+            case .success(_):
+                self.foodLists[FoodCategory.main] = try? result.get()
+                self.notificationCenter.post(name: .main, object: self)
+            case .failure(_):
+                print("load main fail")
+                break
+            }
         }
-        repository.getSoupFoodLists { foodList in
-            self.foodLists[FoodCategory.soup] = foodList
-            self.notificationCenter.post(name: .main, object: self)
+        repository.getSoupFoodLists { result in
+            switch result{
+            case .success(_):
+                self.foodLists[FoodCategory.soup] = try? result.get()
+                self.notificationCenter.post(name: .main, object: self)
+            case .failure(_):
+                print("load soup fail")
+                break
+            }
         }
-        repository.getSideFoodLists { foodList in
-            self.foodLists[FoodCategory.side] = foodList
-            self.notificationCenter.post(name: .main, object: self)
+        repository.getSideFoodLists { result in
+            switch result{
+            case .success(_):
+                self.foodLists[FoodCategory.side] = try? result.get()
+                print("viewModel load foodList: \(String(describing: try? result.get()))")
+                self.notificationCenter.post(name: .main, object: self)
+            case .failure(_):
+                print("load soup fail")
+                break
+            }
         }
     }
     

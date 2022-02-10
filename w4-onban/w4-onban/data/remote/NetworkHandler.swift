@@ -53,7 +53,6 @@ class NetworkHandler: NSObject, URLSessionDelegate {
             
             let foodList = response.body
             onCompletionHandler(.success(foodList))
-            print("load sucess")
         }.resume()
     }
 }

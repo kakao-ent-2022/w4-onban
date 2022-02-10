@@ -13,16 +13,17 @@ class MainViewController: UIViewController {
     
     private let foodListViewModel: FoodListViewModel
     private let foodSource: FoodSource
+    private var collectionView: UICollectionView!
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        let remoteRepository = RemoteRepositoryImpl()
+        let remoteRepository = RemoteRepositoryImple()
         foodListViewModel = FoodListViewModelImpl(repository: remoteRepository)
         foodSource = FoodSource(viewModel: foodListViewModel)
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
     required init?(coder: NSCoder) {
-        let remoteRepository = RemoteRepositoryImpl()
+        let remoteRepository = RemoteRepositoryImple()
         foodListViewModel = FoodListViewModelImpl(repository: remoteRepository)
         foodSource = FoodSource(viewModel: foodListViewModel)
         super.init(coder: coder)
@@ -34,7 +35,7 @@ class MainViewController: UIViewController {
         let collectionViewLayout = UICollectionViewFlowLayout()
         collectionViewLayout.sectionInset = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
         
-        let collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: collectionViewLayout)
+        collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: collectionViewLayout)
         
         collectionView.register(MenuTitleSupplementaryView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MenuTitleSupplementaryView.reuseIdentifier)
         collectionView.register(FoodCell.self, forCellWithReuseIdentifier: FoodCell.reuseIdentifier)
@@ -51,6 +52,17 @@ class MainViewController: UIViewController {
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
+        
+        
+        foodListViewModel.addMainObserver(observer: self, selector: #selector(menuObserver))
+        foodListViewModel.addSideObserver(observer: self, selector: #selector(menuObserver))
+        foodListViewModel.addSoupObserver(observer: self, selector: #selector(menuObserver))
+    }
+    
+    @objc func menuObserver() {
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
 }
 
