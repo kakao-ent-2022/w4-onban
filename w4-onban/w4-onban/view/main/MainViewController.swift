@@ -9,7 +9,7 @@ import UIKit
 import Toaster
 
 class MainViewController: UIViewController {
-    static let horizontalPadding = CGFloat(16)
+    private let horizontalPadding = CGFloat(16)
     
     private let foodListViewModel: FoodListViewModel
     private let foodSource: FoodSource
@@ -47,8 +47,8 @@ class MainViewController: UIViewController {
         view.addSubview(collectionView)
 
         NSLayoutConstraint.activate([
-            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: MainViewController.horizontalPadding),
-            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -MainViewController.horizontalPadding),
+            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: horizontalPadding),
+            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: horizontalPadding),
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
@@ -74,7 +74,7 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
         flowLayout.minimumInteritemSpacing = 8
         
         let cellWidth = collectionView.bounds.width
-            - MainViewController.horizontalPadding * 2
+            - horizontalPadding * 2
         
         let cellHeight = CGFloat(130)
         
@@ -87,7 +87,7 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
             return CGSize()
         }
         
-        let frameWidth = collectionView.bounds.width - MainViewController.horizontalPadding
+        let frameWidth = collectionView.bounds.width - horizontalPadding
         let cellHeight = CGFloat(32) + 24
         return CGSize(width: frameWidth, height: cellHeight)
     }
