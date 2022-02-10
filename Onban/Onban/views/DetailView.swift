@@ -98,6 +98,20 @@ class DetailView: UIView {
         return stackView
     }()
     
+    let stepper: CountStepper = {
+        let view = CountStepper()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    let purchaseLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = defaultFont(.sansBold, size: 32)
+        label.textColor = defaultColor(.font)
+        return label
+    }()
+    
     class SubDescriptionLabel: UILabel {
         required init?(coder: NSCoder) {
             fatalError("not yet implemented")
@@ -129,6 +143,7 @@ class DetailView: UIView {
             let originalPrice = model.prices[0].last == "원" ? model.prices[0] : model.prices[0] + "원"
             self.originalPriceLabel.attributedText = NSAttributedString.init(string: originalPrice, attributes: [.strikethroughStyle: NSUnderlineStyle.single.rawValue])
         }
+        purchaseLabel.text = actualPriceLabel.text
         
         deliveryInfoLabel.text = model.deliveryInfo
         pointLabel.text = model.point
@@ -153,7 +168,6 @@ class DetailView: UIView {
             launchLabel.backgroundColor = defaultColor(.lightBlue)
             badgeStack.addArrangedSubview(launchLabel)
         }
-        
         
         
         let detailSession = NetworkRequest().getSessionManager(delegate: detailImageDownloadDelegate)
@@ -246,12 +260,12 @@ class DetailView: UIView {
             deliveryDescriptionLabel.leadingAnchor.constraint(equalTo: divider1.leadingAnchor),
             deliveryInfoLabel.topAnchor.constraint(equalTo: deliveryDescriptionLabel.topAnchor),
             deliveryInfoLabel.leadingAnchor.constraint(equalTo: pointLabel.leadingAnchor),
-            deliveryInfoLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            deliveryInfoLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
             deliveryFeeDescriptionLabel.topAnchor.constraint(equalTo: deliveryInfoLabel.bottomAnchor, constant: 16),
             deliveryFeeDescriptionLabel.leadingAnchor.constraint(equalTo: divider1.leadingAnchor),
             deliveryFeeLabel.topAnchor.constraint(equalTo: deliveryFeeDescriptionLabel.topAnchor),
             deliveryFeeLabel.leadingAnchor.constraint(equalTo: pointLabel.leadingAnchor),
-            deliveryFeeLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            deliveryFeeLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
         ])
         
         let divider2: UIView = {
@@ -268,11 +282,75 @@ class DetailView: UIView {
             divider2.topAnchor.constraint(equalTo: deliveryFeeLabel.bottomAnchor, constant: 24),
         ])
         
+        let countDescriptionLabel = SubDescriptionLabel()
+        countDescriptionLabel.text = "수량"
+        countDescriptionLabel.textColor = defaultColor(.gray3)
+        
+        addSubview(countDescriptionLabel)
+        addSubview(stepper)
+        NSLayoutConstraint.activate([
+            
+            countDescriptionLabel.centerYAnchor.constraint(equalTo: stepper.centerYAnchor),
+            countDescriptionLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            
+            stepper.topAnchor.constraint(equalTo: divider2.bottomAnchor, constant: 16),
+            stepper.widthAnchor.constraint(equalToConstant: 80),
+            stepper.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
+            stepper.heightAnchor.constraint(equalTo: stepper.label.heightAnchor, constant: 10)
+        ])
+        
+        let divider3: UIView = {
+            let view = UIView()
+            view.translatesAutoresizingMaskIntoConstraints = false
+            view.backgroundColor = .systemGray5
+            return view
+        }()
+        addSubview(divider3)
+        NSLayoutConstraint.activate([
+            divider3.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            divider3.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
+            divider3.heightAnchor.constraint(equalToConstant: 1),
+            divider3.topAnchor.constraint(equalTo: stepper.bottomAnchor, constant: 16),
+        ])
+        
+        let purchaseDescriptionLabel = UILabel()
+        purchaseDescriptionLabel.text = "총 주문 금액"
+        purchaseDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        purchaseDescriptionLabel.font = defaultFont(.sansBold, size: 18)
+        purchaseDescriptionLabel.textColor = defaultColor(.subFont)
+        
+        let purchaseButton = UIButton()
+        purchaseButton.backgroundColor = defaultColor(.green)
+        purchaseButton.setTitle("주문하기", for: .normal)
+        purchaseButton.titleLabel?.font = defaultFont(.sansBold, size: 18)
+        purchaseButton.titleLabel?.textColor = .white
+        purchaseButton.translatesAutoresizingMaskIntoConstraints = false
+        purchaseButton.layer.cornerRadius = 5
+        purchaseButton.layer.shadowColor = defaultColor(.lightGray)?.cgColor
+        
+        addSubview(purchaseDescriptionLabel)
+        addSubview(purchaseLabel)
+        addSubview(purchaseButton)
+        
+        NSLayoutConstraint.activate([
+            purchaseDescriptionLabel.topAnchor.constraint(equalTo: divider3.bottomAnchor, constant: 34),
+            purchaseDescriptionLabel.trailingAnchor.constraint(equalTo: purchaseLabel.leadingAnchor, constant: -24),
+            purchaseLabel.centerYAnchor.constraint(equalTo: purchaseDescriptionLabel.centerYAnchor),
+            purchaseLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
+            purchaseButton.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            purchaseButton.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
+            purchaseButton.topAnchor.constraint(equalTo: purchaseDescriptionLabel.bottomAnchor, constant: 34),
+            purchaseButton.heightAnchor.constraint(equalToConstant: 58)
+        ])
+        
+        
+        
+        
         addSubview(detailSection)
         NSLayoutConstraint.activate([
             detailSection.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             detailSection.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
-            detailSection.topAnchor.constraint(equalTo: divider2.bottomAnchor, constant: 16),
+            detailSection.topAnchor.constraint(equalTo: purchaseButton.bottomAnchor, constant: 40),
             detailSection.bottomAnchor.constraint(equalTo: bottomAnchor),
             detailSection.centerXAnchor.constraint(equalTo: centerXAnchor),
         ])
