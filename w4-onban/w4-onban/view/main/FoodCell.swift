@@ -24,6 +24,7 @@ class FoodCell: UICollectionViewCell {
         let view = UILabel()
         view.font = UIFont(onbanStyle: .bold, size: 16)
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.numberOfLines = 0
         return view
     }()
     
