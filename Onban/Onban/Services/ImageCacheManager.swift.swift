@@ -25,6 +25,7 @@ class ImageCacheManager {
                 return
             }
             let image = UIImage(data: imageData)
+            print("디스크 -> 이미지")
             completion?(image)
         } else {
             let config = URLSessionConfiguration.default
@@ -38,6 +39,7 @@ class ImageCacheManager {
                     return
                 }
                 self.fileManager.createFile(atPath: filePath.path, contents: image.jpegData(compressionQuality: 0.1))
+                print("이미지 -> 디스크")
                 completion?(image)
             }
             downloadTask.resume()

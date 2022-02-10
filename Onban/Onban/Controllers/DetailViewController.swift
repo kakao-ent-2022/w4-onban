@@ -11,6 +11,8 @@ class DetailViewController: UIViewController {
     let scrollView: UIScrollView = UIScrollView()
     let contentsView: UIView = UIView()
     let collectionViewDelegate = CarouselCollectionView()
+    var timer: Timer?
+    var animateIndex = 1
     
     lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
@@ -239,6 +241,17 @@ class DetailViewController: UIViewController {
         setViews()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(animate), userInfo: nil, repeats: true)
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        timer?.invalidate()
+        print("timer invalidated")
+    }
+    
     
     func setViews() {
         view.addSubview(scrollView)
@@ -259,7 +272,7 @@ class DetailViewController: UIViewController {
             make.top.equalTo(self.contentsView.snp.topMargin)
             make.centerX.equalTo(self.contentsView.snp.centerX)
             make.width.equalTo(self.contentsView.snp.width)
-            make.height.equalTo(300)
+            make.height.equalTo(400)
         }
         
         contentsView.addSubview(titleLabel)
@@ -388,12 +401,6 @@ class DetailViewController: UIViewController {
                     let detailThumnailVM = DetailThumnailViewModel(urlStrings: foodData.thumbImages)
                     self.collectionViewDelegate.detailThumnailVM = detailThumnailVM
                     self.collectionView.reloadData()
-                    print(detailThumnailVM.numberOfItemsInsection(1))
-//                    ImageCacheManager.shared.loadImage(imageURL: foodData.thumbImages[0]) { image in
-//                        DispatchQueue.main.async {
-//                            self.foodImage.image = image
-//                        }
-//                    }
                     
                     foodData.detailSection.forEach { imageURL in
                         ImageCacheManager.shared.loadImage(imageURL: imageURL) { image in
@@ -412,5 +419,13 @@ class DetailViewController: UIViewController {
                 print(error)
             }
         }
+       
     }
+    
+    @objc func animate() {
+        collectionView.reloadData()
+        self.collectionView.scrollToItem(at: IndexPath(item: animateIndex, section: 0), at: .centeredHorizontally, animated: true)
+        animateIndex = animateIndex == 1 ? 0 : 1
+    }
+    
 }
