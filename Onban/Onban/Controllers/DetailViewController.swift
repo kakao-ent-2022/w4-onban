@@ -8,9 +8,9 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-    var hashID: String!
-    
     let scrollView: UIScrollView = UIScrollView()
+    let contentsView: UIView = UIView()
+    
     var foodImage: UIImageView = UIImageView(image: UIImage(named: "foodThumbnail.png"))
     let titleLabel: UILabel = {
         let label = UILabel()
@@ -212,7 +212,6 @@ class DetailViewController: UIViewController {
         button.setImage(image, for: .normal)
         return button
     }()
-    var bottomImageViews = [UIImageView]()
     private var bottomImageStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.alignment = .center
@@ -222,11 +221,6 @@ class DetailViewController: UIViewController {
         return stackView
     }()
     
-    let bottomImageView1 = UIImageView()
-    let bottomImageView2 = UIImageView()
-    let bottomImageView3 = UIImageView()
-    
-    let contentsView: UIView = UIView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -386,6 +380,7 @@ class DetailViewController: UIViewController {
                             self.foodImage.image = image
                         }
                     }
+                    
                     foodData.detailSection.forEach { imageURL in
                         ImageCacheManager.shared.loadImage(imageURL: imageURL) { image in
                             DispatchQueue.main.async {

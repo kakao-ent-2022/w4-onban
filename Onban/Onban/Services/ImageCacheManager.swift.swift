@@ -16,6 +16,7 @@ class ImageCacheManager {
     func loadImage(imageURL: String, completion: ((UIImage?) -> Void)?) {
         guard let url = URL(string: imageURL) else { return }
         guard let path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first else { return }
+        print(path)
         
         var filePath = URL(fileURLWithPath: path)
         filePath.appendPathComponent(url.lastPathComponent)
@@ -42,6 +43,8 @@ class ImageCacheManager {
                 print("캐싱완료")
                 completion?(image)
             }
+            let id = downloadTask.taskIdentifier
+            print(id)
             downloadTask.resume()
         }
     }
