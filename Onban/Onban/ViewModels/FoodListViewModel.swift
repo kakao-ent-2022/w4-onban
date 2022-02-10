@@ -14,7 +14,7 @@ class FoodListViewModel {
         self.foodsList = foodsList
     }
     
-    func addFoodViewModel(type: FoodsType, completion: @escaping () -> Void) {
+    func addFoodViewModel(type: FoodsType, completion: ( () -> Void)? = nil) {
         let url = type.JSONURL()
 
         JSONLoader.load(from: url, to: FoodResponse.self) { result in
@@ -22,7 +22,7 @@ class FoodListViewModel {
             case .success(let foodResponse):
                 let foodVM = FoodsViewModel(type: .main, foods: foodResponse.body)
                 self.foodsList.append(foodVM)
-                completion()
+                completion?()
             case .failure(let error):
                 print(error)
             }
