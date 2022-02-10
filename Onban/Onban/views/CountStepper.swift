@@ -7,8 +7,14 @@
 
 import UIKit
 
+protocol CountStepperDelegate {
+    func didButtonUpTouched(_ self: CountStepper)
+    func didButtonDownTouched(_ self: CountStepper)
+}
+
 class CountStepper: UIView {
     var count = 1
+    var delegate: CountStepperDelegate?
     
     let label: UILabel = {
         let view = UILabel()
@@ -75,6 +81,7 @@ class CountStepper: UIView {
     @objc func buttonUpTouched() {
         count += 1
         label.text = String(count)
+        delegate?.didButtonUpTouched(self)
     }
     @objc func buttonDownTouched() {
         guard count > 1 else {
@@ -82,5 +89,6 @@ class CountStepper: UIView {
         }
         count -= 1
         label.text = String(count)
+        delegate?.didButtonDownTouched(self)
     }
 }

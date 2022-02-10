@@ -10,6 +10,8 @@ import UIKit
 class DetailView: UIView {
     var detailImageDownloadDelegate: URLSessionDelegate?
     var timer: Timer?
+    var price: Int = 0
+    var totalPayment: Int = 0
     required init?(coder: NSCoder) {
         fatalError("not yet implemented")
     }
@@ -117,7 +119,7 @@ class DetailView: UIView {
         return view
     }()
     
-    let purchaseLabel: UILabel = {
+    let totalPaymentLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = defaultFont(.sansBold, size: 32)
@@ -166,6 +168,7 @@ class DetailView: UIView {
         }
         
         titleLabel.text = food?.title
+        
         if model.prices.count < 2 {
             actualPriceLabel.text = model.prices[0]
         } else {
@@ -174,7 +177,12 @@ class DetailView: UIView {
             let originalPrice = model.prices[0].last == "원" ? model.prices[0] : model.prices[0] + "원"
             self.originalPriceLabel.attributedText = NSAttributedString.init(string: originalPrice, attributes: [.strikethroughStyle: NSUnderlineStyle.single.rawValue])
         }
-        purchaseLabel.text = actualPriceLabel.text
+        if let price = actualPriceLabel.text?.filter({ $0.isNumber }),
+        let priceToInt = Int(price){
+            self.price = priceToInt
+        }
+        totalPayment = price * stepper.count
+        totalPaymentLabel.text = "\(totalPayment)원"
         
         deliveryInfoLabel.text = model.deliveryInfo
         pointLabel.text = model.point
@@ -229,7 +237,7 @@ class DetailView: UIView {
         addSubview(actualPriceLabel)
         addSubview(originalPriceLabel)
         addSubview(badgeStack)
-        
+                
         thumbnailScrollView.addSubview(thumbnailStack)
         thumbnailScrollView.delegate = self
         NSLayoutConstraint.activate([
@@ -322,6 +330,8 @@ class DetailView: UIView {
         countDescriptionLabel.text = "수량"
         countDescriptionLabel.textColor = defaultColor(.gray3)
         
+        stepper.delegate = self
+
         addSubview(countDescriptionLabel)
         addSubview(stepper)
         NSLayoutConstraint.activate([
@@ -365,14 +375,14 @@ class DetailView: UIView {
         purchaseButton.layer.shadowColor = defaultColor(.lightGray)?.cgColor
         
         addSubview(purchaseDescriptionLabel)
-        addSubview(purchaseLabel)
+        addSubview(totalPaymentLabel)
         addSubview(purchaseButton)
         
         NSLayoutConstraint.activate([
             purchaseDescriptionLabel.topAnchor.constraint(equalTo: divider3.bottomAnchor, constant: 34),
-            purchaseDescriptionLabel.trailingAnchor.constraint(equalTo: purchaseLabel.leadingAnchor, constant: -24),
-            purchaseLabel.centerYAnchor.constraint(equalTo: purchaseDescriptionLabel.centerYAnchor),
-            purchaseLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
+            purchaseDescriptionLabel.trailingAnchor.constraint(equalTo: totalPaymentLabel.leadingAnchor, constant: -24),
+            totalPaymentLabel.centerYAnchor.constraint(equalTo: purchaseDescriptionLabel.centerYAnchor),
+            totalPaymentLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
             purchaseButton.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             purchaseButton.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
             purchaseButton.topAnchor.constraint(equalTo: purchaseDescriptionLabel.bottomAnchor, constant: 34),
@@ -397,5 +407,17 @@ extension DetailView: UIScrollViewDelegate {
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         startTimer()
+    }
+}
+
+extension DetailView: CountStepperDelegate {
+    func didButtonUpTouched(_ self: CountStepper) {
+        totalPayment = price * self.count
+        totalPaymentLabel.text = "\(totalPayment)원"
+    }
+    
+    func didButtonDownTouched(_ self: CountStepper) {
+        totalPayment -= price * self.count
+        totalPaymentLabel.text = "\(totalPayment)원"
     }
 }
