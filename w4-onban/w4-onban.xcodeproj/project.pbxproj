@@ -24,6 +24,8 @@
 		2E754FAF27ABE09500D3DEAA /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E754FAE27ABE09500D3DEAA /* Food.swift */; };
 		2E754FB127ABE13B00D3DEAA /* DeliveryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E754FB027ABE13B00D3DEAA /* DeliveryType.swift */; };
 		2E754FB427ABE26400D3DEAA /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E754FB327ABE26400D3DEAA /* Badge.swift */; };
+		2E872B0A27B495D100F70191 /* RemoteRespositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E872B0927B495D100F70191 /* RemoteRespositoryImpl.swift */; };
+		2E872B0C27B495D500F70191 /* LocalRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E872B0B27B495D500F70191 /* LocalRepositoryImpl.swift */; };
 		2EA09F7827B0F1F400ACC11A /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA09F7727B0F1F400ACC11A /* Array.swift */; };
 		2EA09F7D27B0F6B300ACC11A /* NotoSansKR-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2EA09F7A27B0F6B300ACC11A /* NotoSansKR-Bold.otf */; };
 		2EA09F7F27B0F6B300ACC11A /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2EA09F7C27B0F6B300ACC11A /* NotoSansKR-Regular.otf */; };
@@ -57,6 +59,8 @@
 		2E754FAE27ABE09500D3DEAA /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		2E754FB027ABE13B00D3DEAA /* DeliveryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryType.swift; sourceTree = "<group>"; };
 		2E754FB327ABE26400D3DEAA /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
+		2E872B0927B495D100F70191 /* RemoteRespositoryImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteRespositoryImpl.swift; sourceTree = "<group>"; };
+		2E872B0B27B495D500F70191 /* LocalRepositoryImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalRepositoryImpl.swift; sourceTree = "<group>"; };
 		2EA09F7727B0F1F400ACC11A /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		2EA09F7A27B0F6B300ACC11A /* NotoSansKR-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Bold.otf"; sourceTree = "<group>"; };
 		2EA09F7C27B0F6B300ACC11A /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
@@ -201,6 +205,8 @@
 		2EA09F9227B274F500ACC11A /* data */ = {
 			isa = PBXGroup;
 			children = (
+				2E872B0B27B495D500F70191 /* LocalRepositoryImpl.swift */,
+				2E872B0927B495D100F70191 /* RemoteRespositoryImpl.swift */,
 				2EA09F9327B274FC00ACC11A /* local */,
 				2EA09F8A27B2561E00ACC11A /* remote */,
 			);
@@ -332,9 +338,11 @@
 				2E0CA63927B006A4001FC85D /* FoodList.swift in Sources */,
 				2E754FB427ABE26400D3DEAA /* Badge.swift in Sources */,
 				2E754F9527ABCCD400D3DEAA /* AppDelegate.swift in Sources */,
+				2E872B0C27B495D500F70191 /* LocalRepositoryImpl.swift in Sources */,
 				2EA09F7827B0F1F400ACC11A /* Array.swift in Sources */,
 				2E0CA62D27B000AD001FC85D /* FoodCell.swift in Sources */,
 				2E754FB127ABE13B00D3DEAA /* DeliveryType.swift in Sources */,
+				2E872B0A27B495D100F70191 /* RemoteRespositoryImpl.swift in Sources */,
 				2EA09F8327B102DF00ACC11A /* UIColor.swift in Sources */,
 				2EA09F9027B274B400ACC11A /* Respository.swift in Sources */,
 				2EA09F8127B0F78200ACC11A /* UIFont.swift in Sources */,

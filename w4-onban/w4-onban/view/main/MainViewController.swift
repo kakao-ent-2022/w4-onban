@@ -15,13 +15,15 @@ class MainViewController: UIViewController {
     private let foodSource: FoodSource
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        foodListViewModel = FoodListViewModelImpl()
+        let remoteRepository = RemoteRepositoryImpl()
+        foodListViewModel = FoodListViewModelImpl(repository: remoteRepository)
         foodSource = FoodSource(viewModel: foodListViewModel)
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
     required init?(coder: NSCoder) {
-        foodListViewModel = FoodListViewModelImpl()
+        let remoteRepository = RemoteRepositoryImpl()
+        foodListViewModel = FoodListViewModelImpl(repository: remoteRepository)
         foodSource = FoodSource(viewModel: foodListViewModel)
         super.init(coder: coder)
     }

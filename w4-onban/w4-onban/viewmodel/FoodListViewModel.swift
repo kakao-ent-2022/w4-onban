@@ -34,6 +34,7 @@ enum FoodCategory: CaseIterable {
 class FoodListViewModelImpl: NSObject, FoodListViewModel, URLSessionDelegate {
     private let repository: Repository
     private var foodLists = [FoodCategory: FoodList]()
+    let notificationCenter = NotificationCenter()
 
     init(repository: Repository) {
         self.repository = repository
@@ -59,12 +60,27 @@ class FoodListViewModelImpl: NSObject, FoodListViewModel, URLSessionDelegate {
     private func getData() {
         repository.getMainFoodLists { foodList in
             self.foodLists[FoodCategory.main] = foodList
+            self.notificationCenter.post(name: .main, object: self)
         }
         repository.getSoupFoodLists { foodList in
             self.foodLists[FoodCategory.soup] = foodList
+            self.notificationCenter.post(name: .main, object: self)
         }
         repository.getSideFoodLists { foodList in
             self.foodLists[FoodCategory.side] = foodList
+            self.notificationCenter.post(name: .main, object: self)
         }
+    }
+    
+    func addMainObserver(observer: Any, selector: Selector) {
+        notificationCenter.addObserver(observer, selector: selector, name: .main, object: self)
+    }
+    
+    func addSideObserver(observer: Any, selector: Selector) {
+        notificationCenter.addObserver(observer, selector: selector, name: .side, object: self)
+    }
+    
+    func addSoupObserver(observer: Any, selector: Selector) {
+        notificationCenter.addObserver(observer, selector: selector, name: .soup, object: self)
     }
 }
