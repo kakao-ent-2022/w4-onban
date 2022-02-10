@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		50A0AAB10BCB38D71700F023 /* Pods_Onban.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85E416613F0E894857D167D /* Pods_Onban.framework */; };
+		D41AF45827B497B600F2AFDA /* String+StrikeThrough.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41AF45727B497B600F2AFDA /* String+StrikeThrough.swift */; };
 		D476589A27AB8E890058604B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D476589927AB8E890058604B /* AppDelegate.swift */; };
 		D476589C27AB8E890058604B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D476589B27AB8E890058604B /* SceneDelegate.swift */; };
 		D476589E27AB8E890058604B /* FoodListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D476589D27AB8E890058604B /* FoodListViewController.swift */; };
@@ -26,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		657A489C65EFF028B3DBCE70 /* Pods-Onban.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Onban.release.xcconfig"; path = "Target Support Files/Pods-Onban/Pods-Onban.release.xcconfig"; sourceTree = "<group>"; };
+		D41AF45727B497B600F2AFDA /* String+StrikeThrough.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+StrikeThrough.swift"; sourceTree = "<group>"; };
 		D476589627AB8E890058604B /* Onban.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Onban.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D476589927AB8E890058604B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D476589B27AB8E890058604B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -96,9 +98,9 @@
 		D476589827AB8E890058604B /* Onban */ = {
 			isa = PBXGroup;
 			children = (
-				D492958427B37916005E2F49 /* Extension */,
 				D476589927AB8E890058604B /* AppDelegate.swift */,
 				D476589B27AB8E890058604B /* SceneDelegate.swift */,
+				D492958427B37916005E2F49 /* Extension */,
 				D47658B727AC9F1B0058604B /* Services */,
 				D47658B827AC9F270058604B /* Models */,
 				D47658BD27ACA5180058604B /* ViewModels */,
@@ -159,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				D492958227B3790F005E2F49 /* UIImage+AspectRatio.swift */,
+				D41AF45727B497B600F2AFDA /* String+StrikeThrough.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 				D492958127B34D89005E2F49 /* ImageCacheManager.swift.swift in Sources */,
 				D492958327B3790F005E2F49 /* UIImage+AspectRatio.swift in Sources */,
 				D47658BF27ACC52C0058604B /* FoodListViewModel.swift in Sources */,
+				D41AF45827B497B600F2AFDA /* String+StrikeThrough.swift in Sources */,
 				D47658B627AC9D200058604B /* JSONParser.swift in Sources */,
 				D47658BC27ACA5130058604B /* FoodViewModel.swift in Sources */,
 				D476589A27AB8E890058604B /* AppDelegate.swift in Sources */,

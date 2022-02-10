@@ -376,34 +376,6 @@ class DetailViewController: UIViewController {
             make.height.equalTo(100)
             make.centerX.equalToSuperview()
         }
-//        contentsView.addSubview(bottomImageView1)
-//        bottomImageView1.snp.makeConstraints { make in
-//            make.top.equalTo(orderButton.snp.bottom).offset(20)
-//            make.width.equalToSuperview().multipliedBy(0.9)
-//            let aspectRatio = bottomImageView1.image?.aspectRatio ?? 1
-//            make.height.equalTo(bottomImageView1.snp.width).multipliedBy(1 / aspectRatio)
-//            make.centerX.equalToSuperview()
-//        }
-//
-//        contentsView.addSubview(bottomImageView2)
-//        bottomImageView2.snp.makeConstraints { make in
-//            make.top.equalTo(bottomImageView1.snp.bottom).offset(20)
-//            make.width.equalToSuperview().multipliedBy(0.9)
-//            let aspectRatio = bottomImageView2.image?.aspectRatio ?? 1
-//            make.height.equalTo(bottomImageView2.snp.width).multipliedBy(1 / aspectRatio)
-//            make.centerX.equalToSuperview()
-//        }
-//
-//        contentsView.addSubview(bottomImageView3)
-//        bottomImageView3.snp.makeConstraints { make in
-//            make.top.equalTo(bottomImageView2.snp.bottom).offset(20)
-//            make.width.equalToSuperview().multipliedBy(0.9)
-//            let aspectRatio = bottomImageView3.image?.aspectRatio ?? 1
-//            make.height.equalTo(bottomImageView3.snp.width).multipliedBy(1 / aspectRatio)
-//            make.centerX.equalToSuperview()
-//            make.bottom.equalToSuperview()
-//        }
-        
         contentsView.addSubview(bottomImageStackView)
         bottomImageStackView.snp.makeConstraints { make in
             make.top.equalTo(orderButton.snp.bottom).offset(20)
@@ -423,11 +395,12 @@ class DetailViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.titleLabel.text = data.data.productDescription
                     self.detailLabel.text = data.data.productDescription
-                    self.currentPriceLabel.text = data.data.prices[1]
-                    let originalPrice = data.data.prices[0]
-                    let attributeString = NSMutableAttributedString(string: originalPrice)
-                    attributeString.addAttribute(.strikethroughStyle, value: NSUnderlineStyle.single.rawValue, range: NSMakeRange(0, attributeString.length))
-                    self.originalPriceLabel.attributedText = attributeString
+                    if data.data.prices.count == 1 {
+                        self.currentPriceLabel.text = data.data.prices[0]
+                    } else {
+                        self.currentPriceLabel.text = data.data.prices[1]
+                        self.originalPriceLabel.attributedText = data.data.prices[0].strikeThrough()
+                    }
                     self.pointLabel.text = data.data.point
                     self.deliveryInfoLabel.text = data.data.deliveryInfo
                     self.deliveryFeeLabel.text = data.data.deliveryFee
