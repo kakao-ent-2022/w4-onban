@@ -6,58 +6,54 @@
 //
 
 import Foundation
+import UIKit
 
 
 enum NetworkError: Error {
     case url
     case paramsError
-    case duplicateId
     case parseError
     case unknown
 }
 
-fileprivate let baseUrl = "https://api.codesquad.kr/onban/"
-
-enum Path: String {
+enum Path: String, CaseIterable {
     case main, soup, side
-}
-
-enum NetworkConstant {
-    static let signUpUrl = "https://api.codesquad.kr/signup"
-}
-
-enum RequestMethod: String {
-    case post = "POST"
-}
-
-class NetworkHandler {
     
-    var urlComponents = URLComponents(string: baseUrl)
-    static let defaultSession = URLSession(configuration: .default)
+    static func findBy(rawValue: String) -> Path? {
+        return self.allCases
+            .first { $0.rawValue == rawValue }
+    }
+}
+
+class NetworkHandler: NSObject, URLSessionDelegate {
+    static let instance: NetworkHandler = NetworkHandler()
+    private override init() {}
+    
+    
+    var baseUrl = URL(string: "https://api.codesquad.kr/onban/")
+    
+    let defaultSession = URLSession(configuration: .default)
     var dataTask: URLSessionDataTask?
     
-    class func request(path: Path, delegate: URLSessionTaskDelegate)  throws {
-        guard let url = URL(string: baseUrl + path.rawValue) else {
-            throw NetworkError.url
+    func requestFoodList(path: Path, onCompletionHandler: @escaping (Result<FoodList, NetworkError>) -> Void)  {
+        guard let url = baseUrl?.appendingPathComponent(path.rawValue) else {
+            onCompletionHandler(.failure(.url))
+            print("load fail")
+            return
         }
         
-        let task = defaultSession.dataTask(with: url)
-        
-        task.delegate = delegate
-        task.resume()
-    }
-    
-    private static func getRequest(path: Path, method: RequestMethod, body: Data?) throws -> URLRequest {
-        let resourceUrl = baseUrl + path.rawValue
-        
-        guard let url = URL(string: resourceUrl) else{
-            print("URL is null")
-            throw NetworkError.url
-        }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = RequestMethod.post.rawValue
-        request.httpBody = body
-        return request
+        defaultSession.dataTask(with: url) { data, response, error in
+            guard let data = data,
+                  let response = try? JSONDecoder().decode(Response<FoodList>.self, from: data)
+            else {
+                onCompletionHandler(.failure(.parseError))
+                print("load fail")
+                return
+            }
+            
+            let foodList = response.body
+            onCompletionHandler(.success(foodList))
+            print("load sucess")
+        }.resume()
     }
 }
