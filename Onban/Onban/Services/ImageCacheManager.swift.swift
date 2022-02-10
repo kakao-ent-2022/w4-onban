@@ -37,7 +37,7 @@ class ImageCacheManager {
                 else {
                     return
                 }
-                self.fileManager.createFile(atPath: filePath.path, contents: data, attributes: nil)
+                self.fileManager.createFile(atPath: filePath.path, contents: image.jpegData(compressionQuality: 0.1))
                 completion?(image)
             }
             downloadTask.resume()
