@@ -240,6 +240,15 @@ class DetailViewController: UIViewController {
         button.setImage(image, for: .normal)
         return button
     }()
+    var bottomImageViews = [UIImageView]()
+    private var bottomImageStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.alignment = .center
+        stackView.distribution = .equalSpacing
+        stackView.axis = .vertical
+        stackView.spacing = 10
+        return stackView
+    }()
     
     let bottomImageView1 = UIImageView()
     let bottomImageView2 = UIImageView()
@@ -367,34 +376,41 @@ class DetailViewController: UIViewController {
             make.height.equalTo(100)
             make.centerX.equalToSuperview()
         }
-        contentsView.addSubview(bottomImageView1)
-        bottomImageView1.snp.makeConstraints { make in
+//        contentsView.addSubview(bottomImageView1)
+//        bottomImageView1.snp.makeConstraints { make in
+//            make.top.equalTo(orderButton.snp.bottom).offset(20)
+//            make.width.equalToSuperview().multipliedBy(0.9)
+//            let aspectRatio = bottomImageView1.image?.aspectRatio ?? 1
+//            make.height.equalTo(bottomImageView1.snp.width).multipliedBy(1 / aspectRatio)
+//            make.centerX.equalToSuperview()
+//        }
+//
+//        contentsView.addSubview(bottomImageView2)
+//        bottomImageView2.snp.makeConstraints { make in
+//            make.top.equalTo(bottomImageView1.snp.bottom).offset(20)
+//            make.width.equalToSuperview().multipliedBy(0.9)
+//            let aspectRatio = bottomImageView2.image?.aspectRatio ?? 1
+//            make.height.equalTo(bottomImageView2.snp.width).multipliedBy(1 / aspectRatio)
+//            make.centerX.equalToSuperview()
+//        }
+//
+//        contentsView.addSubview(bottomImageView3)
+//        bottomImageView3.snp.makeConstraints { make in
+//            make.top.equalTo(bottomImageView2.snp.bottom).offset(20)
+//            make.width.equalToSuperview().multipliedBy(0.9)
+//            let aspectRatio = bottomImageView3.image?.aspectRatio ?? 1
+//            make.height.equalTo(bottomImageView3.snp.width).multipliedBy(1 / aspectRatio)
+//            make.centerX.equalToSuperview()
+//            make.bottom.equalToSuperview()
+//        }
+        
+        contentsView.addSubview(bottomImageStackView)
+        bottomImageStackView.snp.makeConstraints { make in
             make.top.equalTo(orderButton.snp.bottom).offset(20)
-            make.width.equalToSuperview().multipliedBy(0.9)
-            let aspectRatio = bottomImageView1.image?.aspectRatio ?? 1
-            make.height.equalTo(bottomImageView1.snp.width).multipliedBy(1 / aspectRatio)
-            make.centerX.equalToSuperview()
-        }
-        
-        contentsView.addSubview(bottomImageView2)
-        bottomImageView2.snp.makeConstraints { make in
-            make.top.equalTo(bottomImageView1.snp.bottom).offset(20)
-            make.width.equalToSuperview().multipliedBy(0.9)
-            let aspectRatio = bottomImageView2.image?.aspectRatio ?? 1
-            make.height.equalTo(bottomImageView2.snp.width).multipliedBy(1 / aspectRatio)
-            make.centerX.equalToSuperview()
-        }
-        
-        contentsView.addSubview(bottomImageView3)
-        bottomImageView3.snp.makeConstraints { make in
-            make.top.equalTo(bottomImageView2.snp.bottom).offset(20)
-            make.width.equalToSuperview().multipliedBy(0.9)
-            let aspectRatio = bottomImageView3.image?.aspectRatio ?? 1
-            make.height.equalTo(bottomImageView3.snp.width).multipliedBy(1 / aspectRatio)
-            make.centerX.equalToSuperview()
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
             make.bottom.equalToSuperview()
         }
-        
     }
     
     func configure(hashID: String) {
@@ -404,7 +420,6 @@ class DetailViewController: UIViewController {
         JSONLoader.load(from: urlString, to: DetailFood.self) { result in
             switch result {
             case .success(let data):
-                print(data)
                 DispatchQueue.main.async {
                     self.titleLabel.text = data.data.productDescription
                     self.detailLabel.text = data.data.productDescription
@@ -421,19 +436,16 @@ class DetailViewController: UIViewController {
                             self.foodImage.image = image
                         }
                     }
-                    ImageCacheManager.shared.loadImage(imageURL: data.data.detailSection[0]) { image in
-                        DispatchQueue.main.async {
-                            self.bottomImageView1.image = image
-                        }
-                    }
-                    ImageCacheManager.shared.loadImage(imageURL: data.data.detailSection[1]) { image in
-                        DispatchQueue.main.async {
-                            self.bottomImageView2.image = image
-                        }
-                    }
-                    ImageCacheManager.shared.loadImage(imageURL: data.data.detailSection[2]) { image in
-                        DispatchQueue.main.async {
-                            self.bottomImageView3.image = image
+                    data.data.detailSection.forEach { imageURL in
+                        ImageCacheManager.shared.loadImage(imageURL: imageURL) { image in
+                            DispatchQueue.main.async {
+                                let imageView = UIImageView(image: image)
+                                self.bottomImageStackView.addArrangedSubview(imageView)
+                                imageView.snp.makeConstraints { make in
+                                    let aspectRatio = imageView.image?.aspectRatio ?? 1
+                                    make.height.equalTo(imageView.snp.width).multipliedBy(1 / aspectRatio)
+                                }
+                            }
                         }
                     }
                 }

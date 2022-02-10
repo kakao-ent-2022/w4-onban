@@ -25,6 +25,7 @@ class ImageCacheManager {
                 return
             }
             let image = UIImage(data: imageData)
+            print("캐시에서 가져옴")
             completion?(image)
         } else {
             let config = URLSessionConfiguration.default
@@ -38,6 +39,7 @@ class ImageCacheManager {
                     return
                 }
                 self.fileManager.createFile(atPath: filePath.path, contents: data, attributes: nil)
+                print("캐싱완료")
                 completion?(image)
             }
             downloadTask.resume()
