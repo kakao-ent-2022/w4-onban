@@ -15,7 +15,7 @@ class FoodListViewModel {
     }
     
     func addFoodViewModel(type: FoodsType, completion: ( () -> Void)? = nil) {
-        let url = type.JSONURL()
+        let url = type.JSONURL
 
         JSONLoader.load(from: url, to: FoodResponse.self) { result in
             switch result{
@@ -45,11 +45,11 @@ class FoodListViewModel {
     func titleOfSection(_ section: Int) -> String {
         switch section {
         case 0:
-            return FoodsType.main.headerTitle()
+            return FoodsType.main.headerTitle
         case 1:
-            return FoodsType.soup.headerTitle()
+            return FoodsType.soup.headerTitle
         case 2:
-            return FoodsType.side.headerTitle()
+            return FoodsType.side.headerTitle
         default:
             return ""
         }

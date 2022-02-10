@@ -39,7 +39,7 @@ enum FoodsType: Int {
     case side
     case soup
     
-    func JSONURL() -> String {
+    var JSONURL: String {
         switch self {
         case .main:
             return "https://api.codesquad.kr/onban/main"
@@ -50,7 +50,7 @@ enum FoodsType: Int {
         }
     }
     
-    func headerTitle() -> String {
+    var headerTitle: String {
         switch self {
         case .main:
             return "메인반찬 / 한그릇 뚝딱 메인 요리"
