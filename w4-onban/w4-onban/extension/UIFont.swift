@@ -11,10 +11,8 @@ import UIKit
 enum OnbanFontStyle: String {
     case bold = "NotoSansKR-Bold"
     case regular = "NotoSansKR-Regular"
-}
-
-extension UIFont {
-    convenience init?(onbanStyle: OnbanFontStyle, size: CGFloat) {
-        self.init(name: onbanStyle.rawValue, size: size)
+    
+    func font(size: CGFloat) -> UIFont? {
+        return UIFont(name: self.rawValue, size: size)
     }
 }

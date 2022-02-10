@@ -29,13 +29,13 @@ class DetailViewController: UIViewController {
     
     private let nameLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.font = UIFont(onbanStyle: .bold, size: 24)
+        $0.font = OnbanFontStyle.bold.font(size: 24)
         return $0
     }(UILabel())
     
     private let descriptionLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.font = UIFont(onbanStyle: .regular, size: 16)
+        $0.font = OnbanFontStyle.regular.font(size: 16)
         return $0
     }(UILabel())
     
@@ -48,13 +48,13 @@ class DetailViewController: UIViewController {
     
     private let salePriceLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.font = UIFont(onbanStyle: .bold, size: 24)
+        $0.font = OnbanFontStyle.bold.font(size: 24)
         return $0
     }(UILabel())
     
     private let beforeSalePriceLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.font = UIFont(onbanStyle: .regular, size: 16)
+        $0.font = OnbanFontStyle.regular.font(size: 16)
         return $0
     }(UILabel())
     

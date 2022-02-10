@@ -46,7 +46,7 @@ class BadgeLabel: UILabel {
     }
     
     private func initUi() {
-        font = UIFont(onbanStyle: .regular, size: 12)
+        font = OnbanFontStyle.regular.font(size: 12)
         
         textColor = OnBanColor.badgeText.color
         textAlignment = NSTextAlignment.center

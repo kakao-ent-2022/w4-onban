@@ -21,7 +21,7 @@ class FoodCell: UICollectionViewCell {
     
     private let titleLabel: UILabel = {
         let view = UILabel()
-        view.font = UIFont(onbanStyle: .bold, size: 16)
+        view.font = OnbanFontStyle.bold.font(size: 16)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.numberOfLines = 0
         return view
@@ -29,7 +29,7 @@ class FoodCell: UICollectionViewCell {
     
     private let descriptionLabel: UILabel = {
         let view = UILabel()
-        view.font = UIFont(onbanStyle: .regular, size: 14)
+        view.font = OnbanFontStyle.bold.font(size: 14)
         view.textColor = OnBanColor.descriptionText.color
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -37,14 +37,14 @@ class FoodCell: UICollectionViewCell {
     
     private let salePriceLabel: UILabel = {
         let view = UILabel()
-        view.font = UIFont(onbanStyle: .bold, size: 14)
+        view.font = OnbanFontStyle.bold.font(size: 14)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     private let beforeSalePriceLabel: UILabel = {
         let view = UILabel()
-        view.font = UIFont(onbanStyle: .regular, size: 14)
+        view.font = OnbanFontStyle.regular.font(size: 14)
         view.textColor = OnBanColor.priceBeforeSale.color
         view.translatesAutoresizingMaskIntoConstraints = false
         return view

@@ -15,7 +15,7 @@ class MenuTitleSupplementaryView: UICollectionReusableView {
     private let verticalInset = CGFloat(16)
     
     private let label: UILabel = {
-        $0.font = UIFont(onbanStyle: .bold, size: 22)
+        $0.font = OnbanFontStyle.bold.font(size: 22)
         return $0
     }(UILabel())
 
