@@ -30,7 +30,7 @@ class FoodCell: UICollectionViewCell {
     private let descriptionLabel: UILabel = {
         let view = UILabel()
         view.font = UIFont(onbanStyle: .regular, size: 14)
-        view.textColor = UIColor(onbanColor: .descriptionText)
+        view.textColor = OnBanColor.descriptionText.color
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -45,7 +45,7 @@ class FoodCell: UICollectionViewCell {
     private let beforeSalePriceLabel: UILabel = {
         let view = UILabel()
         view.font = UIFont(onbanStyle: .regular, size: 14)
-        view.textColor = UIColor(onbanColor: .priceBeforeSale)
+        view.textColor = OnBanColor.priceBeforeSale.color
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()

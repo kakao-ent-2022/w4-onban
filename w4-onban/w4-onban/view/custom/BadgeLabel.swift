@@ -48,7 +48,7 @@ class BadgeLabel: UILabel {
     private func initUi() {
         font = UIFont(onbanStyle: .regular, size: 12)
         
-        textColor = UIColor(onbanColor: .badgeText)
+        textColor = OnBanColor.badgeText.color
         textAlignment = NSTextAlignment.center
         
         layer.masksToBounds = true
@@ -58,9 +58,9 @@ class BadgeLabel: UILabel {
     private func backgroundColorBy(badge: Badge) -> UIColor? {
         switch(badge) {
         case .event:
-            return UIColor(onbanColor: .eventBadge)
+            return OnBanColor.eventBadge.color
         case .launchEvent:
-            return UIColor(onbanColor: .launchEventBadge)
+            return OnBanColor.launchEventBadge.color
         }
     }
 }

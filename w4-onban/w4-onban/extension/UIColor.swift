@@ -14,9 +14,8 @@ enum OnBanColor: String {
     case badgeText
     case descriptionText
     case priceBeforeSale
-}
-extension UIColor {
-    convenience init?(onbanColor: OnBanColor) {
-        self.init(named: onbanColor.rawValue)
+    
+    var color: UIColor? {
+        return UIColor(named: self.rawValue)
     }
 }
