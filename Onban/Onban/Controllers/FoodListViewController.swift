@@ -16,7 +16,17 @@ class FoodListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
-        getFoodData()
+        addFoodData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
 
     private func setLayout() {
@@ -34,35 +44,25 @@ class FoodListViewController: UIViewController {
             make.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing)
         }
     }
-
-    private func getFoodData() {
-        JSONParser.load(from: "main", to: [Food].self) { mainResult in
-            switch mainResult {
-            case .success(let main):
-                JSONParser.load(from: "side", to: [Food].self) { sideResult in
-                    switch sideResult {
-                    case .success(let side):
-                        JSONParser.load(from: "soup", to: [Food].self) { soupResult in
-                            switch soupResult {
-                            case .success(let soup):
-                                let mains = FoodsViewModel(type: .main, foods: main)
-                                let soups = FoodsViewModel(type: .side, foods: soup)
-                                let sides = FoodsViewModel(type: .soup, foods: side)
-                                self.foodListVM = FoodListViewModel(foodsList: [mains, soups, sides])
-                            case.failure(let soupError):
-                                print(soupError)
-                            }
-                        }
-                        
-                    case .failure(let sideError):
-                        print(sideError)
-                    }
-                }
-            case .failure(let mainError):
-                print(mainError)
-            }
+    
+    private func addFoodData() {
+        self.foodListVM = FoodListViewModel(foodsList: [])
+        let group = DispatchGroup()
+        group.enter()
+        foodListVM?.addFoodViewModel(type: .main) {
+            group.leave()
         }
-        
+        group.enter()
+        foodListVM?.addFoodViewModel(type: .soup) {
+            group.leave()
+        }
+        group.enter()
+        foodListVM?.addFoodViewModel(type: .side) {
+            group.leave()
+        }
+        group.notify(queue: .main) {
+                self.collectionView.reloadData()
+        }
     }
 }
 
@@ -88,6 +88,15 @@ extension FoodListViewController: UICollectionViewDataSource, UICollectionViewDe
         cell.configure(foodVM: foodVM)
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let foodVM = foodListVM?.foodAtIndex(indexPath) else { return }
+        let hashID = foodVM.hashID
+        let detailVC = DetailViewController()
+        detailVC.configure(foodVM: foodVM)
+        self.navigationController?.pushViewController(detailVC, animated: true)
+        
+    }
    
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
@@ -98,6 +107,7 @@ extension FoodListViewController: UICollectionViewDataSource, UICollectionViewDe
         return header
                 
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 5
     }

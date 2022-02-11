@@ -1,0 +1,430 @@
+//
+//  DetailViewController.swift
+//  Onban
+//
+//  Created by terry.yes on 2022/02/07.
+//
+
+import UIKit
+
+class DetailViewController: UIViewController {
+    let scrollView: UIScrollView = UIScrollView()
+    let contentsView: UIView = UIView()
+    let collectionViewDelegate = CarouselCollectionView()
+    var timer: Timer?
+    var animateIndex = 1
+    
+    lazy var collectionView: UICollectionView = {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .horizontal
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        collectionView.dataSource = collectionViewDelegate
+        collectionView.delegate = collectionViewDelegate
+        collectionView.register(CarouselCell.self, forCellWithReuseIdentifier: "carouselCell")
+        collectionView.isPagingEnabled = true
+        return collectionView
+    }()
+    
+    let titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 30)
+        return label
+    }()
+    let detailLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.textColor = .systemGray
+        return label
+    }()
+    let currentPriceLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 28)
+        return label
+    }()
+    let originalPriceLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.preferredFont(forTextStyle: .title3)
+        label.textColor = .systemGray
+        return label
+    }()
+    private lazy var priceStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [currentPriceLabel, originalPriceLabel])
+        stackView.alignment = .bottom
+        stackView.distribution = .fill
+        stackView.axis = .horizontal
+        stackView.spacing = 10
+        return stackView
+    }()
+    let eventTagImage: UIImageView = UIImageView(image: UIImage(named: "eventTag.png"))
+    let newTagImage: UIImageView = UIImageView(image: UIImage(named: "newTag.png"))
+    
+    private lazy var tagStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [eventTagImage, newTagImage])
+        stackView.alignment = .center
+        stackView.distribution = .fill
+        stackView.axis = .horizontal
+        stackView.spacing = 10
+        return stackView
+    }()
+    let lineView1: UIView = {
+        let view = UIView(frame: CGRect())
+        view.backgroundColor = .systemGray
+        return view
+    }()
+    let pointTitleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.textColor = .systemGray
+        label.text = "적립금"
+        return label
+    }()
+    let pointLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.textColor = .systemGray
+        return label
+    }()
+    private lazy var pointStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [pointTitleLabel, pointLabel])
+        stackView.alignment = .center
+        stackView.distribution = .fill
+        stackView.axis = .horizontal
+        stackView.spacing = 10
+        return stackView
+    }()
+
+    let deliveryInfoTitleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.textColor = .systemGray
+        label.text = "배송정보"
+        return label
+    }()
+    let deliveryInfoLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.numberOfLines = 0
+        label.textColor = .systemGray
+        return label
+    }()
+    private lazy var deliveryInfoStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [deliveryInfoTitleLabel, deliveryInfoLabel])
+        stackView.alignment = .center
+        stackView.distribution = .fill
+        stackView.axis = .horizontal
+        stackView.spacing = 10
+        return stackView
+    }()
+    
+    let deliveryFeeTitleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.textColor = .systemGray
+        label.text = "배송비"
+        return label
+    }()
+    let deliveryFeeLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.textColor = .systemGray
+        return label
+    }()
+    private lazy var deliveryFeeStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [deliveryFeeTitleLabel, deliveryFeeLabel])
+        stackView.alignment = .center
+        stackView.distribution = .fill
+        stackView.axis = .horizontal
+        stackView.spacing = 10
+        return stackView
+    }()
+    let lineView2: UIView = {
+        let view = UIView(frame: CGRect())
+        view.backgroundColor = .systemGray
+        return view
+    }()
+    let stockTitleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.textColor = .systemGray
+        label.text = "수량"
+        return label
+    }()
+    let stockTextField: UITextField = {
+        let textField = UITextField()
+        textField.text = "1"
+        return textField
+    }()
+    
+    let increaseStockButton: UIButton = {
+        let button = UIButton()
+        let image = UIImage(systemName: "chevron.up")
+        button.setImage(image, for: .normal)
+        return button
+    }()
+    let decreaseStockButton: UIButton = {
+        let button = UIButton()
+        let image = UIImage(systemName: "chevron.down")
+        button.setImage(image, for: .normal)
+        return button
+    }()
+    private lazy var stockButtonStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [increaseStockButton, decreaseStockButton])
+        stackView.alignment = .center
+        stackView.distribution = .fill
+        stackView.axis = .vertical
+        stackView.spacing = 0
+        return stackView
+    }()
+    private lazy var stockControlStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [stockTextField, stockButtonStackView])
+        stackView.alignment = .center
+        stackView.distribution = .fill
+        stackView.axis = .horizontal
+        stackView.spacing = 10
+        return stackView
+    }()
+    private lazy var stockStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [stockTitleLabel, stockControlStackView])
+        stackView.alignment = .center
+        stackView.distribution = .fill
+        stackView.axis = .horizontal
+        stackView.spacing = 260
+        return stackView
+    }()
+    
+    let totalPriceTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "총 주문금액"
+        label.font = .preferredFont(forTextStyle: .body)
+        return label
+    }()
+    let totalPriceLabel: UILabel = {
+        let label = UILabel()
+        label.text = "5,200원"
+        label.font = .preferredFont(forTextStyle: .title1)
+        return label
+    }()
+    private lazy var totalPriceStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [totalPriceTitleLabel, totalPriceLabel])
+        stackView.alignment = .center
+        stackView.distribution = .fill
+        stackView.axis = .horizontal
+        stackView.spacing = 150
+        return stackView
+    }()
+    let orderButton: UIButton = {
+        let button = UIButton()
+        let image = UIImage(named: "orderButton")
+        button.setImage(image, for: .normal)
+        return button
+    }()
+    let soldoutButton: UIButton = {
+        let button = UIButton()
+        let image = UIImage(named: "soldoutButton")
+        button.setImage(image, for: .normal)
+        return button
+    }()
+    private var bottomImageStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.alignment = .center
+        stackView.distribution = .equalSpacing
+        stackView.axis = .vertical
+        stackView.spacing = 10
+        return stackView
+    }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.backgroundColor = .systemBackground
+        setViews()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(animate), userInfo: nil, repeats: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        timer?.invalidate()
+        print("timer invalidated")
+    }
+    
+    
+    func setViews() {
+        view.addSubview(scrollView)
+        scrollView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        scrollView.addSubview(contentsView)
+        contentsView.snp.makeConstraints { make in
+            make.width.equalTo(scrollView.frameLayoutGuide.snp.width)
+            make.leading.equalTo(scrollView.contentLayoutGuide.snp.leading)
+            make.trailing.equalTo(scrollView.contentLayoutGuide.snp.trailing)
+            make.top.equalTo(scrollView.contentLayoutGuide.snp.top)
+            make.bottom.equalTo(scrollView.contentLayoutGuide.snp.bottom)
+        }
+        
+        contentsView.addSubview(collectionView)
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(self.contentsView.snp.topMargin)
+            make.centerX.equalTo(self.contentsView.snp.centerX)
+            make.width.equalTo(self.contentsView.snp.width)
+            make.height.equalTo(400)
+        }
+        
+        contentsView.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(collectionView.snp.bottom).offset(20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
+        }
+
+        contentsView.addSubview(detailLabel)
+        detailLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(10)
+            make.leading.equalTo(titleLabel.snp.leading)
+        }
+
+        contentsView.addSubview(priceStackView)
+        priceStackView.snp.makeConstraints { make in
+            make.top.equalTo(detailLabel.snp.bottom).offset(20)
+            make.leading.equalTo(titleLabel.snp.leading)
+        }
+
+        contentsView.addSubview(tagStackView)
+        tagStackView.snp.makeConstraints { make in
+            make.top.equalTo(priceStackView.snp.bottom).offset(10)
+            make.leading.equalTo(titleLabel.snp.leading)
+        }
+        contentsView.addSubview(lineView1)
+        lineView1.snp.makeConstraints { make in
+            make.top.equalTo(tagStackView.snp.bottom).offset(30)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
+            make.height.equalTo(1)
+        }
+
+        contentsView.addSubview(pointStackView)
+        pointStackView.snp.makeConstraints { make in
+            make.top.equalTo(lineView1.snp.bottom).offset(30)
+            make.leading.equalTo(titleLabel.snp.leading)
+        }
+
+        pointLabel.snp.makeConstraints { make in
+            make.leading.equalTo(self.contentsView.snp.trailing).multipliedBy(0.3)
+        }
+
+        contentsView.addSubview(deliveryInfoStackView)
+        deliveryInfoStackView.snp.makeConstraints { make in
+            make.top.equalTo(pointStackView.snp.bottom).offset(20)
+            make.leading.equalTo(titleLabel.snp.leading)
+            make.trailing.equalToSuperview().offset(-20)
+        }
+        deliveryInfoLabel.snp.makeConstraints { make in
+            make.leading.equalTo(self.contentsView.snp.trailing).multipliedBy(0.3)
+            make.trailing.equalToSuperview()
+        }
+        
+        contentsView.addSubview(deliveryFeeStackView)
+        deliveryFeeStackView.snp.makeConstraints { make in
+            make.top.equalTo(deliveryInfoStackView.snp.bottom).offset(20)
+            make.leading.equalTo(titleLabel.snp.leading)
+            make.trailing.equalToSuperview().offset(-20)
+        }
+
+        deliveryFeeLabel.snp.makeConstraints { make in
+            make.leading.equalTo(self.contentsView.snp.trailing).multipliedBy(0.3)
+            make.trailing.equalToSuperview()
+        }
+        
+        contentsView.addSubview(lineView2)
+        lineView2.snp.makeConstraints { make in
+            make.top.equalTo(deliveryFeeStackView.snp.bottom).offset(30)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
+            make.height.equalTo(1)
+        }
+        
+        contentsView.addSubview(stockStackView)
+        stockStackView.snp.makeConstraints { make in
+            make.top.equalTo(lineView2.snp.bottom).offset(30)
+            make.leading.equalTo(titleLabel.snp.leading)
+        }
+        
+        contentsView.addSubview(totalPriceStackView)
+        totalPriceStackView.snp.makeConstraints { make in
+            make.top.equalTo(stockStackView.snp.bottom).offset(30)
+            make.leading.equalTo(titleLabel.snp.leading)
+        }
+        contentsView.addSubview(orderButton)
+        orderButton.snp.makeConstraints { make in
+            make.top.equalTo(totalPriceLabel.snp.bottom).offset(20)
+            make.width.equalToSuperview().multipliedBy(0.9)
+            make.height.equalTo(100)
+            make.centerX.equalToSuperview()
+        }
+        contentsView.addSubview(bottomImageStackView)
+        bottomImageStackView.snp.makeConstraints { make in
+            make.top.equalTo(orderButton.snp.bottom).offset(20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
+            make.bottom.equalToSuperview()
+        }
+    }
+    
+    func configure(foodVM: FoodViewModel) {
+        let baseURL = "https://api.codesquad.kr/onban/detail/"
+        let urlString = baseURL + foodVM.hashID
+        JSONLoader.load(from: urlString, to: FoodDescriptionData.self, keyDecodingStrategy: .convertFromSnakeCase) { result in
+            switch result {
+            case .success(let data):
+                let foodData = data.data
+                print(foodData)
+                DispatchQueue.main.async {
+                    self.titleLabel.text = foodVM.title
+                    self.detailLabel.text = foodData.productDescription
+                    if foodData.prices.count == 1 {
+                        self.currentPriceLabel.text = foodData.prices[0]
+                    } else {
+                        self.currentPriceLabel.text = foodData.prices[1]
+                        self.originalPriceLabel.attributedText = foodData.prices[0].strikeThrough()
+                    }
+                    self.newTagImage.isHidden = !foodVM.isNew
+                    self.eventTagImage.isHidden = !foodVM.isEvent
+                    self.pointLabel.text = foodData.point
+                    self.deliveryInfoLabel.text = foodData.deliveryInfo
+                    self.deliveryFeeLabel.text = foodData.deliveryFee
+                    self.totalPriceLabel.text = foodData.prices.count == 1 ? foodData.prices[0] : foodData.prices[1]
+                    let detailThumnailVM = DetailThumnailViewModel(urlStrings: foodData.thumbImages)
+                    self.collectionViewDelegate.detailThumnailVM = detailThumnailVM
+                    self.collectionView.reloadData()
+                    
+                    foodData.detailSection.forEach { imageURL in
+                        ImageCacheManager.shared.loadImage(imageURL: imageURL) { image in
+                            DispatchQueue.main.async {
+                                let imageView = UIImageView(image: image)
+                                self.bottomImageStackView.addArrangedSubview(imageView)
+                                imageView.snp.makeConstraints { make in
+                                    let aspectRatio = imageView.image?.aspectRatio ?? 1
+                                    make.height.equalTo(imageView.snp.width).multipliedBy(1 / aspectRatio)
+                                }
+                            }
+                        }
+                    }
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+       
+    }
+    
+    @objc func animate() {
+        collectionView.reloadData()
+        self.collectionView.scrollToItem(at: IndexPath(item: animateIndex, section: 0), at: .centeredHorizontally, animated: true)
+        print(animateIndex)
+        animateIndex = animateIndex == 1 ? 0 : 1
+    }
+    
+}

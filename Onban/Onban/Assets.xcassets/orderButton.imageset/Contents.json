@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "eventTag.png",
+      "filename" : "orderButton.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "eventTag@2x.png",
+      "filename" : "orderButton@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "eventTag@3x.png",
+      "filename" : "orderButton@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
