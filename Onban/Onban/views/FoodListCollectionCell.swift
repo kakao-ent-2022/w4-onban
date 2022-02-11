@@ -106,27 +106,36 @@ class FoodListCollectionCell: UICollectionViewCell {
         launchLabel.backgroundColor = defaultColor(.lightBlue)
         badgeStack.addArrangedSubview(launchLabel)
         
-        let safeArea = safeAreaLayoutGuide
+        let rightView = UIView()
+        rightView.translatesAutoresizingMaskIntoConstraints = false
+        
+        addSubview(rightView)
+        
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: safeArea.topAnchor),
-            imageView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
-            imageView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            imageView.heightAnchor.constraint(equalTo: safeArea.heightAnchor),
+            imageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            imageView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            imageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            imageView.heightAnchor.constraint(equalTo: heightAnchor),
             imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor),
-            titleLabel.topAnchor.constraint(lessThanOrEqualTo: imageView.topAnchor, constant: 11),
-            titleLabel.topAnchor.constraint(greaterThanOrEqualTo: imageView.topAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10),
-            titleLabel.trailingAnchor.constraint(lessThanOrEqualTo: safeArea.trailingAnchor),
-            descriptionLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-            descriptionLabel.trailingAnchor.constraint(lessThanOrEqualTo: safeArea.trailingAnchor),
+            rightView.centerYAnchor.constraint(equalTo: imageView.centerYAnchor),
+            rightView.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 8),
+            rightView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            
+            titleLabel.topAnchor.constraint(equalTo: rightView.topAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: rightView.leadingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: rightView.trailingAnchor),
+            descriptionLabel.leadingAnchor.constraint(equalTo: rightView.leadingAnchor),
+            descriptionLabel.trailingAnchor.constraint(equalTo: rightView.trailingAnchor),
             descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4),
-            actualPriceLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            actualPriceLabel.leadingAnchor.constraint(equalTo: rightView.leadingAnchor),
             actualPriceLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 8),
             originalPriceLabel.topAnchor.constraint(equalTo: actualPriceLabel.topAnchor),
             originalPriceLabel.leadingAnchor.constraint(equalTo: actualPriceLabel.trailingAnchor, constant: 4),
-            badgeStack.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-            badgeStack.topAnchor.constraint(equalTo: actualPriceLabel.bottomAnchor, constant: 8)
+            badgeStack.leadingAnchor.constraint(equalTo: rightView.leadingAnchor),
+            badgeStack.topAnchor.constraint(equalTo: actualPriceLabel.bottomAnchor, constant: 8),
+            badgeStack.bottomAnchor.constraint(equalTo: rightView.bottomAnchor),
         ])
+        
     }
     
     private func loadImageFromDiskWith(fileName: String) -> UIImage? {

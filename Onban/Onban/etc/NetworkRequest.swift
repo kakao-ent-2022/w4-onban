@@ -24,10 +24,10 @@ class SessionManager {
     init(session: URLSession) {
         self.session = session
     }
-    func getDataTask(with url: URL, networkErrorHandler: ((Error) -> Void)?, responseErrorHandler: ((URLResponse?) -> Void)?, completionHandler: @escaping (Data?) -> Void) -> URLSessionTask {
+    func getDataTask(with url: URL, networkErrorHandler: ((Error) -> Void)?, responseErrorHandler: ((URLResponse?) -> Void)?, successHandler: @escaping (Data?) -> Void) -> URLSessionTask {
         return session.dataTask(with: url) { (data, response, error) in
             if let error = error {
-                networkErrorHandler?(error)
+                networkErrorHandler?(error) ?? print(error)
                 return
             }
             guard let httpResponse = response as? HTTPURLResponse,
@@ -35,17 +35,18 @@ class SessionManager {
                       responseErrorHandler?(response)
                       return
                   }
-            completionHandler(data)
+            successHandler(data)
         }
     }
     
-    func getDataTask(with url: URL, completionHandler: @escaping (Data?) -> Void) -> URLSessionTask {
-        getDataTask(with: url, networkErrorHandler: nil, responseErrorHandler: nil, completionHandler: completionHandler)
+    func getDataTask(with url: URL, successHandler: @escaping (Data?) -> Void) -> URLSessionTask {
+        getDataTask(with: url, networkErrorHandler: nil, responseErrorHandler: nil, successHandler: successHandler)
     }
     
     func getDownloadTask(with url: URL, completionHandler: @escaping (URL?) -> Void) -> URLSessionDownloadTask {
         return session.downloadTask(with: url, completionHandler: { (url, response, error) in
-            if let _ = error {
+            if let error = error {
+                print(error)
                 return
             }
             guard let httpResponse = response as? HTTPURLResponse,
@@ -54,5 +55,9 @@ class SessionManager {
                   }
             completionHandler(url)
         })
+    }
+    
+    deinit {
+        session.finishTasksAndInvalidate()
     }
 }
