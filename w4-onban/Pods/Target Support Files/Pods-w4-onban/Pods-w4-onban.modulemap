@@ -1,0 +1,6 @@
+module Pods_w4_onban {
+  umbrella header "Pods-w4-onban-umbrella.h"
+
+  export *
+  module * { export * }
+}
