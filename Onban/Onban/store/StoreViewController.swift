@@ -62,10 +62,11 @@ class StoreViewController: UIViewController {
     }
     
     private func addData() {
-        let storeIndex = storeCollectionViewDataSource.storeIndex
+        let sections = StoreCollectionViewDataSource.StoreSection.allCases
         
-        for (index, element) in storeIndex.enumerated() {
-            StoreApiService.shared.getStores(resource: element) { result in
+        sections.forEach {
+            let index = $0.rawValue
+            StoreApiService.shared.getStores(resource: "\($0)") { result in
                 switch result {
                 case .success(let data):
                     self.storeCollectionViewDataSource.addStoreData(index: index, data: data)
@@ -77,7 +78,6 @@ class StoreViewController: UIViewController {
                 }
             }
         }
-        
     }
 }
 

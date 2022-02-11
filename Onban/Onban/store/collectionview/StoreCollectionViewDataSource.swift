@@ -10,19 +10,33 @@ import UIKit
 
 class StoreCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
-    let storeIndex = ["main", "soup", "side"]
+    enum StoreSection: Int, CaseIterable {
+        case main = 0
+        case soup = 1
+        case side = 2
+        
+        static func withName(_ name: String) -> StoreSection? {
+            return self.allCases.first{ "\($0)" == name }
+        }
+        
+        var headerText: String {
+            switch self {
+            case .main:
+                return "메인반찬 / 한그릇 뚝딱 메인 요리"
+            case .soup:
+                return "국.찌게 / 김이 모락모락 국.찌게"
+            case .side:
+                return "밑반찬 / 언제 먹어도 든든한 밑반찬"
+            }
+        }
+    }
     
-    let headerTexts = [
-        "메인반찬 / 한그릇 뚝딱 메인 요리",
-        "국.찌게 / 김이 모락모락 국.찌게",
-        "밑반찬 / 언제 먹어도 든든한 밑반찬",
-    ]
     lazy var stores : [[StoreItem]] = {
-        Array(repeating: [], count: storeIndex.count)
+        Array(repeating: [], count: StoreSection.allCases.count)
     }()
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return storeIndex.count
+        return StoreSection.allCases.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -48,8 +62,10 @@ class StoreCollectionViewDataSource: NSObject, UICollectionViewDataSource {
                 fatalError("no view")
             }
             
-            let headerText = headerTexts[indexPath.section]
-            headerView.bind(headerText: headerText)
+            guard let section = StoreSection.init(rawValue: indexPath.section) else {
+                fatalError("no section")
+            }
+            headerView.bind(headerText: section.headerText)
             
             return headerView
             
@@ -59,8 +75,8 @@ class StoreCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     }
     
     func initJson() {
-        for (index, element) in storeIndex.enumerated() {
-            addJsonFileData(jsonName: element, index: index)
+        StoreSection.allCases.forEach {
+            addJsonFileData(jsonName: "\($0)", index: $0.rawValue)
         }
     }
     
