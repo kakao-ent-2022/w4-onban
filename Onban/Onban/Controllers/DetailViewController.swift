@@ -242,7 +242,7 @@ class DetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(animate), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(animate), userInfo: nil, repeats: true)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -376,7 +376,7 @@ class DetailViewController: UIViewController {
     func configure(foodVM: FoodViewModel) {
         let baseURL = "https://api.codesquad.kr/onban/detail/"
         let urlString = baseURL + foodVM.hashID
-        JSONLoader.load(from: urlString, to: FoodDescriptionData.self) { result in
+        JSONLoader.load(from: urlString, to: FoodDescriptionData.self, keyDecodingStrategy: .convertFromSnakeCase) { result in
             switch result {
             case .success(let data):
                 let foodData = data.data
@@ -423,6 +423,7 @@ class DetailViewController: UIViewController {
     @objc func animate() {
         collectionView.reloadData()
         self.collectionView.scrollToItem(at: IndexPath(item: animateIndex, section: 0), at: .centeredHorizontally, animated: true)
+        print(animateIndex)
         animateIndex = animateIndex == 1 ? 0 : 1
     }
     

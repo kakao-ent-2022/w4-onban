@@ -13,7 +13,7 @@ enum JSONParserError: Error {
 }
 
 struct JSONLoader {
-    static func load<T: Decodable>(from urlString: String, to type: T.Type,  completion: @escaping (Result<T, JSONParserError>) -> Void) {
+    static func load<T: Decodable>(from urlString: String, to type: T.Type,  keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy, completion: @escaping (Result<T, JSONParserError>) -> Void) {
         guard let url = URL(string: urlString) else {
             completion(.failure(.invalidURL))
             return
@@ -21,6 +21,7 @@ struct JSONLoader {
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data, error == nil else { return }
             let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = keyDecodingStrategy
             guard let result = try? decoder.decode(T.self, from: data) else {
                 completion(.failure(.failedToDecode))
                 return

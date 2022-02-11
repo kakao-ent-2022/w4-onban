@@ -17,7 +17,7 @@ class FoodListViewModel {
     func addFoodViewModel(type: FoodsType, completion: ( () -> Void)? = nil) {
         let url = type.JSONURL
 
-        JSONLoader.load(from: url, to: FoodResponse.self) { result in
+        JSONLoader.load(from: url, to: FoodResponse.self, keyDecodingStrategy: .useDefaultKeys) { result in
             switch result{
             case .success(let foodResponse):
                 let foodVM = FoodsViewModel(type: .main, foods: foodResponse.body)

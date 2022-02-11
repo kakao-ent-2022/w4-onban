@@ -7,10 +7,12 @@
 
 import UIKit
 
+
 extension UIImage {
-    var aspectRatio: CGFloat {
+    var aspectRatio: CGFloat? {
         let width = self.size.width
         let height = self.size.height
-        return width / height
+        
+        return height != 0 ? width / height : nil
     }
 }
