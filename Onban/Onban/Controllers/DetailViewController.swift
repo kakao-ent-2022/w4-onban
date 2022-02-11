@@ -33,7 +33,7 @@ class DetailViewController: UIViewController {
     let detailLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .body)
-        label.textColor = .gray
+        label.textColor = .systemGray
         return label
     }()
     let currentPriceLabel: UILabel = {
@@ -44,7 +44,7 @@ class DetailViewController: UIViewController {
     let originalPriceLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .title3)
-        label.textColor = .gray
+        label.textColor = .systemGray
         return label
     }()
     private lazy var priceStackView: UIStackView = {
@@ -68,20 +68,20 @@ class DetailViewController: UIViewController {
     }()
     let lineView1: UIView = {
         let view = UIView(frame: CGRect())
-        view.backgroundColor = .gray
+        view.backgroundColor = .systemGray
         return view
     }()
     let pointTitleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .body)
-        label.textColor = .gray
+        label.textColor = .systemGray
         label.text = "적립금"
         return label
     }()
     let pointLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .body)
-        label.textColor = .darkGray
+        label.textColor = .systemGray
         return label
     }()
     private lazy var pointStackView: UIStackView = {
@@ -96,7 +96,7 @@ class DetailViewController: UIViewController {
     let deliveryInfoTitleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .body)
-        label.textColor = .gray
+        label.textColor = .systemGray
         label.text = "배송정보"
         return label
     }()
@@ -104,7 +104,7 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .body)
         label.numberOfLines = 0
-        label.textColor = .darkGray
+        label.textColor = .systemGray
         return label
     }()
     private lazy var deliveryInfoStackView: UIStackView = {
@@ -119,7 +119,7 @@ class DetailViewController: UIViewController {
     let deliveryFeeTitleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .body)
-        label.textColor = .gray
+        label.textColor = .systemGray
         label.text = "배송비"
         return label
     }()
@@ -127,7 +127,7 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = UIFont.preferredFont(forTextStyle: .body)
-        label.textColor = .darkGray
+        label.textColor = .systemGray
         return label
     }()
     private lazy var deliveryFeeStackView: UIStackView = {
@@ -140,13 +140,13 @@ class DetailViewController: UIViewController {
     }()
     let lineView2: UIView = {
         let view = UIView(frame: CGRect())
-        view.backgroundColor = .gray
+        view.backgroundColor = .systemGray
         return view
     }()
     let stockTitleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .body)
-        label.textColor = .gray
+        label.textColor = .systemGray
         label.text = "수량"
         return label
     }()
@@ -236,7 +236,7 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.white
+        self.view.backgroundColor = .systemBackground
         setViews()
     }
     
