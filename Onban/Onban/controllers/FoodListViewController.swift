@@ -81,14 +81,14 @@ class FoodListViewController: UIViewController {
         let foods = self.foodListViewModel.get(section: section)
         let request = NetworkRequest()
         let session = request.getSessionManager(delegate: nil)
-        for food in foods {
+        for (i, food) in foods.enumerated() {
             let task = session.getDownloadTask(with: URL(string: food.imagePath)!) { (url) in
                 if let url = url,
                    let image = UIImage(contentsOfFile: url.path),
                    !self.ifFileExist(fileName: food.id) {
                     DispatchQueue.global().async {
                         self.saveImage(fileName: food.id, image: image) {
-                            self.collectionView?.reloadItems(at: [IndexPath(row: 1, section: 1)])
+                            self.collectionView?.reloadItems(at: [IndexPath(row: i, section: section)])
                         }
                     }
                 }

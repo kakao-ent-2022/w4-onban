@@ -148,6 +148,8 @@ class DetailView: UIView {
     }
     
     func configure(from model: FoodDetail, with food: Food?) {
+
+        thumbnailScrollView.contentSize = CGSize(width: frame.width * CGFloat(Float(model.thumbnails.count)), height: frame.height)
         
         for item in model.thumbnails {
             
@@ -164,6 +166,7 @@ class DetailView: UIView {
                     }
                 }
             })
+            
             topImageTask.resume()
         }
         
@@ -237,16 +240,17 @@ class DetailView: UIView {
         addSubview(actualPriceLabel)
         addSubview(originalPriceLabel)
         addSubview(badgeStack)
-                
         thumbnailScrollView.addSubview(thumbnailStack)
         thumbnailScrollView.delegate = self
         NSLayoutConstraint.activate([
             thumbnailScrollView.topAnchor.constraint(equalTo: topAnchor),
             thumbnailScrollView.widthAnchor.constraint(equalTo: widthAnchor),
             thumbnailScrollView.heightAnchor.constraint(equalTo: thumbnailScrollView.widthAnchor),
+            thumbnailScrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
             thumbnailStack.topAnchor.constraint(equalTo: thumbnailScrollView.topAnchor),
             thumbnailStack.leadingAnchor.constraint(equalTo: thumbnailScrollView.leadingAnchor),
             thumbnailStack.trailingAnchor.constraint(equalTo: thumbnailScrollView.trailingAnchor),
+            thumbnailStack.bottomAnchor.constraint(equalTo: thumbnailScrollView.bottomAnchor),
             titleLabel.topAnchor.constraint(equalTo: thumbnailScrollView.bottomAnchor, constant: 24),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
