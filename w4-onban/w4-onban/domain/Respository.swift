@@ -15,4 +15,6 @@ protocol Repository {
     func sideFoodLists(onCompletionHandler: @escaping (Result<FoodList, NetworkError>) -> ())
     
     func foodDetail(hash: String,onCompletionHandler: @escaping (Result<FoodDetail, NetworkError>) -> ())
+    
+    func foodDetailImages(imageUrls: [String], onCompletionHandler: @escaping (Result<[Data], NetworkError>) -> ())
 }

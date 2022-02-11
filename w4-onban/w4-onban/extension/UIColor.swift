@@ -14,6 +14,9 @@ enum OnBanColor: String {
     case badgeText
     case descriptionText
     case priceBeforeSale
+    case divider
+    case metaData
+    case orderButton
     
     var color: UIColor? {
         return UIColor(named: self.rawValue)

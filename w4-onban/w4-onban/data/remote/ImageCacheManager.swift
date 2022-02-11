@@ -25,7 +25,6 @@ class ImageCacheManager {
         
         let fileUrl = cacheDirectory.appendingPathComponent(url.lastPathComponent)
         let filePath = fileUrl.path
-        
         if !fileManager.fileExists(atPath: filePath) {
             let isSuccess = fileManager.createFile(atPath: filePath, contents: data, attributes: nil)
             return isSuccess
@@ -34,7 +33,9 @@ class ImageCacheManager {
     }
     
     func load(fileName: String) -> Data? {
-        let fileUrl = cacheDirectory.appendingPathComponent(fileName)
+        guard let url = URL(string: fileName) else { return nil }
+        
+        let fileUrl = cacheDirectory.appendingPathComponent(url.lastPathComponent)
         let filePath = fileUrl.path
         
         if fileManager.fileExists(atPath: filePath) {

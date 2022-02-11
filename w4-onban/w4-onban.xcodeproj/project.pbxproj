@@ -16,6 +16,7 @@
 		2E0CA63927B006A4001FC85D /* FoodList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0CA63827B006A4001FC85D /* FoodList.swift */; };
 		2E0CA63E27B03070001FC85D /* MenuTitleSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0CA63D27B03070001FC85D /* MenuTitleSupplementaryView.swift */; };
 		2E0CA64027B04240001FC85D /* JsonFileParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0CA63F27B04240001FC85D /* JsonFileParser.swift */; };
+		2E16735027B6137600704FA7 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E16734F27B6137600704FA7 /* CounterView.swift */; };
 		2E754F9527ABCCD400D3DEAA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E754F9427ABCCD400D3DEAA /* AppDelegate.swift */; };
 		2E754F9727ABCCD400D3DEAA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E754F9627ABCCD400D3DEAA /* SceneDelegate.swift */; };
 		2E754F9C27ABCCD400D3DEAA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E754F9A27ABCCD400D3DEAA /* Main.storyboard */; };
@@ -54,6 +55,7 @@
 		2E0CA63827B006A4001FC85D /* FoodList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodList.swift; sourceTree = "<group>"; };
 		2E0CA63D27B03070001FC85D /* MenuTitleSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTitleSupplementaryView.swift; sourceTree = "<group>"; };
 		2E0CA63F27B04240001FC85D /* JsonFileParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonFileParser.swift; sourceTree = "<group>"; };
+		2E16734F27B6137600704FA7 /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
 		2E754F9127ABCCD400D3DEAA /* w4-onban.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "w4-onban.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E754F9427ABCCD400D3DEAA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E754F9627ABCCD400D3DEAA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				2EA09F8827B11C6C00ACC11A /* BadgeLabel.swift */,
+				2E16734F27B6137600704FA7 /* CounterView.swift */,
 			);
 			path = custom;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				2E0CA63627B00415001FC85D /* FoodSource.swift in Sources */,
 				2E0CA63E27B03070001FC85D /* MenuTitleSupplementaryView.swift in Sources */,
 				2E872B2F27B4CE9E00F70191 /* FoodDetail.swift in Sources */,
+				2E16735027B6137600704FA7 /* CounterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

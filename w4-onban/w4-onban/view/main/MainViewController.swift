@@ -16,14 +16,14 @@ class MainViewController: UIViewController {
     private var collectionView: UICollectionView!
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        let remoteRepository = RemoteRepositoryImple()
+        let remoteRepository = RemoteRepositoryImpl()
         foodListViewModel = FoodListViewModelImpl(repository: remoteRepository)
         foodSource = FoodSource(viewModel: foodListViewModel)
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
     required init?(coder: NSCoder) {
-        let remoteRepository = RemoteRepositoryImple()
+        let remoteRepository = RemoteRepositoryImpl()
         foodListViewModel = FoodListViewModelImpl(repository: remoteRepository)
         foodSource = FoodSource(viewModel: foodListViewModel)
         super.init(coder: coder)
@@ -96,8 +96,7 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
 extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let item = foodListViewModel.item(groupIndex: indexPath.section, itemIndex: indexPath.row)
-        let detailViewController = DetailViewController()
-        detailViewController.set(food: item!)
+        let detailViewController = DetailViewController(food: item!)
         navigationController?.pushViewController(detailViewController, animated: false)
     }
 }

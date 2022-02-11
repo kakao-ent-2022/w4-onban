@@ -13,6 +13,7 @@ struct FoodDetail: Decodable {
     let productDescription: String
     let point: String
     let deliveryInfo: String
+    let deliveryFee: String
     let prices: [String]
     let detailSectionImages: [String]
     
@@ -22,6 +23,7 @@ struct FoodDetail: Decodable {
         case productDescription = "product_description"
         case point
         case deliveryInfo = "delivery_info"
+        case deliveryFee = "delivery_fee"
         case prices
         case detailSectionImages = "detail_section"
     }
@@ -33,6 +35,7 @@ struct FoodDetail: Decodable {
         productDescription = try container.decode(String.self, forKey: .productDescription)
         point = try container.decode(String.self, forKey: .point)
         deliveryInfo = try container.decode(String.self, forKey: .deliveryInfo)
+        deliveryFee = try container.decode(String.self, forKey: .deliveryFee)
         prices = try container.decode([String].self, forKey: .prices)
         detailSectionImages = try container.decode([String].self, forKey: .detailSectionImages)
     }

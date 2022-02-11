@@ -26,6 +26,7 @@ class ImageLoader {
         }
         
         if let data = ImageCacheManager.instance.load(fileName: from) {
+            print("from cache")
             completionHandler(.success(data))
         }
     
