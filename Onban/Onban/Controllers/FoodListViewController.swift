@@ -58,21 +58,11 @@ class FoodListViewController: UIViewController {
         }
         group.enter()
         foodListVM?.addFoodViewModel(type: .side) {
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
             group.leave()
         }
-        //하단 코드 == DispatchGroup을 쓰기 전 코드
-//        foodListVM?.addFoodViewModel(type: .main) {
-//            self.foodListVM?.addFoodViewModel(type: .soup, completion: {
-//                self.foodListVM?.addFoodViewModel(type: .side, completion: {
-//                    DispatchQueue.main.async {
-//                        self.collectionView.reloadData()
-//                    }
-//                })
-//            })
-//        }
+        group.notify(queue: .main) {
+                self.collectionView.reloadData()
+        }
     }
 }
 

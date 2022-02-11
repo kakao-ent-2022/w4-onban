@@ -25,7 +25,6 @@ class DetailViewController: UIViewController {
         return collectionView
     }()
     
-    var foodImage: UIImageView = UIImageView(image: UIImage(named: "foodThumbnail.png"))
     let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 30)
@@ -244,7 +243,6 @@ class DetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(animate), userInfo: nil, repeats: true)
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
